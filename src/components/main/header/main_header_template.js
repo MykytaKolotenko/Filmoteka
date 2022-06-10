@@ -1,4 +1,6 @@
-export default function mainHeaderTemplate(params) {
+import picture from '../../../images/search.svg';
+
+export default function mainHeaderTemplate() {
   return `<div class="main__header">
         <div class="main__header-buttons">
           <button type="button" class="main__header-logo" data-main="home">
@@ -19,7 +21,7 @@ export default function mainHeaderTemplate(params) {
         </div>
         <div class="main__header-input">
           <input type="text" placeholder="Search..." data-main="input"/>
-          <img src="./images/search.svg" alt="" />
+          <img src="${picture}" alt="" />
         </div>
       </div>`;
 }
