@@ -1,7 +1,9 @@
-@import '../../node_modules/modern-normalize/modern-normalize.css';
+@import '../../node_modules/modern-normalize/modern-normalize';
 
 @import './global/global';
-@import './variables/variables.scss';
-@import '../components/loader/loader-square.scss';
+@import './variables/variables';
+@import '../components/loader/loader-square';
 
-@import '../components/film_card/film_card.scss';
+@import '../components/main/header/main_header';
+
+@import '../components/film_card/film_card';

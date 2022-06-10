@@ -2,6 +2,12 @@
 @import url(d:\Проекты\Filmoteka\node_modules\modern-normalize\modern-normalize.css);
 .container {
   width: 989px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  font-family: var(--font);
 }
 
 :root {
@@ -267,6 +273,139 @@
 }
 
 /* End loader styles */
+.main__header {
+  width: 1024px;
+  height: 216px;
+  background-image: url(/src/images/main_bg_image.jpg);
+}
+
+.main__header-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main__header-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 40px;
+  margin-left: 66px;
+  background-color: transparent;
+  color: var(--main_color);
+  border: none;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: calc(35px / 30px);
+  cursor: pointer;
+}
+
+.main__header-logo::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-image: url(/src/images/film.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  fill: var(--additional_text_color);
+}
+
+.main__header-nav {
+  margin-right: 32px;
+}
+
+.main__header-btn {
+  background-color: transparent;
+  color: var(--main_color);
+  border: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  text-transform: uppercase;
+}
+
+.main__header-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 41px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 336px;
+  border-bottom: 0.5px solid var(--main_color);
+}
+
+.main__header-input input {
+  display: block;
+  background-color: transparent;
+  border: none;
+  width: calc(336px - 2px);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  color: var(--main_color);
+}
+
+.main__header-input input::-webkit-input-placeholder {
+  color: var(--main_color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.main__header-input input:-ms-input-placeholder {
+  color: var(--main_color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.main__header-input input::-ms-input-placeholder {
+  color: var(--main_color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.main__header-input input::placeholder {
+  color: var(--main_color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.main__header-input input img {
+  display: block;
+}
+
+.active__page-btn::after {
+  content: '';
+  display: block;
+  width: inherit;
+  height: 3px;
+  background-color: var(--bgcolor_main);
+}
+
 .film__card-poster {
   width: 309px;
   height: 409px;

@@ -1,3 +1,4 @@
+import main_header_template from './components/main/header/main_header_template';
 import { getMovie, getSearchingMovie, getTrendingMovies } from './js/API/api';
 
 // Test!  for delete !!!!!
@@ -22,3 +23,7 @@ fetchMovie(675353);
 fetchSearchingMovie(`Harry Potter and the Philosopher's Stone`);
 
 // _______________________________________________________________________________
+
+document
+  .querySelector('.container')
+  .insertAdjacentHTML('afterbegin', main_header_template());
