@@ -20,3 +20,5 @@ const fetchSearchingMovie = async search => {
 fetchTrendingMovies();
 fetchMovie(675353);
 fetchSearchingMovie(`Harry Potter and the Philosopher's Stone`);
+
+// _______________________________________________________________________________
