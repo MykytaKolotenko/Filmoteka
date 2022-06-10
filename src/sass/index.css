@@ -2,7 +2,6 @@
 @import url(d:\Проекты\Filmoteka\node_modules\modern-normalize\modern-normalize.css);
 /* loader styles */
 .loader__square {
-  padding: 20px;
   width: calc(var(--f) * 2);
   height: calc(var(--f) * 2);
   display: -webkit-box;
@@ -17,8 +16,8 @@
 }
 
 .loader__square-item {
-  width: calc(var(--f) - 2px);
-  height: calc(var(--f) - 2px);
+  width: calc(var(--f) - 4px);
+  height: calc(var(--f) - 4px);
   border-radius: 20%;
   border: 1px solid white;
   -webkit-box-shadow: inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #a31925, 5px 5px 15px 5px rgba(0, 0, 0, 0);
@@ -254,4 +253,7 @@
 }
 
 /* End loader styles */
+.film__card {
+  height: 409px;
+}
 /*# sourceMappingURL=index.css.map */
