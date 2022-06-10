@@ -1,1 +1,5 @@
-@import './common';
+@import '../../node_modules/modern-normalize/modern-normalize.css';
+
+// Loader
+
+@import '../components/loader/loader-square.scss';

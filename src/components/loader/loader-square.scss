@@ -1,0 +1,134 @@
+/* loader styles */
+
+.loader__square {
+  width: calc(var(--f) * 2);
+  height: calc(var(--f) * 2);
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  transform: rotate(45deg);
+}
+
+.loader__square-item {
+  width: calc(var(--f) - 4px);
+  height: calc(var(--f) - 4px);
+
+  border-radius: 20%;
+  border: 1px solid white;
+
+  box-shadow: inset 0px 10px 27px -8px #141414,
+    inset 0px -10px 27px -8px #a31925, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.loader__square-item:nth-child(1) {
+  background-color: cornflowerblue;
+
+  animation: square-step-1 2s linear infinite;
+}
+
+.loader__square-item:nth-child(2) {
+  background-color: violet;
+
+  animation: square-step-2 2s linear infinite;
+}
+
+.loader__square-item:nth-child(3) {
+  background-color: yellowgreen;
+
+  animation: square-step-3 2s linear infinite;
+}
+
+@keyframes square-step-2 {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  8.3% {
+    transform: translate(0%, 100%);
+  }
+
+  24.9% {
+    transform: translate(0%, 100%);
+  }
+  33.2% {
+    transform: translate(-100%, 100%);
+  }
+
+  49.8% {
+    transform: translate(-100%, 100%);
+  }
+  58.1% {
+    transform: translate(-100%, 0%);
+  }
+
+  74.7% {
+    transform: translate(-100%, 0%);
+  }
+  83% {
+    transform: translate(0%, 0%);
+  }
+}
+
+@keyframes square-step-1 {
+  8.3% {
+    transform: translate(0%, 0%);
+  }
+  16.6% {
+    transform: translate(100%, 0%);
+  }
+
+  33.2% {
+    transform: translate(100%, 0%);
+  }
+  41.5% {
+    transform: translate(100%, 100%);
+  }
+
+  58.1% {
+    transform: translate(100%, 100%);
+  }
+  66.4% {
+    transform: translate(0%, 100%);
+  }
+
+  83% {
+    transform: translate(0%, 100%);
+  }
+  91.3% {
+    transform: translate(0%, 0%);
+  }
+}
+
+@keyframes square-step-3 {
+  16.6% {
+    transform: translate(0%, 0%);
+  }
+  24.9% {
+    transform: translate(0%, -100%);
+  }
+
+  41.5% {
+    transform: translate(0%, -100%);
+  }
+  49.8% {
+    transform: translate(100%, -100%);
+  }
+
+  66.4% {
+    transform: translate(100%, -100%);
+  }
+  74.7% {
+    transform: translate(100%, 00%);
+  }
+
+  91.3% {
+    transform: translate(100%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+/* End loader styles */
