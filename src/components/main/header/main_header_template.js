@@ -1,5 +1,5 @@
-export default mainHeaderTemplate = () =>
-  `<div class="main__header">
+export default function mainHeaderTemplate(params) {
+  return `<div class="main__header">
         <div class="main__header-buttons">
           <button type="button" class="main__header-logo" data-main="home">
             Filmoteka
@@ -22,3 +22,4 @@ export default mainHeaderTemplate = () =>
           <img src="./images/search.svg" alt="" />
         </div>
       </div>`;
+}
