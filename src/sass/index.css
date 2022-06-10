@@ -273,6 +273,7 @@ body {
 }
 
 /* End loader styles */
+
 .main__header {
   width: 1024px;
   height: 216px;
@@ -407,7 +408,29 @@ body {
 }
 
 .film__card-poster {
+
   width: 309px;
-  height: 409px;
+  height: calc(449px + 8px + 32px + 8px);
+}
+
+.film__card-name {
+  margin-top: 8px;
+  margin-bottom: 0px;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.film__card-genres {
+  margin-top: 8px;
+  margin-bottom: 0px;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--bgcolor_main);
+  text-transform: capitalize;
 }
 /*# sourceMappingURL=index.css.map */
