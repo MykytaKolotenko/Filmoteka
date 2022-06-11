@@ -1,4 +1,4 @@
-export default function mainHeaderTemplate() {
+export default function libraryHeaderTemplate() {
   return `<div class="library__header">
         <div class="library__header-buttons">
           <button type="button" class="library__header-logo" data-main="home">
