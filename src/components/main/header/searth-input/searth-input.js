@@ -6,7 +6,6 @@ import { mainHeaderTemplate } from '../main_header_template';
 
 const searth = document.querySelector('text[data-main="input"]');
 const filmCard = document.querySelector('.film__card');
-// console.log(filmCard);
 console.log(searth);
 
 const DEBOUNCE_DELAY = 300;
