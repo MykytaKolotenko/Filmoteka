@@ -1,5 +1,5 @@
 import main_header_template from './components/main/header/main_header_template';
-import RenderCards from './js/renderTrendingFilms';
+import RenderCards, { fetchAndRenderTemplates } from './js/renderTrendingFilms';
 
 import {
   getImage,
@@ -12,7 +12,7 @@ document
   .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
 
-new RenderCards(2);
+fetchAndRenderTemplates();
 // Test!  for delete !!!!!
 
 const fetchMovie = async id => {

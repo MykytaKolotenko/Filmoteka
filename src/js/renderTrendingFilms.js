@@ -3,16 +3,10 @@ import jsonGenres from './API/jsonGenres.js';
 import filmCardTemplate from '../components/film_card/filmCardTemplate.js';
 import { getImage } from './API/api.js';
 
-export default class RenderCards {
-  constructor() {
-    this.renderLink = document.querySelector('body');
+export const fetchAndRenderTemplates = async (pageNumber = 1) => {
+  renderLink = document.querySelector('body');
 
-    fetchAndRenderTemplates(this.renderLink);
-  }
-}
-
-const fetchAndRenderTemplates = async renderLink => {
-  const { data } = await getTrendingMovies();
+  const { data } = await getTrendingMovies(pageNumber);
   const { page } = data;
   const { results } = await data;
 
