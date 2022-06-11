@@ -1,5 +1,5 @@
-import { getTrendingMovies } from './API/api';
-import jsonGenres from './API/genres';
+import { getTrendingMovies } from './API/api.js';
+import jsonGenres from './API/genres.js';
 import film_card from '../components/film_card/film_card.js';
 import { getImage } from './API/api.js';
 
