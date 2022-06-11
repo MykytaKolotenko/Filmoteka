@@ -1,6 +1,6 @@
 import { getTrendingMovies } from './API/api.js';
 import jsonGenres from './API/genres.js';
-import film_card from '../components/film_card/film_card.js';
+import filmCardTemplate from '../components/film_card/film_card.js';
 import { getImage } from './API/api.js';
 
 export default class RenderCards {
@@ -17,7 +17,7 @@ export default class RenderCards {
 
     const template = results
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
-        return film_card(
+        return filmCardTemplate(
           getImage(poster_path),
           original_title,
           this.genresFromId(genre_ids),
