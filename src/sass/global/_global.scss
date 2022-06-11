@@ -1,8 +1,16 @@
 .container {
-  width: 960px;
+  width: 1024px;
 
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (max-width: 1023px) {
+    width: 704px;
+  }
+
+  @media screen and (max-width: 319px) {
+    width: 280;
+  }
 }
 
 body {

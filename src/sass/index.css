@@ -1,9 +1,21 @@
 @charset "UTF-8";
 @import url(d:\Проекты\Filmoteka\node_modules\modern-normalize\modern-normalize.css);
 .container {
-  width: 960px;
+  width: 1024px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media screen and (max-width: 1023px) {
+  .container {
+    width: 704px;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .container {
+    width: 280;
+  }
 }
 
 body {
@@ -21,12 +33,26 @@ body {
 }
 
 .card-container {
-  margin-top: 32px;
+  padding: 32px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 32px 16px;
+}
+
+@media screen and (max-width: 1023px) {
+  .card-container {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .card-container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
 }
 
 /* loader styles */
