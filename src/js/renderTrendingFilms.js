@@ -1,25 +1,9 @@
 import { getTrendingMovies } from './API/api.js';
 import jsonGenres from './API/jsonGenres.js';
 import { getImage } from './API/api.js';
+import filmCardTemplate from '../components/film_card/filmCardTemplate.js';
 
-const filmCardTemplate = (
-  image,
-  filmName,
-  genresOfFilm,
-  year,
-  id
-) => `<div class="film__card" id="${id}">
-      <img
-        src="${image}"
-        alt="${filmName}"
-        class="film__card-poster"
-      />
-
-      <p class="film__card-name">${filmName}</p>
-      <p class="film__card-genres">${genresOfFilm} | ${year}</p>
-    </div>`;
-
-export const fetchAndRenderTemplates = async (pageNumber = 1) => {
+export default fetchAndRenderTemplates = async (pageNumber = 1) => {
   renderLink = document.querySelector('body');
 
   const { data } = await getTrendingMovies(pageNumber);

@@ -1,9 +1,9 @@
 export default filmCardTemplate = (
-  image = 'https://thumbs.dreamstime.com/b/mission-failed-text-written-red-round-vintage-rubber-stamp-mission-failed-text-written-red-vintage-round-stamp-214766654.jpg',
-  filmName = 'Check',
-  genresOfFilm = ' Failed to load',
-  year = '2021',
-  id = 'Mistake'
+  image,
+  filmName,
+  genresOfFilm,
+  year,
+  id
 ) => `<div class="film__card" id="${id}">
       <img
         src="${image}"
