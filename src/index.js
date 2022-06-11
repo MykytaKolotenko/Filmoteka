@@ -6,6 +6,6 @@ import fetchAndRenderTemplates from './js/renderTrendingFilms.js';
 
 document
   .querySelector('body')
-  .insertAdjacentHTML('beforeend', main_header_template());
+  .insertAdjacentHTML('beforeend', library_header_template());
 
 fetchAndRenderTemplates();
