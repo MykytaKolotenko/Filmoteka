@@ -34,7 +34,6 @@ export default class RenderCards {
   };
 
   genresFromId = arrId => {
-    console.log(jsonGenres);
     const genres = jsonGenres;
     const genresName = [];
 
