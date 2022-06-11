@@ -1,6 +1,6 @@
 import { getTrendingMovies } from './API/api.js';
 import jsonGenres from './API/genres.js';
-import filmCardTemplate from '../components/film_card/film_card.js';
+import filmCardTemplate from '../components/film_card/filmCardTemplate.js';
 import { getImage } from './API/api.js';
 
 export default class RenderCards {
