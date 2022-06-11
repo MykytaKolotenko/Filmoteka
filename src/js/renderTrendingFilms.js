@@ -5,7 +5,7 @@ import { getImage } from './API/api';
 
 export default class RenderCards {
   constructor() {
-    this.renderLink = document.querySelector('.container');
+    this.renderLink = document.querySelector('body');
 
     this.fetchAndRenderTemplates();
   }
@@ -27,7 +27,7 @@ export default class RenderCards {
       })
       .join('');
 
-    const templateWithContaimer = `<div class="film__card-container">${template}</div> `;
+    const templateWithContaimer = `<div class="container"><div class="card-container">${template}</div></div> `;
 
     this.renderLink.insertAdjacentHTML('beforeend', templateWithContaimer);
     return page;

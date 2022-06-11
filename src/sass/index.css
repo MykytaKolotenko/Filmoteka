@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url(d:\Проекты\Filmoteka\node_modules\modern-normalize\modern-normalize.css);
 .container {
-  width: 989px;
+  width: 960px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -18,6 +18,15 @@ body {
   --additional_text_color: #545454;
   --failed_color: #ff001b;
   --footer_bg_color: #f7f7f7;
+}
+
+.card-container {
+  margin-top: 32px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 32px 16px;
 }
 
 /* loader styles */
@@ -276,6 +285,8 @@ body {
 .main__header {
   width: 1024px;
   height: 216px;
+  margin-left: auto;
+  margin-right: auto;
   background-image: url(/src/images/main_bg_image.jpg);
 }
 
@@ -409,7 +420,7 @@ body {
 
 .film__card {
   width: 309px;
-  height: calc(449px + 8px + 32px);
+  height: calc(464px + 48px);
 }
 
 .film__card-poster {

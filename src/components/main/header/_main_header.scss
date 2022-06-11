@@ -1,6 +1,10 @@
 .main__header {
   width: 1024px;
   height: 216px;
+
+  margin-left: auto;
+  margin-right: auto;
+
   background-image: url(/src/images/main_bg_image.jpg);
 
   &-buttons {

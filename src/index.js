@@ -9,7 +9,7 @@ import {
 } from './js/API/api';
 
 document
-  .querySelector('.container')
+  .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
 
 new RenderCards();
