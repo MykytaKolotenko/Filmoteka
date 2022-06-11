@@ -1,7 +1,7 @@
 import { getTrendingMovies } from './API/api';
-import jsonGenres from './API/genres.json';
-import film_card from '../components/film_card/film_card';
-import { getImage } from './API/api';
+import jsonGenres from './API/genres';
+import film_card from '../components/film_card/film_card.js';
+import { getImage } from './API/api.js';
 
 export default class RenderCards {
   constructor() {
@@ -35,16 +35,17 @@ export default class RenderCards {
 
   genresFromId = arrId => {
     const { genres } = jsonGenres;
-    const genresname = [];
+    console.log(genres);
+    const genresName = [];
 
     arrId.forEach(el =>
       genres.filter(obj => {
         if (obj.id === el) {
-          genresname.push(obj.name);
+          genresName.push(obj.name);
         }
       })
     );
 
-    return [genresname[0], genresname[1], 'Other'].join(', ');
+    return [genresName[0], genresName[1], 'Other'].join(', ');
   };
 }
