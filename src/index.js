@@ -11,16 +11,3 @@ import {
 document
   .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
-
-fetchAndRenderTemplates();
-// Test!  for delete !!!!!
-
-const fetchMovie = async id => {
-  const { data } = await getMovie(id);
-  console.log(data);
-};
-
-const fetchSearchingMovie = async search => {
-  const { data } = await getSearchingMovie(search);
-  console.log(data);
-};
