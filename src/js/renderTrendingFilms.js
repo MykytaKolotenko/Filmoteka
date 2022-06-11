@@ -27,7 +27,9 @@ export default class RenderCards {
       })
       .join('');
 
-    this.renderLink.insertAdjacentHTML('beforeend', template);
+    const templateWithContaimer = `<div class="film__card-container">${template}</div> `;
+
+    this.renderLink.insertAdjacentHTML('beforeend', templateWithContaimer);
     return page;
   };
 
