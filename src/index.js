@@ -1,14 +1,19 @@
-
 import main_header_template from './components/main/header/main_header_template';
+import RenderCards from './js/renderTrendingFilms';
 
-import { getMovie, getSearchingMovie, getTrendingMovies } from './js/API/api';
+import {
+  getImage,
+  getMovie,
+  getSearchingMovie,
+  getTrendingMovies,
+} from './js/API/api';
 
+document
+  .querySelector('.container')
+  .insertAdjacentHTML('beforeend', main_header_template());
+
+new RenderCards();
 // Test!  for delete !!!!!
-
-const fetchTrendingMovies = async () => {
-  const { data } = await getTrendingMovies();
-  console.log(data);
-};
 
 const fetchMovie = async id => {
   const { data } = await getMovie(id);
@@ -19,15 +24,3 @@ const fetchSearchingMovie = async search => {
   const { data } = await getSearchingMovie(search);
   console.log(data);
 };
-
-fetchTrendingMovies();
-fetchMovie(675353);
-fetchSearchingMovie(`Harry Potter and the Philosopher's Stone`);
-
-// _______________________________________________________________________________
-
-
-document
-  .querySelector('.container')
-  .insertAdjacentHTML('afterbegin', main_header_template());
-
