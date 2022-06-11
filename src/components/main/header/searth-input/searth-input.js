@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import { getSearchingMovie } from '../../../../js/API/api';
 import { filmCardTemplate } from '../../../film_card/film_card';
-import { mainHeaderTemplate } from '../main_header_template';
+// import { mainHeaderTemplate } from '../main_header_template';
 
 const searth = document.querySelector('text[data-main="input"]');
 const filmCard = document.querySelector('.film__card');
