@@ -37,14 +37,20 @@ export default class RenderCards {
     const genres = jsonGenres;
     const genresName = [];
 
-    arrId.forEach(el =>
-      genres.filter(obj => {
-        if (obj.id === el) {
-          genresName.push(obj.name);
-        }
-      })
-    );
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].id === arrId[0]) {
+        genresName.push(genres[i].name);
+      }
 
-    return [genresName[0], genresName[1], 'Other'].join(', ');
+      if (genres[i].id === arrId[1]) {
+        genresName.push(genres[i].name);
+      }
+    }
+
+    if (arrId[3]) {
+      genresName.push('other');
+    }
+
+    return genresName.join(', ');
   };
 }
