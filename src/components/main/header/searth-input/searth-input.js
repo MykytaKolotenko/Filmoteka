@@ -1,11 +1,12 @@
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
+import {  getSearchingMovie } from '../../../../js/API/api';
 import { filmCardTemplate } from '../../../film_card/film_card';
 import { mainHeaderTemplate } from '../main_header_template';
 
 const searth = document.querySelector('.main__header-input');
 const filmCard = document.querySelector('.film__card');
-// console.log(filmCard);
+console.log(filmCard);
 // console.log(searth);
 
 const DEBOUNCE_DELAY = 300;
@@ -19,7 +20,7 @@ function onInputFilm() {
         return;
     }
 
-    fetchFilm(e)
+    getSearchingMovie(e)
         .then(films => {
         const markup = results.map(film => filmCardTemplate(film));
         filmCard.innerHTML = markup.join('');
