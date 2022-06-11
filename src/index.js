@@ -1,6 +1,10 @@
 import main_header_template from './components/main/header/main_header_template';
+
 import library_header_template from './components/main/library_header/library_header_template';
 import RenderCards from './js/renderTrendingFilms';
+
+import RenderCards, { fetchAndRenderTemplates } from './js/renderTrendingFilms';
+
 
 import {
   getImage,
@@ -12,16 +16,3 @@ import {
 document
   .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
-
-new RenderCards(2);
-// Test!  for delete !!!!!
-
-const fetchMovie = async id => {
-  const { data } = await getMovie(id);
-  console.log(data);
-};
-
-const fetchSearchingMovie = async search => {
-  const { data } = await getSearchingMovie(search);
-  console.log(data);
-};
