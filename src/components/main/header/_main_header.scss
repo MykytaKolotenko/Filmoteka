@@ -1,11 +1,20 @@
 .main__header {
-  width: 1024px;
+  max-width: 1024px;
   height: 216px;
+  padding: 45px 32px;
+
+  margin-left: auto;
+  margin-right: auto;
+
   background-image: url(/src/images/main_bg_image.jpg);
+
+  @media screen and (max-width: 767px) {
+    padding: 40px 20px;
+  }
 
   &-buttons {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
   }
 
@@ -13,9 +22,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-top: 40px;
-    margin-left: 66px;
 
     background-color: transparent;
     color: var(--main_color);
@@ -26,6 +32,17 @@
     line-height: calc(35px / 30px);
 
     cursor: pointer;
+
+    @media screen and (max-width: 767px) {
+      visibility: hidden;
+      width: 0px;
+      padding: 0px;
+
+      transform: translateX(100%);
+    }
+
+    @media screen and (max-width: 1024px) {
+    }
   }
 
   &-logo::before {
@@ -41,10 +58,12 @@
     background-size: cover;
 
     fill: var(--additional_text_color);
-  }
 
-  &-nav {
-    margin-right: 32px;
+    @media screen and (max-width: 767px) {
+      visibility: visible;
+      position: absolute;
+      left: 0px;
+    }
   }
 
   &-btn {
@@ -61,7 +80,7 @@
   &-input {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 41px;
     margin-left: auto;
     margin-right: auto;
@@ -69,6 +88,11 @@
     width: 336px;
 
     border-bottom: 0.5px solid var(--main_color);
+
+    @media screen and (max-width: 767px) {
+      max-width: 280px;
+      width: unset;
+    }
 
     & input {
       display: block;
@@ -83,6 +107,11 @@
       line-height: calc(16 / 14);
 
       color: var(--main_color);
+
+      @media screen and (max-width: 767px) {
+        max-width: 100%;
+        width: unset;
+      }
 
       &::placeholder {
         color: var(--main_color);

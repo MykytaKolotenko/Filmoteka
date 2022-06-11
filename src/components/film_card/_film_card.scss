@@ -1,6 +1,13 @@
 .film__card {
   width: 309px;
-  height: calc(464px + 48px);
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 336px;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
 }
 
 .film__card-poster {
