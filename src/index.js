@@ -12,7 +12,7 @@ document
   .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
 
-new RenderCards();
+new RenderCards(2);
 // Test!  for delete !!!!!
 
 const fetchMovie = async id => {
