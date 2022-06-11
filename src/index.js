@@ -7,17 +7,17 @@ import { getMovie, getSearchingMovie, getTrendingMovies } from './js/API/api';
 
 const fetchTrendingMovies = async () => {
   const { data } = await getTrendingMovies();
-  console.log(data);
+  // console.log(data);
 };
 
 const fetchMovie = async id => {
   const { data } = await getMovie(id);
-  console.log(data);
+  // console.log(data);
 };
 
 const fetchSearchingMovie = async search => {
   const { data } = await getSearchingMovie(search);
-  console.log(data);
+  // console.log(data);
 };
 
 fetchTrendingMovies();

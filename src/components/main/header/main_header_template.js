@@ -1,4 +1,5 @@
 import picture from '../../../images/search.svg';
+// import '../header/search-input/search-input';
 
 export default function mainHeaderTemplate() {
   return `<div class="main__header">
@@ -20,7 +21,7 @@ export default function mainHeaderTemplate() {
           </div>
         </div>
         <div class="main__header-input">
-          <input type="text" placeholder="Search..."data-main="input"/>
+          <input class="search_input" type="text" placeholder="Search..."data-main="input"/>
           <img src="${picture}" alt="" />
         </div>
       </div>`;
