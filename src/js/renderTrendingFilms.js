@@ -17,13 +17,11 @@ export default class RenderCards {
 
     const template = results
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
-        return filmCardTemplate(
-          getImage(poster_path),
-          original_title,
-          this.genresFromId(genre_ids),
-          release_date.slice(0, 4),
-          id
-        );
+        const wordGenres = this.genresFromId(genre_ids);
+        const date = release_date.slice(0, 4);
+        const image = getImage(poster_path);
+
+        return filmCardTemplate(image, original_title, wordGenres, date, id);
       })
       .join('');
 
