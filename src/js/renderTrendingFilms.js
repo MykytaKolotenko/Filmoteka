@@ -15,7 +15,7 @@ export default fetchAndRenderTemplates = async (pageNumber = 1) => {
       const date = release_date.slice(0, 4);
       const image = getImage(poster_path);
 
-      // return filmCardTemplate(image, original_title, wordGenres, date, id);
+      return filmCardTemplate(image, original_title, wordGenres, date, id);
     })
     .join('');
 
