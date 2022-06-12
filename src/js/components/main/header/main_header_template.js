@@ -1,8 +1,7 @@
 import picture from '../../../../images/search.svg';
 
 export default function mainHeaderTemplate() {
-  return `<div class="main__header">
-        <div class="main__header-buttons">
+  return `<div class="main__header-buttons">
           <button type="button" class="main__header-logo" data-main="home">
             Filmoteka
           </button>
@@ -22,6 +21,5 @@ export default function mainHeaderTemplate() {
         <div class="main__header-input">
           <input type="text" placeholder="Search..." data-main="input"/>
           <img src="${picture}" alt="" />
-        </div>
-      </div>`;
+        </div>`;
 }
