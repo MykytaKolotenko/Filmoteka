@@ -17,3 +17,29 @@
 body {
   font-family: var(--font);
 }
+
+.button {
+  width: 110px;
+  height: 44px;
+
+  border: 1px solid var(--text_color);
+  border-radius: 5px;
+
+  background-color: transparent;
+
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  &__orange {
+    margin-right: 20px;
+    border: none;
+    background: var(--bgcolor_main);
+    color: var(--main_color);
+  }
+
+    @media screen and (min-width: 768px) {
+      margin-right: 15px;
+    }
+}

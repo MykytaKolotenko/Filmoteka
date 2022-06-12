@@ -1,0 +1,66 @@
+.backdrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    overflow: scroll;
+
+    opacity: 1;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 280px;
+    height: 940px;
+    padding: 20px;
+    background-color: var(--main_color);
+
+    @media screen and (min-width: 768px) {
+        top: 219px;
+        width: 704px;
+        height: 552px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        top: 151px;
+        width: 814px;
+        height: 558px;
+    }
+
+    &__content {
+        margin-top: 48px;
+    }
+
+    &__buttons {
+        display: flex;
+        margin-bottom: 40px;
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+
+        width: 30px;
+        height: 30px;
+
+        border: none;
+    }
+
+    &__close-icon {
+        fill: currentColor;
+    }
+}
+
