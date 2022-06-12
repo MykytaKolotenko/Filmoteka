@@ -1,5 +1,3 @@
-import filmCardTemplate from '../components/filmCardTemplate/filmCardTemplate';
-
 const jsonGenres = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },

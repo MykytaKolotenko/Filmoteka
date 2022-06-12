@@ -1,4 +1,4 @@
-export default filmCardTemplate = (
+const filmCardTemplate = (
   image,
   filmName,
   genresOfFilm,
@@ -14,3 +14,5 @@ export default filmCardTemplate = (
       <p class="film__card-name">${filmName}</p>
       <p class="film__card-genres">${genresOfFilm} | ${year}</p>
     </div>`;
+
+export default filmCardTemplate;
