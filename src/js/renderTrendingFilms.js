@@ -7,8 +7,7 @@ export default fetchAndRenderTemplates = async (pageNumber = 1) => {
   renderLink = document.querySelector('body');
 
   const { data } = await getTrendingMovies(pageNumber);
-  const { page } = data;
-  const { results } = await data;
+  const { results } = data;
 
   const template = results
     .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
@@ -16,14 +15,14 @@ export default fetchAndRenderTemplates = async (pageNumber = 1) => {
       const date = release_date.slice(0, 4);
       const image = getImage(poster_path);
 
-      return filmCardTemplate(image, original_title, wordGenres, date, id);
+      // return filmCardTemplate(image, original_title, wordGenres, date, id);
     })
     .join('');
 
   const templateWithContaimer = `<div class="container"><div class="card-container">${template}</div></div> `;
 
   renderLink.insertAdjacentHTML('beforeend', templateWithContaimer);
-  return page;
+  return data;
 };
 
 const genresFromId = arrId => {
