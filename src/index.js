@@ -8,6 +8,6 @@ document
   .querySelector('body')
   .insertAdjacentHTML('beforeend', main_header_template());
 
-fetchAndRenderTemplates();
+// fetchAndRenderTemplates();
 
 // ____________________
