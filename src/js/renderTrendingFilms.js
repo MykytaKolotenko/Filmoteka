@@ -1,7 +1,7 @@
 import { getTrendingMovies } from './API/api.js';
 import jsonGenres from './API/jsonGenres.js';
 import { getImage } from './API/api.js';
-import filmCardTemplate from './components/film_card/filmCardTemplate.js';
+import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
 
 export default fetchAndRenderTemplates = async (pageNumber = 1) => {
   renderLink = document.querySelector('body');
