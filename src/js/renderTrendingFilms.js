@@ -4,7 +4,7 @@ import { getImage } from './API/api.js';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
 
 export default fetchAndRenderTemplates = async (pageNumber = 1) => {
-  renderLink = document.querySelector('body');
+  const renderLink = document.querySelector('body');
 
   const { data } = await getTrendingMovies(pageNumber);
   const { results } = data;
