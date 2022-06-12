@@ -1,4 +1,4 @@
-import picture from '../../../images/search.svg';
+import picture from '../../../../images/search.svg';
 
 export default function mainHeaderTemplate() {
   return `<div class="main__header">

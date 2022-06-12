@@ -3,9 +3,9 @@
 @import './global/global';
 @import './variables/variables';
 @import './global/card-container';
-@import '../components/loader/loader-square';
+@import './components/loader-square';
 
-@import '../components/main/header/main_header';
-@import '../components/main/library_header/library_header';
+@import './components/main_header';
+@import './components/library_header';
 
-@import '../components/film_card/film_card';
+@import './components/film_card';
