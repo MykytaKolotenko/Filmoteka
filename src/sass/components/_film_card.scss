@@ -1,12 +1,19 @@
 .film__card {
   width: 309px;
 
+  transition: transform ease-in-out 150ms;
+
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     width: 336px;
   }
 
   @media screen and (max-width: 767px) {
     width: 280px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform ease-in-out 150ms;
   }
 }
 

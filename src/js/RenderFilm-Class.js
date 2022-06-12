@@ -1,17 +1,40 @@
-import { getTrendingMovies, getImage } from './API/api.js';
+import { getTrendingMovies, getImage, getSearchingMovie } from './API/api.js';
 import jsonGenres from './API/jsonGenres.js';
-
+import main_header_template from './components/main/header/main_header_template';
+import main_footer_template from './components/main/footer/main_footer_template';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
+import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 
 export default class RenderFilm {
   constructor() {
-    this.renderLink = document.querySelector('body');
+    this.refs = {
+      header: document.querySelector('header'),
+      main: document.querySelector('main'),
+      footer: document.querySelector('footer'),
+    };
 
-    this.fetchAndRenderTemplates();
+    this.renderHeader();
+    this.fetchAndRenderMain(this.fetchTrendFilms());
+    this.renderFooter();
   }
 
-  fetchAndRenderTemplates = async (pageNumber = 1) => {
+  renderHeader() {
+    this.refs.header.classList.add('main__header');
+    this.refs.header.insertAdjacentHTML('afterbegin', main_header_template());
+  }
+
+  async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+    return data;
+  }
+
+  async fetchSearchedMovie(text) {
+    const { data } = await getSearchingMovie(text);
+    return data;
+  }
+
+  async fetchAndRenderMain(asyncCallback) {
+    const data = await asyncCallback;
     const { results } = data;
 
     const template = results
@@ -24,13 +47,23 @@ export default class RenderFilm {
       })
       .join('');
 
-    const templateWithContaimer = `<div class="container"><div class="card-container">${template}</div></div> `;
+    const templateWithContainer = `<section class=film><div class="container"><ul class="card-container">${template}</ul></div></section> `;
 
-    this.renderLink.insertAdjacentHTML('beforeend', templateWithContaimer);
+    this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+
     return data;
-  };
+  }
 
-  genresFromId = arrId => {
+  async renderFooter() {
+    this.refs.footer.classList.add('footer');
+    this.refs.footer.insertAdjacentHTML('beforeend', main_footer_template());
+  }
+
+  renderLibraryheader() {
+    this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
+  }
+
+  genresFromId(arrId) {
     const genres = jsonGenres;
     const genresName = [];
 
@@ -49,5 +82,5 @@ export default class RenderFilm {
     }
 
     return genresName.join(', ');
-  };
+  }
 }
