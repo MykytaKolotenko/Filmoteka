@@ -4,7 +4,7 @@ const filmCardTemplate = (
   genresOfFilm,
   year,
   id
-) => `<li class="film__card" id="${id}">
+) => `<div class="film__card" id="${id}" >
       <img
         src="${image}"
         alt="${filmName}"
@@ -13,6 +13,6 @@ const filmCardTemplate = (
 
       <p class="film__card-name">${filmName}</p>
       <p class="film__card-genres">${genresOfFilm} | ${year}</p>
-    </li>`;
+    </div>`;
 
 export default filmCardTemplate;

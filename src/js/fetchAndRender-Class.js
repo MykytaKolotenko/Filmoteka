@@ -21,6 +21,7 @@ export default class fetchAndRender {
 
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+
     return data;
   }
 
@@ -29,10 +30,10 @@ export default class fetchAndRender {
     return data;
   }
 
-  async fetchAndRenderMain(asyncCallback) {
-    const data = await asyncCallback;
-    const { results } = data;
-
+  async renderMain(data) {
+    const dataArr = data;
+    const { results } = dataArr;
+    console.log(data);
     const template = results
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
@@ -43,11 +44,11 @@ export default class fetchAndRender {
       })
       .join('');
 
-    const templateWithContainer = `<section class=film><div class="container"><ul class="card-container">${template}</ul></div></section> `;
+    const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
 
     this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
 
-    return data;
+    return dataArr;
   }
 
   async renderFooter() {

@@ -20,7 +20,7 @@ const query = inputText => `&&query=${inputText}`;
 
 // Links
 
-const urlTrendingMovies = pageNumber =>
+export const urlTrendingMovies = (pageNumber = 10) =>
   URL + trendingMovies + KEYv3 + pagination(pageNumber);
 const urlSearchingMovie = inputText =>
   URL + searchingMovie + KEYv3 + query(inputText);

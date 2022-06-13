@@ -1,3 +1,3 @@
-import mainPage from './js/mainPAge-Class';
+import mainPage from './js/mainPageClass';
 
 new mainPage();
