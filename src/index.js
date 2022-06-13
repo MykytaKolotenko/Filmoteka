@@ -1,3 +1,3 @@
-import RenderFilm from './js/RenderFilm-Class';
+import mainPage from './js/mainPAge-Class';
 
-new RenderFilm();
+new mainPage();

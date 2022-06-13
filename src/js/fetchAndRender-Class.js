@@ -5,17 +5,13 @@ import main_footer_template from './components/main/footer/main_footer_template'
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 
-export default class RenderFilm {
+export default class fetchAndRender {
   constructor() {
     this.refs = {
       header: document.querySelector('header'),
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
-
-    this.renderHeader();
-    this.fetchAndRenderMain(this.fetchTrendFilms());
-    this.renderFooter();
   }
 
   renderHeader() {
