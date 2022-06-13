@@ -1,4 +1,5 @@
-import RenderFilm from './js/RenderFilm-Class';
+import mainPage from './js/mainPageClass.js';
 import filmModal from './js/components/filmModal/filmModal';
 
-new RenderFilm();
+new mainPage();
+

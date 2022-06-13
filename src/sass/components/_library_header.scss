@@ -1,5 +1,5 @@
 .library__header {
-  max-width: 1024px;
+  max-width: 1023px;
   height: 216px;
   padding: 45px 32px;
 
@@ -9,36 +9,67 @@
   background-size: cover;
   background-position: center;
 
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_mob_bg_image.jpg);
-
-  @media screen and (min-width: 320px)and (max-width: 767px)and (min-device-pixel-ratio: 2),
-  screen and (min-width: 320px)and (max-width: 767px)and (-webkit-min-device-pixel-ratio: 2),
-  screen and (min-width: 320px)and (max-width: 767px)and (min-resolution: 192dpi),
-  screen and (min-width: 320px)and (max-width: 767px)and (min-resolution: 2dppx) {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_mob_bg_image2x.jpg);
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_mob_bg_image.jpg);
   }
 
-  @media screen and (min-width: 768px) {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_tablet_bg_image.jpg);
+  @media screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 192dpi),
+    screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_mob_bg_image2x.jpg);
   }
 
-  @media screen and (min-width: 768px)and (max-width: 1024px)and (min-device-pixel-ratio: 2),
-  screen and (min-width: 768px)and (max-width: 1024px)and (-webkit-min-device-pixel-ratio: 2),
-  screen and (min-width: 768px)and (max-width: 1024px)and (min-resolution: 192dpi),
-  screen and (min-width: 768px)and (max-width: 1024px)and (min-resolution: 2dppx) {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_tablet_bg_image2x.jpg);
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_tablet_bg_image.jpg);
   }
 
-
-  @media screen and (min-width: 1025px) {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_bg_image.jpg);
+  @media screen and (min-width: 768px) and (max-width: 1023px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (max-width: 1023px) and (min-resolution: 192dpi),
+    screen and (min-width: 768px) and (max-width: 1023px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_tablet_bg_image2x.jpg);
   }
 
-  @media screen and (min-width: 1025px)and (min-device-pixel-ratio: 2),
-  screen and (min-width: 1025px)and (-webkit-min-device-pixel-ratio: 2),
-  screen and (min-width: 1025px)and (min-resolution: 192dpi),
-  screen and (min-width: 1025px)and (min-resolution: 2dppx) {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(/src/images/library_bg_image2x.jpg);
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_bg_image.jpg);
+  }
+
+  @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 1024px) and (min-resolution: 192dpi),
+    screen and (min-width: 1024px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/library_bg_image2x.jpg);
   }
 
   @media screen and (max-width: 767px) {
@@ -75,7 +106,7 @@
       transform: translateX(100%);
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
     }
   }
 
@@ -111,7 +142,7 @@
     text-transform: uppercase;
   }
 
-  &-btns{
+  &-btns {
     display: flex;
     align-items: center;
     padding-top: 40px;
@@ -121,7 +152,7 @@
     }
   }
 
-  &-button{
+  &-button {
     width: 148px;
     height: 42px;
     border: none;
@@ -135,21 +166,21 @@
     border-radius: 5px;
     line-height: calc(16 / 12);
 
-    &:first-child{
+    &:first-child {
       margin-left: 324px;
       margin-right: 16px;
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
       width: 152px;
       height: 44px;
 
-      &:first-child{
+      &:first-child {
         margin-left: auto;
         margin-right: 32px;
       }
 
-      &:last-child{
+      &:last-child {
         margin-right: auto;
       }
     }
@@ -158,20 +189,20 @@
       width: 130px;
       height: 44px;
 
-      &:first-child{
+      &:first-child {
         margin-left: auto;
         margin-right: 20px;
       }
-      
-      &:last-child{
+
+      &:last-child {
         margin-right: auto;
       }
     }
   }
 }
 
-.active{
-  background: #FF6B01;
+.active {
+  background: #ff6b01;
   filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
   border: none;
 }

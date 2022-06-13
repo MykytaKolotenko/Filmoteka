@@ -6,10 +6,71 @@
   margin-left: auto;
   margin-right: auto;
 
-  background-image: url(/src/images/main_bg_image.jpg);
-
   @media screen and (max-width: 767px) {
     padding: 40px 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image.jpg);
+  }
+
+  @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 1024px) and (min-resolution: 192dpi),
+    screen and (min-width: 1024px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image2x.jpg);
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image_tablet.jpg);
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 768px) and (max-width: 1023px) and (min-resolution: 192dpi),
+    screen and (min-width: 768px) and (max-width: 1023px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image_tablet2x.jpg);
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image_mobile.jpg);
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 767px) and (min-device-pixel-ratio: 2),
+    screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 192dpi),
+    screen and (min-width: 320px) and (max-width: 767px) and (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(/src/images/main_bg_image_mobile2x.jpg);
   }
 
   &-buttons {

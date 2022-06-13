@@ -5,17 +5,13 @@ import main_footer_template from './components/main/footer/main_footer_template'
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 
-export default class RenderFilm {
+export default class fetchAndRender {
   constructor() {
     this.refs = {
       header: document.querySelector('header'),
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
-
-    this.renderHeader();
-    this.fetchAndRenderMain(this.fetchTrendFilms());
-    this.renderFooter();
   }
 
   renderHeader() {
@@ -25,6 +21,7 @@ export default class RenderFilm {
 
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+
     return data;
   }
 
@@ -33,10 +30,10 @@ export default class RenderFilm {
     return data;
   }
 
-  async fetchAndRenderMain(asyncCallback) {
-    const data = await asyncCallback;
-    const { results } = data;
-
+  async renderMain(data) {
+    const dataArr = data;
+    const { results } = dataArr;
+    console.log(data);
     const template = results
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
@@ -47,11 +44,11 @@ export default class RenderFilm {
       })
       .join('');
 
-    const templateWithContainer = `<section class=film><div class="container"><ul class="card-container">${template}</ul></div></section> `;
+    const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
 
     this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
 
-    return data;
+    return dataArr;
   }
 
   async renderFooter() {
