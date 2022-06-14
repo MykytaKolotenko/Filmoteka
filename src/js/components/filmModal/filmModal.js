@@ -12,19 +12,18 @@ refs.closeBtn.addEventListener('click', closeModal);
 
 async function openFilmCard(evt) {
     
+    const targetTag = evt.target.parentNode.classList.contains('film__card');
+
+    if (!targetTag) {
+        return; 
+    }
+
     const movieId = evt.target.parentNode.id;
     const data = await getMovie(movieId);
     const moviePath = data.data.poster_path;
     const movieImage = await getImage(moviePath);
-    const targetTag = evt.target.parentNode.nodeName;
-
     const movieGenres = Object.values(data.data.genres).map(genres => genres.name).join(' ')
 
-    console.log(data.data)
-
-    if (targetTag !== "LI") {
-        return; 
-    }
     refs.backdrop.classList.remove('is-hidden');
 
     return refs.modalBody.innerHTML = 
