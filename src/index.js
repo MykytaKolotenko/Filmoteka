@@ -1,10 +1,18 @@
 import mainPage from './js/mainPageClass.js';
 new mainPage();
-const btnScrollTop = document.querySelector('.btnTotop');
-console.log(btnScrollTop);
+
+// const main = document.querySelector('main');
+// console.log(main);
+
+// const elmToTop = ` <div class="to-top"> <button class="btn-to-top" data-main="up"></button></div>`;
 
 
-// btnScrollTop.addEventListener('click', function (e) {
+// main.insertAdjacentHTML("afterbegin", elmToTop);
+
+// const btnToTop = document.querySelector('.to-top');
+// console.log(btnToTop)
+
+// btnToTop.addEventListener('click', function (e) {
 //  e.preventDefault();
 //  window.scrollTo({
 //    top: 0,
@@ -13,22 +21,13 @@ console.log(btnScrollTop);
 // });
 
 // const body = document.body;
-// const gallery = document.querySelector('.card-container');
 
-// (function positionBtnScrollTop() {
-//  const right = (body.clientWidth - gallery.clientWidth) / 2 - 100;
-//  if (right > 3) {
-//    document.getElementById('scrollTop').style.right = `${right}px`;
-//  } else {
-//    document.getElementById('scrollTop').style.right = `3px`;
-//  }
-// })();
 
 // setInterval(function displayBtnScrollTop() {
-//  if (window.scrollY >= 100) {
-//    btnScrollTop.style.display = 'inline-block';
+//  if (window.scrollY >= 500) {
+//    btnToTop.style.display = 'inline-block';
 //  } else {
-//    btnScrollTop.style.display = 'none';
+//    btnToTop.style.display = 'none';
 //  }
 // }, 250);
 

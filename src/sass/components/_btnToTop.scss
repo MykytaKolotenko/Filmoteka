@@ -1,33 +1,81 @@
-#scrollTop {
-    display: none;
-    background-color: #24252560;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 4px;
-    margin: 0;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    transition: background-color 0.3s;
+.to-top{
+position: fixed;
     z-index: 1;
+    border-radius: 20px;
+
+    background-color: rgb(238, 229, 229);
+    
+    @media screen and (max-width: 479px) {
+        padding: 20px 20px 10px 20px;
+        right: 5px;
+        bottom: 130px;
+    }
+    
+    @media screen and (min-width: 480px) {    
+        padding: 25px 20px 10px 20px;
+        right: 15px;
+        bottom: 130px;
+    }
+
+    @media screen and (min-width: 768px) {
+        padding: 25px 20px 10px 20px;
+        right: 15px;
+        bottom: 120px;
+    }
+    
+    @media screen and (min-width: 1025px) {
+        padding: 27px 20px 10px 20px;
+        right: 50px;
+        bottom: 120px;
+    }
 }
 
-#scrollTop:hover {
+.btn-to-top {
+
+    background-color: rgb(238, 229, 229);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    
+    border-radius: 4px;
+    
+    border: solid rgb(173, 166, 166);
+    display: inline-block;
+    
+   
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    
+    @media screen and (max-width: 479px) {
+        width: 25px;
+        height:25px;
+        border-width: 0 4px 4px 0;
+        }
+
+    @media screen and (min-width: 480px) {
+        width: 30px;
+        height: 30px;
+        border-width: 0 5px 5px 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+        border-width: 0 7px 7px 0;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 55px;
+        height: 55px;
+        border-width: 0 10px 10px 0;
+
+    }
+}
+
+.btn-to-top:hover {
     cursor: pointer;
-    background-color: #737a80;
+    border-color: #424e56;
 }
 
-#scrollTop:active {
-    background-color: rgb(52, 52, 52);
-}
-
-#scrollTop::after {
-    content: '\f077';
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2em;
-    line-height: 50px;
-    color: #fff;
-}
