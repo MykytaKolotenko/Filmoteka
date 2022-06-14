@@ -31,17 +31,20 @@ async function openFilmCard(evt) {
         <img src=${movieImage} class="modal__image" >
         </div>
         <div class="modal__film-info">
-        <p class="modal__title">${data.data.title}</p>
-        
-        <p>${data.data.vote_average}/${data.data.vote_count}</p>
-        <p>${data.data.popularity}</p>
-        <p>${data.data.original_title}</p>
-        <p>${movieGenres}</p>
-        
+        <h2 class="film-info__title">${data.data.title}</h2>
+        <p class="film-info__property">Vote / Votes</p>
+        <p class="film-info__property">Popularity</p>
+        <p class="film-info__property">Original Title</p>
+        <p class="film-info__property">Genre</p>
+        <p class="film-info__value">${data.data.vote_average}/${data.data.vote_count}</p>
+        <p class="film-info__value">${data.data.popularity}</p>
+        <p class="film-info__value">${data.data.original_title}</p>
+        <p class="film-info__value">${movieGenres}</p>
+        </div>
         <div class="modal__overview">
-        <p class="modal__overview-title">About</p>
-        <p class="modal__overview-text">${data.data.overview}</p>
-        </div></div>`
+        <p class="overview__title">About</p>
+        <p class="overview__text">${data.data.overview}</p>
+        </div>`
 }
 
 function closeModal() {

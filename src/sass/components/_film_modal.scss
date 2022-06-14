@@ -102,14 +102,6 @@
         }
     }
 
-    &__title {
-        margin-top: 20px;
-
-        font-size: 20px;
-        line-height: 1.15;
-        text-transform: uppercase;
-    }
-
     &__film-info {
         margin-top: 20px;
 
@@ -148,6 +140,24 @@
 
         background-image: url('../images/close.svg');
         background-color: transparent;
+    }
+}
+
+.film-info {
+    &__title {
+        margin-top: 20px;
+
+        font-size: 20px;
+        line-height: 1.15;
+        text-transform: uppercase;
+    }
+
+    &__ property {
+        color: red;
+    }
+
+    &__value {
+        color: green;
     }
 }
 
