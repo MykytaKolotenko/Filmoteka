@@ -4,6 +4,7 @@ import main_header_template from './components/main/header/main_header_template'
 import main_footer_template from './components/main/footer/main_footer_template';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
+import logoHome from './components/logoHome.js';
 
 export default class fetchAndRender {
   constructor() {

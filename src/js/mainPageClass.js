@@ -2,6 +2,7 @@ import InfiniteScroll from 'infinite-scroll';
 import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import fetchAndRender from './fetchAndRender-Class';
+import {logoHome} from './components/logoHome';
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
