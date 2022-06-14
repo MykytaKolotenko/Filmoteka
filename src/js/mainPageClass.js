@@ -12,42 +12,36 @@ export default class mainPage extends fetchAndRender {
     this.fetchAndRenderTrendingFilms();
 
     this.renderFooter();
+
+    this.rendenBtnTop();
   }
 
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
   }
-  totop() {
-    const main = document.querySelector('main');
-    console.log(main);
-
+  rendenBtnTop() {
     const elmToTop = ` <div class="to-top"> <button class="btn-to-top" data-main="up"></button></div>`;
-
-
-    main.insertAdjacentHTML("afterbegin", elmToTop);
-
+    this.refs.main.insertAdjacentHTML("afterbegin", elmToTop);
+    
     const btnToTop = document.querySelector('.to-top');
-    console.log(btnToTop)
-
     btnToTop.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+     e.preventDefault();
+     window.scrollTo({
+       top: 0,
+       behavior: 'smooth',
+     });
     });
-
-    const body = document.body;
-
-
+    
+    
     setInterval(function displayBtnScrollTop() {
-      if (window.scrollY >= 500) {
-        btnToTop.style.display = 'inline-block';
-      } else {
-        btnToTop.style.display = 'none';
-      }
+     if (window.scrollY >= 500) {
+       btnToTop.style.display = 'inline-block';
+     } else {
+       btnToTop.style.display = 'none';
+     }
     }, 250);
-  }
-  
 }
+}
+  
+

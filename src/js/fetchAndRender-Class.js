@@ -11,6 +11,7 @@ export default class fetchAndRender {
       header: document.querySelector('header'),
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
+      
     };
   }
 
@@ -45,11 +46,11 @@ export default class fetchAndRender {
       .join('');
 
     const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
-
     this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
-
+    
     return dataArr;
   }
+  
 
   async renderFooter() {
     this.refs.footer.classList.add('footer');
