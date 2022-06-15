@@ -55,25 +55,16 @@
     background-color: var(--main_color);
 
     @media screen and (min-width: 768px) {
+        display: flex;
         top: 219px;
         width: 704px;
-        height: 552px;
+        height: max-content;
     }
 
     @media screen and (min-width: 1024px) {
         top: 151px;
         width: 814px;
         height: 558px;
-    }
-
-    &__content {
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 1.33;
-
-        @media screen and (min-width: 768px) {
-            display: flex;
-        }
     }
 
     &__image-wrapper {
@@ -102,10 +93,35 @@
         }
     }
 
+    &__title {
+        margin-bottom: 20px;
+
+        font-size: 20px;
+        line-height: 1.15;
+        text-transform: uppercase;
+
+        @media screen and (min-width: 768px) {
+            margin-top: 0;
+        }
+    }
+
+    &__content {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.33;
+
+        @media screen and (min-width: 768px) {
+            width: 264px;
+            margin-left: 68px;
+        }
+    }
+
     &__film-info {
+        display: flex;
         margin-top: 20px;
 
         @media screen and (min-width: 768px) {
+            margin-top: 0;
             width: 264px;
         }
     }
@@ -113,13 +129,8 @@
     &__overview {
         margin-top: 20px;
 
-        &-title {
-            text-transform: uppercase;
-        }
-
-        &-text {
-            margin-top: 8px;
-            line-height: 1.67;
+        @media screen and (min-width: 768px) {
+            height: 236px;
         }
     }
 
@@ -144,20 +155,48 @@
 }
 
 .film-info {
-    &__title {
-        margin-top: 20px;
-
-        font-size: 20px;
-        line-height: 1.15;
-        text-transform: uppercase;
+    &__property-wrapp {
+        margin-right: 40px;
+        width: 69px;
     }
 
-    &__ property {
-        color: red;
+    &__value-wrapp {
+        width: 107px;
+
+        @media screen and (min-width: 768px) {
+         width: 155px;      
+        }
+    }
+
+    &__property {
+        color: var(--secondary_text_color);
+
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
     }
 
     &__value {
-        color: green;
+
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+
+        &--big {
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
     }
 }
+
+.overview {
+    &__title {
+    text-transform: uppercase;
+    }
+
+    &__text {
+        margin-top: 8px;
+        line-height: 1.67;
+    }
+}    
 
