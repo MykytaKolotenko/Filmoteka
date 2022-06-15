@@ -36,16 +36,20 @@ export default class ModalAPI {
         <div class="modal__content">
         <h2 class="modal__title">${data.data.title}</h2>
         <div class="modal__film-info">
-        <div class="film-info__property-wrapp">
+        <div class="film-info__wrapp">
         <p class="film-info__property">Vote / Votes</p>
-        <p class="film-info__property">Popularity</p>
-        <p class="film-info__property">Original Title</p>
-        <p class="film-info__property">Genre</p>
+        <p class="film-info__value">${data.data.vote_average} / ${data.data.vote_count}</p>
         </div>
-        <div class="film-info__value-wrapp">
-        <p class="film-info__value">${data.data.vote_average}/${data.data.vote_count}</p>
+        <div class="film-info__wrapp">
+        <p class="film-info__property">Popularity</p>
         <p class="film-info__value">${data.data.popularity}</p>
-        <p class="film-info__value--big">${data.data.original_title}</p>
+        </div>
+        <div class="film-info__wrapp">
+        <p class="film-info__property">Original Title</p>
+        <p class="film-info__value film-info__value--big">${data.data.original_title}</p>
+        </div>
+        <div class="film-info__wrapp">
+        <p class="film-info__property">Genre</p>
         <p class="film-info__value">${movieGenres}</p>
         </div>
         </div>
