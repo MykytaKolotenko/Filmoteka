@@ -24,7 +24,7 @@ export default class ModalAPI {
         const data = await getMovie(movieId);
         const moviePath = data.data.poster_path;
         const movieImage = await getImage(moviePath);
-        const movieGenres = Object.values(data.data.genres).map(genres => genres.name).join(' ')
+        const movieGenres = Object.values(data.data.genres).map(genres => genres.name).join(', ')
 
         this.refs.backdrop.classList.remove('is-hidden');
         this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
