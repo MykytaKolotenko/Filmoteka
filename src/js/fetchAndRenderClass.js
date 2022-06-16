@@ -1,8 +1,8 @@
-import { getTrendingMovies, getImage, getSearchingMovie } from './API/api.js';
-import jsonGenres from './API/jsonGenres.js';
-import main_header_template from './components/main/header/main_header_template';
-import main_footer_template from './components/main/footer/main_footer_template';
-import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate.js';
+import { getImage, getSearchingMovie, getTrendingMovies } from './API/api';
+import mainFooterTemplate from './components/main/footer/main_footer_template';
+import mainHeaderTemplate from './components/main/header/main_header_template';
+import jsonGenres from './API/jsonGenres';
+import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 
 export default class fetchAndRender {
@@ -11,13 +11,12 @@ export default class fetchAndRender {
       header: document.querySelector('header'),
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
-      
     };
   }
 
   renderHeader() {
     this.refs.header.classList.add('main__header');
-    this.refs.header.insertAdjacentHTML('afterbegin', main_header_template());
+    this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
   }
 
   async fetchTrendFilms(pageNumber) {
@@ -31,7 +30,7 @@ export default class fetchAndRender {
     return data;
   }
 
-  async renderMain(data) {
+  async renderMain(data, fresh = false) {
     const dataArr = data;
     const { results } = dataArr;
     console.log(data);
@@ -46,15 +45,21 @@ export default class fetchAndRender {
       .join('');
 
     const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
+
     this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
-    
+
+    if (fresh) {
+      this.refs.main.innerHTML = templateWithContainer;
+    } else {
+      this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+    }
+
     return dataArr;
   }
-  
 
   async renderFooter() {
     this.refs.footer.classList.add('footer');
-    this.refs.footer.insertAdjacentHTML('beforeend', main_footer_template());
+    this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
   renderLibraryheader() {
