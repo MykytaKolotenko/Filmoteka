@@ -19,7 +19,7 @@ export default function mainHeaderTemplate() {
           </div>
         </div>
         <div class="main__header-input">
-          <input type="text" placeholder="Search..." data-main="input"/>
-          <img src="${picture}" alt="" />
+          <input id="searchField" type="text" placeholder="Search..." data-main="input"/>
+          <img id="searchIcon" src="${picture}" alt="" />
         </div>`;
 }

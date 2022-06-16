@@ -30,7 +30,7 @@ export default class fetchAndRender {
     return data;
   }
 
-  async renderMain(data) {
+  async renderMain(data, fresh = false) {
     const dataArr = data;
     const { results } = dataArr;
     console.log(data);
@@ -46,7 +46,11 @@ export default class fetchAndRender {
 
     const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
 
-    this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+    if (fresh) {
+      this.refs.main.innerHTML = templateWithContainer;
+    } else {
+      this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+    }
 
     return dataArr;
   }
