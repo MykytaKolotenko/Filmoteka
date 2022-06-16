@@ -3,5 +3,6 @@ import filmModal from './js/components/filmModal/filmModal';
 import ModalAPI from './js/components/filmModal/filmModal';
 
 
-new libraryPage();
+
+new mainPage();
 

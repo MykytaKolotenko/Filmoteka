@@ -1,16 +1,19 @@
 import fetchAndRender from './fetchAndRenderClass';
 
-export default class mainPage extends fetchAndRender {
+export default class libraryPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
 
-    this.renderHeader();
-    this.fetchAndRenderTrendingFilms();
+    this.renderLibraryheader();
+
+    this.renderLibraryMain();
+
     this.renderFooter();
   }
 
-  async fetchAndRenderTrendingFilms() {
+  async renderLibraryMain() {
     const data = await this.fetchTrendFilms();
+
     this.renderMain(data);
   }
 }
