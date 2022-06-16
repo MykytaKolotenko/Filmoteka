@@ -1,4 +1,8 @@
-import libraryPage from './js/LIbraryPageClass';
-import mainPage from './js/PageMainClass';
+import mainPage from './js/mainPageClass.js';
+import filmModal from './js/components/filmModal/filmModal';
+import ModalAPI from './js/components/filmModal/filmModal';
+
+
 
 new mainPage();
+
