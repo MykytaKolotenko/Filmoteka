@@ -46,6 +46,8 @@ export default class fetchAndRender {
 
     const templateWithContainer = `<section class=film><div class="container"><div class="card-container">${template}</div></div></section> `;
 
+    this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+
     if (fresh) {
       this.refs.main.innerHTML = templateWithContainer;
     } else {
