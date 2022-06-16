@@ -17,6 +17,8 @@ export default class mainPage extends fetchAndRender {
     infinityPagination();
 
     this.rendenBtnTop();
+
+    // this.renderLoader();
   }
 
   async fetchAndRenderTrendingFilms() {
@@ -25,9 +27,8 @@ export default class mainPage extends fetchAndRender {
   }
 
   rendenBtnTop() {
-    const elmToTop = ` <div class="to-top"> <button class="btn-to-top" data-main="up"></button></div>`;
+    const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
     this.refs.main.insertAdjacentHTML('afterbegin', elmToTop);
-
     const btnToTop = document.querySelector('.to-top');
     btnToTop.addEventListener('click', function (e) {
       e.preventDefault();
@@ -45,4 +46,18 @@ export default class mainPage extends fetchAndRender {
       }
     }, 250);
   }
+
+//   renderLoader() {
+//     const elmLoader = `<div class="loader-box"><span class="loader"></span></div>`;
+//     this.refs.main.insertAdjacentHTML('afterbegin', elmLoader);
+//     const loader = document.querySelector('.loader-box');
+//     window.addEventListener('load', () => {
+//       loader.classList.add('hiden');
+      
+//       setTimeout(() => {
+//         loader.remove;
+//       },600)
+//     })
+// console.log(loader);
+//   }
 }

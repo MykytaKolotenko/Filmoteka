@@ -27,7 +27,7 @@ export default function infinityPagination(){
         const template = results
           .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
             const wordGenres = genresData(genre_ids);
-            console.log(wordGenres);
+            // console.log(wordGenres);
             const date = release_date.slice(0, 4);
             const image = getImage(poster_path);;
             
