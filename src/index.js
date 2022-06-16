@@ -1,4 +1,4 @@
-import mainPage from './js/pageMainClass.js';
-import libraryPage from './js/libraryPageClass.js';
+import libraryPage from './js/LIbraryPageClass';
+import mainPage from './js/PageMainClass';
 
-libraryPage();
+new libraryPage();
