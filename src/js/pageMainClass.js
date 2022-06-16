@@ -28,18 +28,21 @@ export default class mainPage extends fetchAndRender {
       alert('no films found');
       return;
     }
-    
+
     this.renderMain(data, true);
   }
 
-  addEventListeners () {
+  addEventListeners() {
     const searchIcon = document.getElementById('searchIcon');
 
-    searchIcon.addEventListener('click', function () {
-      const searchField = document.getElementById('searchField');
-      const text = searchField.value;
+    searchIcon.addEventListener(
+      'click',
+      function () {
+        const searchField = document.getElementById('searchField');
+        const text = searchField.value;
 
-      this.fetchAndRenderSearchFilms(text);
-    }.bind(this));
+        this.fetchAndRenderSearchFilms(text);
+      }.bind(this)
+    );
   }
 }
