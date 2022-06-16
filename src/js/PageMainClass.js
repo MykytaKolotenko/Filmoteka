@@ -1,16 +1,11 @@
-import InfiniteScroll from 'infinite-scroll';
-import { getImage, urlTrendingMovies } from './API/api';
-import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
-import fetchAndRender from './fetchAndRender-Class';
+import fetchAndRender from './fetchAndRenderClass';
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
 
     this.renderHeader();
-
     this.fetchAndRenderTrendingFilms();
-
     this.renderFooter();
   }
 
