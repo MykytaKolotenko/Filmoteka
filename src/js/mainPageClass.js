@@ -1,6 +1,7 @@
 import InfiniteScroll from 'infinite-scroll';
 import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
+import infinityPagination from './components/main/pagination/infinity_scroll';
 import fetchAndRender from './fetchAndRender-Class';
 
 export default class mainPage extends fetchAndRender {
@@ -13,6 +14,8 @@ export default class mainPage extends fetchAndRender {
 
     this.renderFooter();
 
+    infinityPagination();
+
     this.rendenBtnTop();
   }
 
@@ -20,28 +23,26 @@ export default class mainPage extends fetchAndRender {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
   }
+
   rendenBtnTop() {
     const elmToTop = ` <div class="to-top"> <button class="btn-to-top" data-main="up"></button></div>`;
-    this.refs.main.insertAdjacentHTML("afterbegin", elmToTop);
-    
+    this.refs.main.insertAdjacentHTML('afterbegin', elmToTop);
+
     const btnToTop = document.querySelector('.to-top');
     btnToTop.addEventListener('click', function (e) {
-     e.preventDefault();
-     window.scrollTo({
-       top: 0,
-       behavior: 'smooth',
-     });
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     });
-    
-    
-    setInterval(function displayBtnScrollTop() {
-     if (window.scrollY >= 500) {
-       btnToTop.style.display = 'inline-block';
-     } else {
-       btnToTop.style.display = 'none';
-     }
-    }, 250);
-}
-}
-  
 
+    setInterval(function displayBtnScrollTop() {
+      if (window.scrollY >= 500) {
+        btnToTop.style.display = 'inline-block';
+      } else {
+        btnToTop.style.display = 'none';
+      }
+    }, 250);
+  }
+}
