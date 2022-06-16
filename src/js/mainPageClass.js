@@ -7,6 +7,7 @@ import fetchAndRender from './fetchAndRenderClass';
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
+    this.renderLoader();
 
     this.renderHeader();
 
@@ -18,7 +19,6 @@ export default class mainPage extends fetchAndRender {
 
     this.rendenBtnTop();
 
-    // this.renderLoader();
   }
 
   async fetchAndRenderTrendingFilms() {
@@ -47,17 +47,17 @@ export default class mainPage extends fetchAndRender {
     }, 250);
   }
 
-//   renderLoader() {
-//     const elmLoader = `<div class="loader-box"><span class="loader"></span></div>`;
-//     this.refs.main.insertAdjacentHTML('afterbegin', elmLoader);
-//     const loader = document.querySelector('.loader-box');
-//     window.addEventListener('load', () => {
-//       loader.classList.add('hiden');
+  renderLoader() {
+    const elmLoader = `<div class="loader-box"><span class="loader"></span></div>`;
+    this.refs.main.insertAdjacentHTML('afterbegin', elmLoader);
+    const loader = document.querySelector('.loader-box');
+    window.addEventListener('load', () => {
+      loader.classList.add('hiden');
       
-//       setTimeout(() => {
-//         loader.remove;
-//       },600)
-//     })
-// console.log(loader);
-//   }
+      setTimeout(() => {
+        loader.remove;
+      },600)
+    })
+
+  }
 }
