@@ -1,7 +1,7 @@
 .loader-box{
    width: 100%;
    height: 100%;
-   background-color: rgba(143, 43, 43, 0); 
+   background-color: rgb(249, 249, 249); 
    position: fixed;
    top: 0;
    z-index: 2;
@@ -9,18 +9,22 @@
    display: flex;
    justify-content: center;
    align-items: center;
-}
-
-.loader {
-    color: rgb(207, 99, 22);
-    font-size: 10px;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    position: fixed;
-    text-indent: -9999em;
-    animation: mulShdSpin 1.3s infinite linear;
-    transform: translateZ(0);
+   
+   &.hiden{
+       opacity: 0;
+       visibility: hidden;
+    }
+    .loader {
+        color: rgb(207, 99, 22);
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        position: fixed;
+        text-indent: -9999em;
+        animation: mulShdSpin 1.3s infinite linear;
+        transform: translateZ(0);
+    }
 }
 
 @keyframes mulShdSpin {
@@ -78,8 +82,4 @@
             3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
             -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
-}
-
-.hiden{
-    opacity: 0;
 }

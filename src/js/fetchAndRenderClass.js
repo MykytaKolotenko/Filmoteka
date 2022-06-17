@@ -10,12 +10,25 @@ import genresData from './components/main/pagination/genresFromId.js';
 export default class fetchAndRender {
   constructor() {
     this.refs = {
+      // loader: document.querySelector('.loader-box'),
       header: document.querySelector('header'),
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
+    
   }
-
+  // ===================== Loader ======================
+  // renderLoader() {
+  //   window.onload = function () {
+  //     setTimeout(function () {
+  //       // const loader = document.querySelector('.loader-box');
+  //       if (!this.refs.loader.classList.contains('hiden')) {
+  //         this.refs.loader.classList.add('hiden')
+  //       }
+  //     }, 600);
+  //   }
+  // }
+// ============================ Header======================
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
