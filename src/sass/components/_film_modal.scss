@@ -32,6 +32,10 @@
     font-size: 12px;
     line-height: 1.33;
 
+    @media screen and (min-width: 1024px) {
+    width: 136px;
+    }
+
     &__orange {
         margin-right: 20px;
         border: none;
@@ -53,7 +57,7 @@
     height: max-content;
     padding: 48px 20px 40px 20px;
     background-color: var(--main_color);
-
+    
     @media screen and (min-width: 768px) {
         display: flex;
         top: 219px;
@@ -62,22 +66,33 @@
 
     @media screen and (min-width: 1024px) {
         top: 151px;
+        padding: 40px 16px;
         width: 814px;
-        height: 558px;
+    }
+
+    &__content-wrapp {
+        @media screen and (min-width: 768px) {
+          display: flex;  
+        }
     }
 
     &__image-wrapper {
-        width: 240px;
-        height: 357px;
+        margin-bottom: 20px;
+
+        @media screen and (min-width: 320px) {
+            width: 240px;
+            height: 357px;
+        }
 
         @media screen and (min-width: 768px) {
+            margin-bottom: 0;
             width: 264px;
             height: 374px;
         }
         
         @media screen and (min-width: 1024px) {
             width: 375px;
-            height: 478px;
+            height: 100%;
         }
     }
 
@@ -85,7 +100,6 @@
         border-radius: 5px;
         height: 100%;
         width: 100%;
-        object-fit: contain;
 
         @media screen and (min-width: 768px) {
             object-fit: cover;
@@ -102,6 +116,11 @@
         @media screen and (min-width: 768px) {
             margin-top: 0;
         }
+
+        @media screen and (min-width: 1024px) {
+            font-size: 30px;
+            line-height: 1.16;
+        }
     }
 
     &__content {
@@ -112,6 +131,11 @@
         @media screen and (min-width: 768px) {
             width: 264px;
             margin-left: 68px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            width: 391px;
+            margin-left: 16px;
         }
     }
 
@@ -127,10 +151,6 @@
 
     &__overview {
         margin-top: 20px;
-
-        @media screen and (min-width: 768px) {
-            height: 236px;
-        }
     }
 
     &__buttons {
@@ -171,10 +191,35 @@
     }
 
     &__value {
+        display: flex;
         width: 131px;
 
         &--big {
             text-transform: uppercase;
+        }
+
+        &--orange {
+            width: 36px;
+            border-radius: 5px;
+            text-align: center;
+
+            background-color: var(--bgcolor_main);
+            color: var(--main_color);
+        }
+
+        &--slash {
+            width: 8px;
+            text-align: center;
+            color: var(--secondary_text_color);
+        }
+
+        &--grey {
+            width: 36px;
+            border-radius: 5px;
+            text-align: center;
+
+            background-color: var(--footer_bg_color);
+            color: var(--text_color);
         }
     }
 }
