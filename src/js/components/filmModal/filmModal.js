@@ -1,54 +1,60 @@
 import { getMovie, getImage } from '../../API/api';
 
 export default class ModalAPI {
-    constructor() {
-        this.renderBackdropMarkup();
-        this.refs = {
-        cardContainer: document.querySelector('main'),
-        backdrop: document.querySelector('.backdrop'),
-        modalBody: document.querySelector('.modal'),
-        closeBtn: document.querySelector('.modal__close-btn'),
-        filmCardLocalStorage: {},
-        localStorageWatchedData: [],
-        localStorageQueueData: [],
-        }
-        this.refs.cardContainer.addEventListener('click', this.openFilmCard.bind(this));
-        this.refs.modalBody.addEventListener('click', this.setLocalStorageData.bind(this));
+  constructor() {
+    this.renderBackdropMarkup();
+    this.refs = {
+      cardContainer: document.querySelector('main'),
+      backdrop: document.querySelector('.backdrop'),
+      modalBody: document.querySelector('.modal'),
+      closeBtn: document.querySelector('.modal__close-btn'),
+      filmCardLocalStorage: {},
+      localStorageWatchedData: [],
+      localStorageQueueData: [],
+    };
+    this.refs.cardContainer.addEventListener(
+      'click',
+      this.openFilmCard.bind(this)
+    );
+    this.refs.modalBody.addEventListener(
+      'click',
+      this.setLocalStorageData.bind(this)
+    );
+  }
+
+  async openFilmCard(evt) {
+    const targetTag = evt.target.parentNode.classList.contains('film__card');
+
+    if (!targetTag) {
+      return;
     }
 
-    async openFilmCard(evt) {
-    
-        const targetTag = evt.target.parentNode.classList.contains('film__card');
+    const movieId = evt.target.parentNode.id;
+    const { data } = await getMovie(movieId);
+    const moviePath = data.poster_path;
+    const movieImage = await getImage(moviePath);
+    const movieGenres = Object.values(data.genres)
+      .map(genres => genres.name)
+      .join(' ');
 
-        if (!targetTag) {
-            return;
-        }
+    this.setFilmCardLocalStorageData(data);
 
-        const movieId = evt.target.parentNode.id;
-        const { data } = await getMovie(movieId);
-        const moviePath = data.poster_path;
-        const movieImage = await getImage(moviePath);
-        const movieGenres = Object.values(data.genres).map(genres => genres.name).join(' ');
+    this.refs.backdrop.classList.remove('is-hidden');
+    this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
 
-        this.setFilmCardLocalStorageData(data);
-        
-        this.refs.backdrop.classList.remove('is-hidden');
-        this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
+    const btnProperties = {
+      watchedBtnText: 'add to Watched',
+      watchedBtnDisabled: '',
+      watchedClassButtonOrange: 'button__orange',
+      queueBtnText: 'add to queue',
+      queueBtnDisabled: '',
+      queueClassButtonOrange: '',
+    };
 
-        const btnProperties = {
-            watchedBtnText: "add to Watched",
-            watchedBtnDisabled: "",
-            watchedClassButtonOrange: "button__orange",
-            queueBtnText: "add to queue",
-            queueBtnDisabled: "",
-            queueClassButtonOrange: "",
-        }
-       
-        this.addToViewedBtn(evt, btnProperties);
-        this.addToQueueBtn(evt, btnProperties);
+    this.addToViewedBtn(evt, btnProperties);
+    this.addToQueueBtn(evt, btnProperties);
 
-        return this.refs.modalBody.innerHTML =
-        `<div class="modal__image-wrapper">
+    return (this.refs.modalBody.innerHTML = `<div class="modal__image-wrapper">
         <img src=${movieImage} class="modal__image" >
         </div>
         <div class="modal__content">
@@ -79,133 +85,151 @@ export default class ModalAPI {
         <button class="button ${btnProperties.watchedClassButtonOrange}" id="watched" ${btnProperties.watchedBtnDisabled}>${btnProperties.watchedBtnText}</button>
         <button class="button ${btnProperties.queueClassButtonOrange}" id="queue" ${btnProperties.queueBtnDisabled}>${btnProperties.queueBtnText}</button>
         </div>
-        </div>`
-    }   
-    
-    closeModal() {
-        this.refs.backdrop.classList.add('is-hidden');
-    }
+        </div>`);
+  }
 
-    renderBackdropMarkup() {
-        const backdropMarkup = `<div class="backdrop is-hidden">
+  closeModal() {
+    this.refs.backdrop.classList.add('is-hidden');
+  }
+
+  renderBackdropMarkup() {
+    const backdropMarkup = `<div class="backdrop is-hidden">
         <div class="modal">
         <button class="modal__close-btn"></button>
-        </div></div>`
-        
-        document.body.insertAdjacentHTML('beforeend', backdropMarkup);
+        </div></div>`;
+
+    document.body.insertAdjacentHTML('beforeend', backdropMarkup);
+  }
+
+  setLocalStorageData(evt) {
+    if (evt.target.id === 'watched' && evt.target.disabled === false) {
+      const queuedBtn = document.querySelector('#queue');
+
+      this.refs.localStorageWatchedData.push(this.refs.filmCardLocalStorage);
+      this.filterQueueData();
+      this.toggleActiveBtn(queuedBtn, evt);
+
+      localStorage.setItem(
+        'watched',
+        JSON.stringify(this.refs.localStorageWatchedData)
+      );
+    } else if (evt.target.id === 'queue' && evt.target.disabled === false) {
+      const watchedBtn = document.querySelector('#watched');
+
+      this.refs.localStorageQueueData.push(this.refs.filmCardLocalStorage);
+      this.filterWatchedData();
+      this.toggleActiveBtn(watchedBtn, evt);
+
+      localStorage.setItem(
+        'queue',
+        JSON.stringify(this.refs.localStorageQueueData)
+      );
     }
+  }
 
-    setLocalStorageData(evt) {
-        if(evt.target.id === "watched" &&  evt.target.disabled === false){
-            const queuedBtn = document.querySelector('#queue');
+  setFilmCardLocalStorageData(item) {
+    const filmCard = {
+      title: item.original_title,
+      image: getImage(item.poster_path),
+      id: item.id,
+      overview: item.overview,
+      popularity: item.popularity,
+      vote_average: item.vote_average,
+      vote_count: item.vote_count,
+      genre: item.genres[0].name,
+      date: item.release_date.slice(0, 4),
+    };
 
-            this.refs.localStorageWatchedData.push(this.refs.filmCardLocalStorage);
-            this.filterQueueData();
-            this.toggleActiveBtn(queuedBtn, evt);
+    this.refs.filmCardLocalStorage = filmCard;
+  }
 
-            localStorage.setItem("watched", JSON.stringify( this.refs.localStorageWatchedData));
-        } else if(evt.target.id === "queue" &&  evt.target.disabled === false){
-            const watchedBtn = document.querySelector('#watched');
+  addToViewedBtn(event, btn) {
+    const locStorWatchedKey = localStorage.getItem('watched');
 
-            this.refs.localStorageQueueData.push(this.refs.filmCardLocalStorage);
-            this.filterWatchedData();
-            this.toggleActiveBtn(watchedBtn, evt);
-
-            localStorage.setItem("queue", JSON.stringify(this.refs.localStorageQueueData));
+    if (locStorWatchedKey) {
+      const locStorWatched = JSON.parse(locStorWatchedKey);
+      const statusWatchedBtn = locStorWatched.map(value => {
+        if (Number(value.id) === Number(event.target.parentNode.id)) {
+          btn.watchedBtnText = 'added to watched';
+          btn.watchedBtnDisabled = 'disabled';
+          btn.queueClassButtonOrange = 'button__orange';
+          btn.watchedClassButtonOrange = '';
         }
+      });
     }
+  }
 
-    setFilmCardLocalStorageData(item){
-        const filmCard = {
-            title:item.original_title,
-            image:getImage( item.poster_path),
-            id:item.id,
-            overview:item.overview,
-            popularity:item.popularity,
-            vote_average:item.vote_average,
-            vote_count:item.vote_count,
-            genre:item.genres[0].name,
-            date:item.release_date.slice(0, 4),
+  addToQueueBtn(event, btn) {
+    const locStorQueueKey = localStorage.getItem('queue');
+
+    if (locStorQueueKey) {
+      const locStorQueue = JSON.parse(locStorQueueKey);
+      const statusQueueBtn = locStorQueue.map(value => {
+        if (Number(value.id) === Number(event.target.parentNode.id)) {
+          btn.queueBtnText = 'added to queue';
+          btn.queueBtnDisabled = 'disabled';
         }
-       
-        this.refs.filmCardLocalStorage = filmCard;
+      });
     }
+  }
 
-    addToViewedBtn(event, btn){
-        const locStorWatchedKey = localStorage.getItem("watched");
-       
-        if(locStorWatchedKey){
-            
-            const locStorWatched = JSON.parse(locStorWatchedKey);
-            const statusWatchedBtn = locStorWatched.map( (value) => {
-                if(Number(value.id) === Number(event.target.parentNode.id)){
-                    btn.watchedBtnText = "added to watched";
-                    btn.watchedBtnDisabled = "disabled"; 
-                    btn.queueClassButtonOrange = "button__orange";
-                    btn.watchedClassButtonOrange = "";        
-                }          
-            });
-        }
+  toggleActiveBtn(btn, event) {
+    if (event.target.id === 'watched') {
+      btn.disabled = false;
+      btn.classList.add('button__orange');
+      btn.textContent = 'add to queue';
+      event.target.disabled = true;
+      event.target.classList.remove('button__orange');
+      event.target.textContent = 'added to watched';
+    } else {
+      btn.disabled = false;
+      btn.classList.add('button__orange');
+      btn.textContent = 'add to watched';
+      event.target.disabled = true;
+      event.target.classList.remove('button__orange');
+      event.target.textContent = 'added to queue';
     }
+  }
 
-    addToQueueBtn(event, btn){
-        const locStorQueueKey = localStorage.getItem("queue");
-       
-        if(locStorQueueKey){
-           
-            const locStorQueue = JSON.parse(locStorQueueKey);
-            const statusQueueBtn = locStorQueue.map( (value) => {
-                if(Number(value.id) === Number(event.target.parentNode.id)){
-                    btn.queueBtnText = "added to queue";
-                    btn.queueBtnDisabled = "disabled";
-                   
-                }          
-            });
-        }
-    }
+  filterQueueData() {
+    const filtereWatchedItems = this.refs.localStorageQueueData.filter(
+      response => response.id !== this.refs.filmCardLocalStorage.id
+    );
 
-    toggleActiveBtn(btn, event){
-        if(event.target.id === "watched"){
-            btn.disabled = false;
-            btn.classList.add("button__orange");
-            btn.textContent = "add to queue";
-            event.target.disabled = true;
-            event.target.classList.remove("button__orange"); 
-            event.target.textContent = "added to watched";
-        }else{
-            btn.disabled = false;
-            btn.classList.add("button__orange"); 
-            btn.textContent = "add to watched"; 
-            event.target.disabled = true;
-            event.target.classList.remove("button__orange");
-            event.target.textContent = "added to queue";  
-        }
+    if (filtereWatchedItems.length > 0) {
+      this.refs.localStorageQueueData = filtereWatchedItems;
+      localStorage.setItem(
+        'queue',
+        JSON.stringify(this.refs.localStorageQueueData)
+      );
+    } else {
+      this.refs.localStorageQueueData = filtereWatchedItems;
+      localStorage.setItem(
+        'queue',
+        JSON.stringify(this.refs.localStorageQueueData)
+      );
     }
+  }
+  filterWatchedData() {
+    const filteredQueueItems = this.refs.localStorageWatchedData.filter(
+      response => response.id !== this.refs.filmCardLocalStorage.id
+    );
 
-    filterQueueData(){
-        const filtereWatchedItems = this.refs.localStorageQueueData.filter(response => response.id !== this.refs.filmCardLocalStorage.id);
-           
-        if(filtereWatchedItems.length > 0){
-            this.refs.localStorageQueueData = filtereWatchedItems;
-            localStorage.setItem("queue", JSON.stringify(this.refs.localStorageQueueData));
-        }else{
-            this.refs.localStorageQueueData = filtereWatchedItems;
-            localStorage.setItem("queue", JSON.stringify(this.refs.localStorageQueueData));
-        }
+    if (filteredQueueItems.length > 0) {
+      this.refs.localStorageWatchedData = filteredQueueItems;
+      localStorage.setItem(
+        'watched',
+        JSON.stringify(this.refs.localStorageWatchedData)
+      );
+    } else {
+      this.refs.localStorageWatchedData = filteredQueueItems;
+      localStorage.setItem(
+        'watched',
+        JSON.stringify(this.refs.localStorageWatchedData)
+      );
     }
-    filterWatchedData(){
-        const filteredQueueItems = this.refs.localStorageWatchedData.filter(response => response.id !== this.refs.filmCardLocalStorage.id);
-
-        if(filteredQueueItems.length > 0){
-            this.refs.localStorageWatchedData = filteredQueueItems;  
-            localStorage.setItem("watched", JSON.stringify( this.refs.localStorageWatchedData));
-        }else {
-            this.refs.localStorageWatchedData = filteredQueueItems;  
-            localStorage.setItem("watched", JSON.stringify( this.refs.localStorageWatchedData));
-        }   
-    }
+  }
 }
-
 
 // const refs = {
 //     cardContainer: document.querySelector('main'),
@@ -213,15 +237,15 @@ export default class ModalAPI {
 //     modalBody: document.querySelector('.modal__content'),
 //     closeBtn: document.querySelector('.modal__close-btn')
 // }
-  
+
 // refs.cardContainer.addEventListener('click', openFilmCard);
 
 // async function openFilmCard(evt) {
-    
+
 //     const targetTag = evt.target.parentNode.classList.contains('film__card');
 
 //     if (!targetTag) {
-//         return; 
+//         return;
 //     }
 
 //     const movieId = evt.target.parentNode.id;
@@ -232,7 +256,7 @@ export default class ModalAPI {
 
 //     refs.backdrop.classList.remove('is-hidden');
 
-//     return refs.modalBody.innerHTML = 
+//     return refs.modalBody.innerHTML =
 //         `<div class="modal__image-wrapper">
 //         <img src=${movieImage} class="modal__image" >
 //         </div>
