@@ -78,8 +78,11 @@
 
     &__image-wrapper {
         margin-bottom: 20px;
-        width: 240px;
-        height: 357px;
+
+        @media screen and (min-width: 320px) {
+            width: 240px;
+            height: 357px;
+        }
 
         @media screen and (min-width: 768px) {
             margin-bottom: 0;
@@ -89,7 +92,7 @@
         
         @media screen and (min-width: 1024px) {
             width: 375px;
-            height: 478px;
+            height: 100%;
         }
     }
 
@@ -97,7 +100,6 @@
         border-radius: 5px;
         height: 100%;
         width: 100%;
-        object-fit: contain;
 
         @media screen and (min-width: 768px) {
             object-fit: cover;
