@@ -2,6 +2,7 @@ import InfiniteScroll from 'infinite-scroll';
 import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import infinityPagination from './components/main/pagination/infinity_scroll';
+
 import fetchAndRender from './fetchAndRenderClass';
 
 export default class mainPage extends fetchAndRender {
@@ -14,14 +15,14 @@ export default class mainPage extends fetchAndRender {
 
     this.renderFooter();
 
-    infinityPagination();
-
     this.rendenBtnTop();
   }
 
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
+
+    // this.observerPagination();
   }
 
   rendenBtnTop() {

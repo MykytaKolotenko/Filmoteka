@@ -13,8 +13,9 @@ export default class fetchAndRender {
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
+    this.page = 2;
   }
-// ===================== Header ================================
+  // ===================== Header ================================
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
@@ -30,8 +31,8 @@ export default class fetchAndRender {
     const { data } = await getSearchingMovie(text);
     return data;
   }
-// ===================== Main ================================
-  async renderMain(data, fresh = false) {
+
+  templateMain(data) {
     const dataArr = data;
     const { results } = dataArr;
     const template = results
@@ -44,21 +45,23 @@ export default class fetchAndRender {
       })
       .join('');
 
-    const templateWithContainer = `<section class=film><div class="card-container container">${template}</div></section> `;
+    this.observerPagination();
+    return template;
+  }
 
-    this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+  renderMain(data, fresh = false) {
+    const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
+      data
+    )}</div></section> `;
 
     if (fresh) {
       this.refs.main.innerHTML = templateWithContainer;
     } else {
       this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
     }
-
-    return dataArr;
   }
 
-
-// ===================== Footer ============================================
+  // ===================== Footer ============================================
   async renderFooter() {
     this.refs.footer.classList.add('footer');
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
@@ -68,7 +71,34 @@ export default class fetchAndRender {
     this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
   }
 
-  genresFromId(arrId){
-    return genresData(arrId)
+  genresFromId(arrId) {
+    return genresData(arrId);
+  }
+
+  async observerPagination() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    };
+
+    const data = await this.fetchTrendFilms(this.page);
+
+    const gallery = document.querySelector('.container');
+    const callback = (entries, observer) => {
+      if (entries[0].isIntersecting) {
+        observer.unobserve(entries[0].target);
+
+        const template = this.templateMain(data);
+
+        document
+          .querySelector('.card-container')
+          .insertAdjacentHTML('beforeend', template);
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(gallery.lastElementChild);
+    this.page = this.page + 1;
   }
 }
