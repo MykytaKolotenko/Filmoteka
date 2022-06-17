@@ -78,19 +78,20 @@ export default class fetchAndRender {
   async observerPagination() {
     const options = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: '150px',
       threshold: 1.0,
     };
 
     const data = await this.fetchTrendFilms(this.page);
 
     const gallery = document.querySelector('.container');
+
     const callback = (entries, observer) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
 
         const template = this.templateMain(data);
-
+        console.log(template);
         document
           .querySelector('.card-container')
           .insertAdjacentHTML('beforeend', template);
