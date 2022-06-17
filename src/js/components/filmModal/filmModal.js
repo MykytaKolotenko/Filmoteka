@@ -6,7 +6,7 @@ export default class ModalAPI {
     this.refs = {
       cardContainer: document.querySelector('main'),
       backdrop: document.querySelector('.backdrop'),
-      modalBody: document.querySelector('.modal'),
+      modalBody: document.querySelector('.modal__content-wrapp'),
       closeBtn: document.querySelector('.modal__close-btn'),
       filmCardLocalStorage: {},
       localStorageWatchedData: [],
@@ -35,7 +35,7 @@ export default class ModalAPI {
     const movieImage = await getImage(moviePath);
     const movieGenres = Object.values(data.genres)
       .map(genres => genres.name)
-      .join(' ');
+      .join(', ');
 
     this.setFilmCardLocalStorageData(data);
 
@@ -100,6 +100,7 @@ export default class ModalAPI {
     const backdropMarkup = `<div class="backdrop is-hidden">
         <div class="modal">
         <button class="modal__close-btn"></button>
+        <div class="modal__content-wrapp"></div>
         </div></div>`;
 
     document.body.insertAdjacentHTML('beforeend', backdropMarkup);
