@@ -6,7 +6,6 @@ import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 import genresData from './components/main/pagination/genresFromId.js';
 
-
 export default class fetchAndRender {
   constructor() {
     this.refs = {
