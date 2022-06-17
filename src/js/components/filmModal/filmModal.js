@@ -78,8 +78,8 @@ export default class ModalAPI {
         <p class="overview__text">${data.overview}</p>
         </div>
         <div class="modal__buttons">
-        <button class="button button__orange">add to Watched</button>
-        <button class="button">add to queue</button>
+        <button class="button ${btnProperties.watchedClassButtonOrange}" id="watched" ${btnProperties.watchedBtnDisabled}>${btnProperties.watchedBtnText}</button>
+        <button class="button ${btnProperties.queueClassButtonOrange}" id="queue" ${btnProperties.queueBtnDisabled}>${btnProperties.queueBtnText}</button>
         </div>
         </div>`
     }    
