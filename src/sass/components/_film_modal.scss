@@ -49,10 +49,6 @@
 }
 
 .modal {
-    // opacity: 1;
-    // transition: opacity 0 500ms ease-in;
-    // transform: translate(-50%);
-    //     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     position: absolute;
     top: 20px;
     left: 50%;
@@ -151,10 +147,6 @@
 
     &__overview {
         margin-top: 20px;
-
-        // @media screen and (min-width: 768px) {
-        //     height: 236px;
-        // }
     }
 
     &__buttons {
@@ -195,10 +187,34 @@
     }
 
     &__value {
+        display: flex;
         width: 131px;
 
         &--big {
             text-transform: uppercase;
+        }
+
+        &--orange {
+            width: 36px;
+            border-radius: 5px;
+            text-align: center;
+
+            background-color: var(--bgcolor_main);
+            color: var(--main_color);
+        }
+
+        &--slash {
+            width: 8px;
+            color: var(--secondary_text_color);
+        }
+
+        &--grey {
+            width: 36px;
+            border-radius: 5px;
+            text-align: center;
+
+            background-color: var(--footer_bg_color);
+            color: var(--text_color);
         }
     }
 }
