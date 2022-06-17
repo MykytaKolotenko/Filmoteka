@@ -13,26 +13,32 @@ export default class fetchAndRender {
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
+
     this.page = 2;
   }
-  // ===================== Header ================================
+
+
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
   }
 
+// ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
 
     return data;
   }
 
+// ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
     return data;
   }
 
+
   templateMain(data) {
+
     const dataArr = data;
     const { results } = dataArr;
     const template = results
@@ -45,9 +51,11 @@ export default class fetchAndRender {
       })
       .join('');
 
+
     this.observerPagination();
     return template;
   }
+
 
   renderMain(data, fresh = false) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
@@ -61,15 +69,19 @@ export default class fetchAndRender {
     }
   }
 
+
   // ===================== Footer ============================================
+
   async renderFooter() {
     this.refs.footer.classList.add('footer');
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
+// ===================== renderLibraryheader ======================
   renderLibraryheader() {
     this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
   }
+
 
   genresFromId(arrId) {
     return genresData(arrId);
@@ -101,5 +113,6 @@ export default class fetchAndRender {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(gallery.lastElementChild);
     this.page = this.page + 1;
+
   }
 }

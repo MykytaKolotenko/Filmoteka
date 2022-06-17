@@ -30,8 +30,4 @@ export default function infinityPagination() {
       })
       .join('');
 
-    document
-      .querySelector('.container')
-      .insertAdjacentHTML('beforeend', template);
-  });
-}
+
