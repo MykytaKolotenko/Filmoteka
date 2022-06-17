@@ -62,7 +62,11 @@ export default class ModalAPI {
         <div class="modal__film-info">
         <div class="film-info__wrapp">
         <p class="film-info__property">Vote / Votes</p>
-        <p class="film-info__value">${data.vote_average} / ${data.vote_count}</p>
+        <div class="film-info__value">
+        <div class="film-info__value--orange">${data.vote_average}</div>
+        <div class="film-info__value--slash"> / </div>
+        <div class="film-info__value--grey">${data.vote_count}</div>
+        </div>
         </div>
         <div class="film-info__wrapp">
         <p class="film-info__property">Popularity</p>

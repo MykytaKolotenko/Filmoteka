@@ -15,7 +15,7 @@ export default class fetchAndRender {
     };
     this.page = 2;
   }
-
+  // ===================== Header ================================
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
@@ -61,6 +61,7 @@ export default class fetchAndRender {
     }
   }
 
+  // ===================== Footer ============================================
   async renderFooter() {
     this.refs.footer.classList.add('footer');
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
