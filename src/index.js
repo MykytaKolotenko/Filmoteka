@@ -5,4 +5,3 @@ import ModalAPI from './js/components/filmModal/filmModal';
 new mainPage();
 
 new ModalAPI();
-тщ;
