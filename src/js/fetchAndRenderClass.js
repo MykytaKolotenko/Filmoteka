@@ -15,7 +15,7 @@ export default class fetchAndRender {
       footer: document.querySelector('footer'),
     };
   }
-
+// ===================== Header ================================
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
@@ -31,7 +31,7 @@ export default class fetchAndRender {
     const { data } = await getSearchingMovie(text);
     return data;
   }
-
+// ===================== Main ================================
   async renderMain(data, fresh = false) {
     const dataArr = data;
     const { results } = dataArr;
@@ -58,6 +58,8 @@ export default class fetchAndRender {
     return dataArr;
   }
 
+
+// ===================== Footer ============================================
   async renderFooter() {
     this.refs.footer.classList.add('footer');
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
