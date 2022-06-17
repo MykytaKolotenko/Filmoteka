@@ -1,11 +1,10 @@
 import InfiniteScroll from 'infinite-scroll';
 import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
-import infinityPagination from './components/main/pagination/infinity_scroll';
 
 import fetchAndRender from './fetchAndRenderClass';
 
-import Loader from './components/loader/loader-square';// loader-square
+import Loader from './components/loader/loader-square'; // loader-square
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
@@ -19,28 +18,27 @@ export default class mainPage extends fetchAndRender {
     this.renderFooter();
 
     this.rendenBtnTop();
-
   }
-// =================== fetchAndRenderTrendingFilms ============================
+  // =================== fetchAndRenderTrendingFilms ============================
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
 
     // this.observerPagination();
   }
-// =================== Loader ============================
+  // =================== Loader ============================
   renderLoader() {
     const loader = document.querySelector('.loader-box');
     console.log(loader);
     window.onload = function () {
       setTimeout(function () {
         if (!loader.classList.contains('hiden')) {
-          loader.classList.add('hiden')
+          loader.classList.add('hiden');
         }
       }, 600);
-    }
+    };
   }
-// =================== Btn_To_Top ============================
+  // =================== Btn_To_Top ============================
   rendenBtnTop() {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
     this.refs.main.insertAdjacentHTML('afterbegin', elmToTop);
@@ -61,6 +59,4 @@ export default class mainPage extends fetchAndRender {
       }
     }, 250);
   }
-
-
 }
