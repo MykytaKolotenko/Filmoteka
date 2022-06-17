@@ -42,6 +42,9 @@ export default class ModalAPI {
     this.refs.backdrop.classList.remove('is-hidden');
     this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
 
+    this.setLocStorWatchedDataOnLoad();
+    this.setLocStorQueueDataOnLoad()
+
     const btnProperties = {
       watchedBtnText: 'add to Watched',
       watchedBtnDisabled: '',
@@ -234,6 +237,26 @@ export default class ModalAPI {
       );
     }
   }
+
+  setLocStorWatchedDataOnLoad(){
+        const locStorWatchedKey = localStorage.getItem("watched");
+
+        if(locStorWatchedKey){
+            const TestlocStorWatched = JSON.parse(locStorWatchedKey);
+        
+            this.refs.localStorageWatchedData = TestlocStorWatched;
+        }
+    }
+
+    setLocStorQueueDataOnLoad(){
+        const locStorQueueKey = localStorage.getItem("queue");
+
+        if(locStorQueueKey){
+            const TestlocStorQueue = JSON.parse(locStorQueueKey);
+
+            this.refs.localStorageQueueData = TestlocStorQueue;
+        }
+    }
 }
 
 // const refs = {
