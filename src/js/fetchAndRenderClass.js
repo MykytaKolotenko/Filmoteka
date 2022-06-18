@@ -17,28 +17,25 @@ export default class fetchAndRender {
     this.page = 2;
   }
 
-
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
   }
 
-// ===================== Loader ======================
+  // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
 
     return data;
   }
 
-// ===================== fetchSearchedMovie ======================
+  // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
     return data;
   }
 
-
   templateMain(data) {
-
     const dataArr = data;
     const { results } = dataArr;
     const template = results
@@ -51,11 +48,9 @@ export default class fetchAndRender {
       })
       .join('');
 
-
     this.observerPagination();
     return template;
   }
-
 
   renderMain(data, fresh = false) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
@@ -69,7 +64,6 @@ export default class fetchAndRender {
     }
   }
 
-
   // ===================== Footer ============================================
 
   async renderFooter() {
@@ -77,11 +71,10 @@ export default class fetchAndRender {
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
-// ===================== renderLibraryheader ======================
+  // ===================== renderLibraryheader ======================
   renderLibraryheader() {
     this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
   }
-
 
   genresFromId(arrId) {
     return genresData(arrId);
@@ -103,7 +96,7 @@ export default class fetchAndRender {
         observer.unobserve(entries[0].target);
 
         const template = this.templateMain(data);
-        console.log(template);
+
         document
           .querySelector('.card-container')
           .insertAdjacentHTML('beforeend', template);
@@ -113,6 +106,5 @@ export default class fetchAndRender {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(gallery.lastElementChild);
     this.page = this.page + 1;
-
   }
 }
