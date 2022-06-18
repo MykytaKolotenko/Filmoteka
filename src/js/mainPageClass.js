@@ -1,15 +1,12 @@
 import InfiniteScroll from 'infinite-scroll';
 import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
-
 import fetchAndRender from './fetchAndRenderClass';
-
-import Loader from './components/loader/loader-square'; // loader-square
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
-    this.renderLoader();
+    // this.renderLoader();
 
     this.renderHeader();
 
@@ -26,18 +23,7 @@ export default class mainPage extends fetchAndRender {
 
     // this.observerPagination();
   }
-  // =================== Loader ============================
-  renderLoader() {
-    const loader = document.querySelector('.loader-box');
-    console.log(loader);
-    window.onload = function () {
-      setTimeout(function () {
-        if (!loader.classList.contains('hiden')) {
-          loader.classList.add('hiden');
-        }
-      }, 600);
-    };
-  }
+  
   // =================== Btn_To_Top ============================
   rendenBtnTop() {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
