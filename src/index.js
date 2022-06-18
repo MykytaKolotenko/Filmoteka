@@ -3,9 +3,10 @@ import ModalFooter from './js/components/main/footerModal/footerModal';
 
 import Loader from './js/components/loader/loader-square';
 import libraryPage from './js/libraryPageClass.js';
+import mainPage from './js/mainPageClass';
 
-new libraryPage();
-// new mainPage();
+// new libraryPage();
+new mainPage();
 
 new ModalAPI();
 

@@ -61,7 +61,7 @@ export default class libraryPage extends fetchAndRender {
       return;
     }
 
-    this.renderMain(data.slice(0, 6), true, false);
+    this.renderMain(data.slice(0, 9), true, false);
 
     this.pagination(data);
   }
@@ -69,12 +69,26 @@ export default class libraryPage extends fetchAndRender {
   pagination(data) {
     const options = {
       totalItems: data.length,
-      itemsPerPage: 6,
+      itemsPerPage: 9,
       visiblePages: 3,
       centerAlign: true,
 
       template: {
-        page: '<a href="{{page}}" class="pagination__page-btn">{{page}}</a>',
+        page: '<button type="button" class="tui-page-btn">{{page}}</button>',
+        currentPage:
+          '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        moveButton:
+          '<button type="button" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</button>',
+        disabledMoveButton:
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '</span>',
+        moreButton:
+          '<button type="button" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+          '<span class="tui-ico-ellip">...</span>' +
+          '</button>',
       },
     };
 
@@ -85,8 +99,8 @@ export default class libraryPage extends fetchAndRender {
     paganation.on('afterMove', event => {
       const currentPage = event.page;
 
-      const startSlice = (currentPage - 1) * 6;
-      const endSlice = currentPage * 6;
+      const startSlice = (currentPage - 1) * 9;
+      const endSlice = currentPage * 9;
       this.renderMain(data.slice(startSlice, endSlice), true, false);
       console.log(startSlice, endSlice);
     });
