@@ -1,4 +1,4 @@
-npmimport ModalAPI from './js/components/filmModal/filmModal';
+import ModalAPI from './js/components/filmModal/filmModal';
 import ModalFooter from './js/components/main/footerModal/footerModal';
 
 import Loader from './js/components/loader/loader-square';
