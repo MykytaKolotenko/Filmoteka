@@ -1,6 +1,23 @@
 /* loader styles */
+.loader__square-box{
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  &.hiden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 .loader__square {
+      
+    
+  
   width: calc(var(--f) * 2);
   height: calc(var(--f) * 2);
   display: flex;
