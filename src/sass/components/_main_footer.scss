@@ -5,7 +5,7 @@ $secondaryTextColor: #ffffff;
 $accentTextColor: #ff6b01;
 $secondaryAccentColor: #ff6b08;
 $placeHolderColor: rgba(255, 255, 255, 0.7);
-$darkThemeColor:#292c32;
+$darkThemeColor: #292c32;
 // Animation:
 $animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 $animationTiming: cubic-bezier(0.4, 0, 0.2, 1);
@@ -28,8 +28,6 @@ body {
   -webkit-text-size-adjust: 100%;
   transition: background-color $animation;
 }
-
-
 
 *:before,
 *:after {
@@ -91,12 +89,10 @@ img {
   height: auto;
 }
 
-
-
 // ===============================================
 // Footer
 .footer {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
@@ -127,22 +123,22 @@ img {
 }
 
 // Heart
-.heart{
+.heart {
   width: 14px;
   height: 13px;
-  animation: heart 0.9s infinite ;
+  animation: heart 0.9s infinite;
 }
 
-@keyframes heart{
-  0%{
+@keyframes heart {
+  0% {
     transform: scale(1);
   }
-  50%{
+  50% {
     transform: scale(1.1);
   }
-  100%{
+  100% {
     transform: scale(1);
-  } 
+  }
 }
 
 .footer__modal-open-btn {
@@ -234,7 +230,6 @@ img {
   }
 }
 
-
 /* ---- Team ------ */
 
 .modal__team-title {
@@ -321,4 +316,3 @@ img {
 .team__icon {
   fill: currentColor;
 }
-

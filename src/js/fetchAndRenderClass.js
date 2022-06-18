@@ -38,10 +38,9 @@ export default class fetchAndRender {
     return results;
   }
 
-  templateMain(data) {
+  templateMain(data, fetchPagination = true) {
     const dataArr = data;
     const { results } = dataArr;
-    console.log(dataArr);
     const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
@@ -52,13 +51,17 @@ export default class fetchAndRender {
       })
       .join('');
 
-    this.observerPagination();
+    if (fetchPagination) {
+      this.observerPagination();
+    }
+
     return template;
   }
 
-  renderMain(data, fresh = false) {
+  renderMain(data, fresh = false, fetchPagination = true) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
-      data
+      data,
+      fetchPagination
     )}</div></section> `;
 
     if (fresh) {
@@ -100,7 +103,7 @@ export default class fetchAndRender {
         observer.unobserve(entries[0].target);
 
         const template = this.templateMain(data);
-        console.log(template);
+
         document
           .querySelector('.card-container')
           .insertAdjacentHTML('beforeend', template);

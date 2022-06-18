@@ -23,8 +23,6 @@ export default class mainPage extends fetchAndRender {
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
-
-    // this.observerPagination();
   }
 
   // =================== Btn_To_Top ============================
