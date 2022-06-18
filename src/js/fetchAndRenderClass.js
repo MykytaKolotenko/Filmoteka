@@ -17,31 +17,32 @@ export default class fetchAndRender {
     this.page = 2;
   }
 
-
   renderHeader() {
     this.refs.header.classList.add('main__header');
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
   }
 
-// ===================== Loader ======================
+  // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+    const { results } = data;
 
-    return data;
+    return results;
   }
 
-// ===================== fetchSearchedMovie ======================
+  // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
-    return data;
+    const { results } = data;
+
+    return results;
   }
 
-
   templateMain(data) {
-
     const dataArr = data;
     const { results } = dataArr;
-    const template = results
+    console.log(dataArr);
+    const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
         const date = release_date.slice(0, 4);
@@ -51,11 +52,9 @@ export default class fetchAndRender {
       })
       .join('');
 
-
     this.observerPagination();
     return template;
   }
-
 
   renderMain(data, fresh = false) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
@@ -69,7 +68,6 @@ export default class fetchAndRender {
     }
   }
 
-
   // ===================== Footer ============================================
 
   async renderFooter() {
@@ -77,11 +75,10 @@ export default class fetchAndRender {
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
-// ===================== renderLibraryheader ======================
+  // ===================== renderLibraryheader ======================
   renderLibraryheader() {
     this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
   }
-
 
   genresFromId(arrId) {
     return genresData(arrId);
@@ -113,6 +110,18 @@ export default class fetchAndRender {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(gallery.lastElementChild);
     this.page = this.page + 1;
+  }
 
+  // =================== Loader ============================
+  renderLoader() {
+    const loader = document.querySelector('.loader-box');
+    console.log(loader);
+    window.onload = function () {
+      setTimeout(function () {
+        if (!loader.classList.contains('hiden')) {
+          loader.classList.add('hiden');
+        }
+      }, 600);
+    };
   }
 }

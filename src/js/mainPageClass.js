@@ -26,18 +26,7 @@ export default class mainPage extends fetchAndRender {
 
     // this.observerPagination();
   }
-  // =================== Loader ============================
-  renderLoader() {
-    const loader = document.querySelector('.loader-box');
-    console.log(loader);
-    window.onload = function () {
-      setTimeout(function () {
-        if (!loader.classList.contains('hiden')) {
-          loader.classList.add('hiden');
-        }
-      }, 600);
-    };
-  }
+
   // =================== Btn_To_Top ============================
   rendenBtnTop() {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
