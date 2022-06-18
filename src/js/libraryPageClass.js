@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import fetchAndRender from './js/fetchAndRenderClass';
+import fetchAndRender from './fetchAndRenderClass';
 
 export default class libraryPage extends fetchAndRender {
   constructor(refs) {
