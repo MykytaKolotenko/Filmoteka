@@ -12,8 +12,8 @@ export default class ModalAPI {
         this.refs.cardContainer.addEventListener('click', this.openFilmCard.bind(this));
          // CLOSE MODAL
         this.refs.backdrop.addEventListener('click', this.onBackdropClick.bind(this));
-        // window.addEventListener('keydown', this.onEscKeyPress.bind(this));
-        this.refs.backdrop.addEventListener('keydown', this.onEscKeyPress.bind(this));
+        window.addEventListener('keydown', this.onEscKeyPress.bind(this));
+        // this.refs.backdrop.addEventListener('keydown', this.onEscKeyPress.bind(this));
          // END CLOSE MODAL
     }
 
@@ -80,7 +80,6 @@ export default class ModalAPI {
       onEscKeyPress (event) {
       const ESC_KEY_CODE = "Escape";
       if (event.code === ESC_KEY_CODE) {
-      console.log('Клік по кнопці')
       this.closeModal()
       }
       }
