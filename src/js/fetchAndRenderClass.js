@@ -25,20 +25,23 @@ export default class fetchAndRender {
   // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+    const { results } = data;
 
-    return data;
+    return results;
   }
 
   // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
-    return data;
+    const { results } = data;
+
+    return results;
   }
 
-  templateMain(data) {
+  templateMain(data, fetchPagination = true) {
     const dataArr = data;
     const { results } = dataArr;
-    const template = results
+    const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
         const date = release_date.slice(0, 4);
@@ -48,13 +51,17 @@ export default class fetchAndRender {
       })
       .join('');
 
-    this.observerPagination();
+    if (fetchPagination) {
+      this.observerPagination();
+    }
+
     return template;
   }
 
-  renderMain(data, fresh = false) {
+  renderMain(data, fresh = false, fetchPagination = true) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
-      data
+      data,
+      fetchPagination
     )}</div></section> `;
 
     if (fresh) {
@@ -106,5 +113,18 @@ export default class fetchAndRender {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(gallery.lastElementChild);
     this.page = this.page + 1;
+  }
+
+  // =================== Loader ============================
+  renderLoader() {
+    const loader = document.querySelector('.loader-box');
+
+    window.onload = function () {
+      setTimeout(function () {
+        if (!loader.classList.contains('hiden')) {
+          loader.classList.add('hiden');
+        }
+      }, 600);
+    };
   }
 }

@@ -21,9 +21,11 @@ export default class mainPage extends fetchAndRender {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
 
+
     // this.observerPagination();
   }
   
+
   // =================== Btn_To_Top ============================
   rendenBtnTop() {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
