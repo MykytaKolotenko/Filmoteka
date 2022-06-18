@@ -118,7 +118,7 @@ export default class fetchAndRender {
   // =================== Loader ============================
   renderLoader() {
     const loader = document.querySelector('.loader-box');
-    console.log(loader);
+
     window.onload = function () {
       setTimeout(function () {
         if (!loader.classList.contains('hiden')) {

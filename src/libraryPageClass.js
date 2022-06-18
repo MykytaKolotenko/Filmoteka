@@ -1,5 +1,5 @@
-import fetchAndRender from './fetchAndRenderClass';
 import Pagination from 'tui-pagination';
+import fetchAndRender from './js/fetchAndRenderClass';
 
 export default class libraryPage extends fetchAndRender {
   constructor(refs) {
@@ -24,7 +24,10 @@ export default class libraryPage extends fetchAndRender {
 
   renderFromBtn() {
     this.refs.header.addEventListener('click', e => {
-      if (e.target.dataset.main) {
+      if (
+        e.target.dataset.main === 'watched' ||
+        e.target.dataset.main === 'queue'
+      ) {
         this.getAndRenderLocalStorage(e.target.dataset.main);
       }
 
