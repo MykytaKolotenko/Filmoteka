@@ -6,7 +6,6 @@ import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 import genresData from './components/main/pagination/genresFromId.js';
 
-
 export default class fetchAndRender {
   constructor() {
     this.refs = {
@@ -14,6 +13,8 @@ export default class fetchAndRender {
       main: document.querySelector('main'),
       footer: document.querySelector('footer'),
     };
+
+    this.page = 2;
   }
 
   renderHeader() {
@@ -21,21 +22,26 @@ export default class fetchAndRender {
     this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
   }
 
+  // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+    const { results } = data;
 
-    return data;
+    return results;
   }
 
+  // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
-    return data;
+    const { results } = data;
+
+    return results;
   }
 
-  async renderMain(data, fresh = false) {
+  templateMain(data, fetchPagination = true) {
     const dataArr = data;
     const { results } = dataArr;
-    const template = results
+    const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
         const date = release_date.slice(0, 4);
@@ -45,29 +51,80 @@ export default class fetchAndRender {
       })
       .join('');
 
-    const templateWithContainer = `<section class=film><div class="card-container container">${template}</div></section> `;
+    if (fetchPagination) {
+      this.observerPagination();
+    }
 
-    this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
+    return template;
+  }
+
+  renderMain(data, fresh = false, fetchPagination = true) {
+    const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
+      data,
+      fetchPagination
+    )}</div></section> `;
 
     if (fresh) {
       this.refs.main.innerHTML = templateWithContainer;
     } else {
       this.refs.main.insertAdjacentHTML('beforeend', templateWithContainer);
     }
-
-    return dataArr;
   }
+
+  // ===================== Footer ============================================
 
   async renderFooter() {
     this.refs.footer.classList.add('footer');
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
+  // ===================== renderLibraryheader ======================
   renderLibraryheader() {
     this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
   }
 
-  genresFromId(arrId){
-    return genresData(arrId)
+  genresFromId(arrId) {
+    return genresData(arrId);
+  }
+
+  async observerPagination() {
+    const options = {
+      root: null,
+      rootMargin: '150px',
+      threshold: 1.0,
+    };
+
+    const data = await this.fetchTrendFilms(this.page);
+
+    const gallery = document.querySelector('.container');
+
+    const callback = (entries, observer) => {
+      if (entries[0].isIntersecting) {
+        observer.unobserve(entries[0].target);
+
+        const template = this.templateMain(data);
+
+        document
+          .querySelector('.card-container')
+          .insertAdjacentHTML('beforeend', template);
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(gallery.lastElementChild);
+    this.page = this.page + 1;
+  }
+
+  // =================== Loader ============================
+  renderLoader() {
+    const loader = document.querySelector('.loader-box');
+
+    window.onload = function () {
+      setTimeout(function () {
+        if (!loader.classList.contains('hiden')) {
+          loader.classList.add('hiden');
+        }
+      }, 600);
+    };
   }
 }
