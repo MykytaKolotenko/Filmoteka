@@ -1,36 +1,40 @@
 import { getMovie, getImage } from '../../API/api';
 
 export default class ModalAPI {
-
-    constructor() {
-        this.renderBackdropMarkup();
-        this.refs = {
-        cardContainer: document.querySelector('main'),
-        backdrop: document.querySelector('.backdrop'),
-        modalBody: document.querySelector('.modal'),
-        closeBtn: document.querySelector('.modal__close-btn')
-          filmCardLocalStorage: {},
+  constructor() {
+    this.renderBackdropMarkup();
+    this.refs = {
+      cardContainer: document.querySelector('main'),
+      backdrop: document.querySelector('.backdrop'),
+      modalBody: document.querySelector('.modal'),
+      closeBtn: document.querySelector('.modal__close-btn'),
+      filmCardLocalStorage: {},
       localStorageWatchedData: [],
       localStorageQueueData: [],
-        }
-        this.refs.cardContainer.addEventListener('click', this.openFilmCard.bind(this));
-         // CLOSE MODAL
-        this.refs.backdrop.addEventListener('click', this.onBackdropClick.bind(this));
-        window.addEventListener('keydown', this.onEscKeyPress.bind(this));
-        // this.refs.backdrop.addEventListener('keydown', this.onEscKeyPress.bind(this));
-         // END CLOSE MODAL
-      this.refs.modalBody.addEventListener(
+    };
+    this.refs.cardContainer.addEventListener(
+      'click',
+      this.openFilmCard.bind(this)
+    );
+    // CLOSE MODAL
+    this.refs.backdrop.addEventListener(
+      'click',
+      this.onBackdropClick.bind(this)
+    );
+    window.addEventListener('keydown', this.onEscKeyPress.bind(this));
+    // this.refs.backdrop.addEventListener('keydown', this.onEscKeyPress.bind(this));
+    // END CLOSE MODAL
+    this.refs.modalBody.addEventListener(
       'click',
       this.setLocalStorageData.bind(this)
     );
-}
+  }
 
-async openFilmCard(evt) {
+  async openFilmCard(evt) {
     const targetTag = evt.target.parentNode.classList.contains('film__card');
 
     if (!targetTag) {
       return;
-
     }
 
     const movieId = evt.target.parentNode.id;
@@ -47,7 +51,7 @@ async openFilmCard(evt) {
     this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
 
     this.setLocStorWatchedDataOnLoad();
-    this.setLocStorQueueDataOnLoad()
+    this.setLocStorQueueDataOnLoad();
 
     const btnProperties = {
       watchedBtnText: 'add to Watched',
@@ -97,30 +101,28 @@ async openFilmCard(evt) {
         <button class="button ${btnProperties.queueClassButtonOrange}" id="queue" ${btnProperties.queueBtnDisabled}>${btnProperties.queueBtnText}</button>
         </div>
 
-        </div>`
-    }    
-   
-    // CLOSE MODAL
-      onBackdropClick(event) {
-      if (event.currentTarget === event.target) {
-        console.log(this);
-        this.closeModal();
-      }
-      }
+        </div>`);
+  }
 
-      onEscKeyPress (event) {
-      const ESC_KEY_CODE = "Escape";
-      if (event.code === ESC_KEY_CODE) {
-      this.closeModal()
-      }
-      }
-    // END CLOSE MODAL
-
-    
-    closeModal() {
-        this.refs.backdrop.classList.add('is-hidden');
+  // CLOSE MODAL
+  onBackdropClick(event) {
+    if (event.currentTarget === event.target) {
+      console.log(this);
+      this.closeModal();
     }
+  }
 
+  onEscKeyPress(event) {
+    const ESC_KEY_CODE = 'Escape';
+    if (event.code === ESC_KEY_CODE) {
+      this.closeModal();
+    }
+  }
+  // END CLOSE MODAL
+
+  closeModal() {
+    this.refs.backdrop.classList.add('is-hidden');
+  }
 
   renderBackdropMarkup() {
     const backdropMarkup = `<div class="backdrop is-hidden">
@@ -160,7 +162,7 @@ async openFilmCard(evt) {
 
   setFilmCardLocalStorageData(item) {
     const genresId = item.genres.map(value => value.id);
-    
+
     const filmCard = {
       original_title: item.original_title,
       poster_path: item.poster_path,
@@ -265,24 +267,23 @@ async openFilmCard(evt) {
     }
   }
 
-  setLocStorWatchedDataOnLoad(){
-        const locStorWatchedKey = localStorage.getItem("watched");
+  setLocStorWatchedDataOnLoad() {
+    const locStorWatchedKey = localStorage.getItem('watched');
 
-        if(locStorWatchedKey){
-            const TestlocStorWatched = JSON.parse(locStorWatchedKey);
-        
-            this.refs.localStorageWatchedData = TestlocStorWatched;
-        }
+    if (locStorWatchedKey) {
+      const TestlocStorWatched = JSON.parse(locStorWatchedKey);
+
+      this.refs.localStorageWatchedData = TestlocStorWatched;
     }
+  }
 
-    setLocStorQueueDataOnLoad(){
-        const locStorQueueKey = localStorage.getItem("queue");
+  setLocStorQueueDataOnLoad() {
+    const locStorQueueKey = localStorage.getItem('queue');
 
-        if(locStorQueueKey){
-            const TestlocStorQueue = JSON.parse(locStorQueueKey);
+    if (locStorQueueKey) {
+      const TestlocStorQueue = JSON.parse(locStorQueueKey);
 
-            this.refs.localStorageQueueData = TestlocStorQueue;
-        }
+      this.refs.localStorageQueueData = TestlocStorQueue;
     }
+  }
 }
-
