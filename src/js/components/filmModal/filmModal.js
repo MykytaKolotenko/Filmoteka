@@ -136,8 +136,12 @@ export default class ModalAPI {
   }
 
   setFilmCardLocalStorageData(item) {
+    const genresId = item.genres.map(value => value.id);
+    
     const filmCard = {
-      title: item.original_title,
+      original_title: item.original_title,
+      poster_path: item.poster_path,
+      genre_ids: genresId,
       image: getImage(item.poster_path),
       id: item.id,
       overview: item.overview,
@@ -145,7 +149,7 @@ export default class ModalAPI {
       vote_average: item.vote_average,
       vote_count: item.vote_count,
       genre: item.genres[0].name,
-      date: item.release_date.slice(0, 4),
+      release_date: item.release_date.slice(0, 4),
     };
 
     this.refs.filmCardLocalStorage = filmCard;
