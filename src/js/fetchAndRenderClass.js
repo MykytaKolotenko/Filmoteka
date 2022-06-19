@@ -4,7 +4,7 @@ import mainHeaderTemplate from './components/main/header/main_header_template';
 import jsonGenres from './API/jsonGenres';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
-import genresData from './components/main/pagination/genresFromId.js';
+import genresDataFromId from './components/main/pagination/genresDataFromId';
 
 export default class fetchAndRender {
   constructor() {
@@ -84,7 +84,7 @@ export default class fetchAndRender {
   }
 
   genresFromId(arrId) {
-    return genresData(arrId);
+    return genresDataFromId(arrId);
   }
 
   async observerPagination() {

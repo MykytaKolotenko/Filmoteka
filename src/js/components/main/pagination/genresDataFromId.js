@@ -1,6 +1,6 @@
 import jsonGenres from '../../../API/jsonGenres';
 
-export default function genresData(arrId) {
+export default function genresDataFromId(arrId) {
   const genres = jsonGenres;
   const genresName = [];
 
