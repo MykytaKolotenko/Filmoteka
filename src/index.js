@@ -6,7 +6,10 @@ import libraryPage from './js/libraryPageClass.js';
 import mainPage from './js/mainPageClass';
 
 // new libraryPage();
-new mainPage();
+
+let renderPage = new mainPage();
+
+renderPage.renderFooter();
 
 new ModalAPI();
 

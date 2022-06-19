@@ -18,8 +18,8 @@ export default class fetchAndRender {
   }
 
   renderHeader() {
-    this.refs.header.classList.add('main__header');
-    this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
+    // this.refs.header.classList.add('main__header');
+    this.refs.header.innerHTML = mainHeaderTemplate();
   }
 
   // ===================== Loader ======================
@@ -80,7 +80,7 @@ export default class fetchAndRender {
 
   // ===================== renderLibraryheader ======================
   renderLibraryheader() {
-    this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
+    this.refs.header.innerHTML = libraryHeaderTemplate();
   }
 
   genresFromId(arrId) {

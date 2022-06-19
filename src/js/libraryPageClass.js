@@ -17,7 +17,7 @@ export default class libraryPage extends fetchAndRender {
 
     this.getAndRenderLocalStorage('watched');
 
-    this.renderFooter();
+    // this.renderFooter();
 
     this.renderFromBtn();
   }
