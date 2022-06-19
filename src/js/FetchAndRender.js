@@ -5,8 +5,10 @@ import jsonGenres from './API/jsonGenres';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 import genresData from './components/main/pagination/genresFromId.js';
+import libraryPage from './libraryPageClass';
+import mainPage from './mainPageClass';
 
-export default class fetchAndRender {
+export default class FetchAndRender {
   constructor() {
     this.refs = {
       header: document.querySelector('header'),
@@ -126,5 +128,22 @@ export default class fetchAndRender {
         }
       }, 600);
     };
+  }
+
+  changePage() {
+    this.refs.header.addEventListener('click', () => {
+      switch (e.target.dataset.main) {
+        case 'home':
+          new mainPage();
+          break;
+
+        case 'library':
+          new libraryPage();
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 }

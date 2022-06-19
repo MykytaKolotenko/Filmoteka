@@ -1,14 +1,11 @@
-import InfiniteScroll from 'infinite-scroll';
-import { getImage, urlTrendingMovies } from './API/api';
-import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
-import fetchAndRender from './fetchAndRenderClass';
+import FetchAndRender from './FetchAndRender';
 
-export default class mainPage extends fetchAndRender {
+export default class mainPage extends FetchAndRender {
   constructor(refs) {
     super(refs);
-    // this.renderLoader();
 
     this.renderHeader();
+    this.changePage();
 
     this.fetchAndRenderTrendingFilms();
 
@@ -21,10 +18,8 @@ export default class mainPage extends fetchAndRender {
     const data = await this.fetchTrendFilms();
     this.renderMain(data);
 
-
     // this.observerPagination();
   }
-  
 
   // =================== Btn_To_Top ============================
   rendenBtnTop() {
