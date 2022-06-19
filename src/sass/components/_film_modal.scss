@@ -245,7 +245,10 @@
 
     &__text {
         margin-top: 8px;
-        height: 317px;
         line-height: 1.67;
+
+        @media screen and (min-width: 1024px) {
+            height: 317px;
+        }
     }
 }    
