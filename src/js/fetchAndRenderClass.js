@@ -40,7 +40,7 @@ export default class fetchAndRender {
 
   templateMain(data, fetchPagination = true) {
     const dataArr = data;
-    const { results } = dataArr;
+    console.log(dataArr);
     const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         console.log(genre_ids);
