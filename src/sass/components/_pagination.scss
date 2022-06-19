@@ -91,6 +91,8 @@
   background-color: #FF7619;
 }
 
+
+
 button{
   background: none;
 }
@@ -105,4 +107,7 @@ button{
   color: #666666;
   opacity: 0.3;
   pointer-events: none;
+}
+.tui-is-selected:hover {
+  background-color: #FF7619;
 }
