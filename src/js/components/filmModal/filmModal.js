@@ -1,4 +1,5 @@
 import { getMovie, getImage } from '../../API/api';
+import modalCardTemplate from './modalCardTemplate';
 
 export default class ModalAPI {
   constructor() {
@@ -6,7 +7,7 @@ export default class ModalAPI {
     this.refs = {
       cardContainer: document.querySelector('main'),
       backdrop: document.querySelector('.backdrop'),
-      modalBody: document.querySelector('.modal'),
+      modalBody: document.querySelector('.modal__content-wrapp'),
       closeBtn: document.querySelector('.modal__close-btn'),
       filmCardLocalStorage: {},
       localStorageWatchedData: [],
@@ -64,44 +65,23 @@ export default class ModalAPI {
 
     this.addToViewedBtn(evt, btnProperties);
     this.addToQueueBtn(evt, btnProperties);
-
-    return (this.refs.modalBody.innerHTML = `<div class="modal__image-wrapper">
-        <img src=${movieImage} class="modal__image" >
-        </div>
-        <div class="modal__content">
-        <h2 class="modal__title">${data.title}</h2>
-        <div class="modal__film-info">
-        <div class="film-info__wrapp">
-        <p class="film-info__property">Vote / Votes</p>
-        <div class="film-info__value">
-        <div class="film-info__value--orange">${data.vote_average}</div>
-        <div class="film-info__value--slash"> / </div>
-        <div class="film-info__value--grey">${data.vote_count}</div>
-        </div>
-        </div>
-        <div class="film-info__wrapp">
-        <p class="film-info__property">Popularity</p>
-        <p class="film-info__value">${data.popularity}</p>
-        </div>
-        <div class="film-info__wrapp">
-        <p class="film-info__property">Original Title</p>
-        <p class="film-info__value film-info__value--big">${data.original_title}</p>
-        </div>
-        <div class="film-info__wrapp">
-        <p class="film-info__property">Genre</p>
-        <p class="film-info__value">${movieGenres}</p>
-        </div>
-        </div>
-        <div class="modal__overview">
-        <p class="overview__title">About</p>
-        <p class="overview__text">${data.overview}</p>
-        </div>
-        <div class="modal__buttons">
-        <button class="button ${btnProperties.watchedClassButtonOrange}" id="watched" ${btnProperties.watchedBtnDisabled}>${btnProperties.watchedBtnText}</button>
-        <button class="button ${btnProperties.queueClassButtonOrange}" id="queue" ${btnProperties.queueBtnDisabled}>${btnProperties.queueBtnText}</button>
-        </div>
-
-        </div>`);
+      
+    return this.refs.modalBody.innerHTML = modalCardTemplate(
+        movieImage,
+        data.title,
+        data.vote_average,
+        data.vote_count,
+        data.popularity,
+        data.original_title,
+        movieGenres,
+        data.overview,
+        btnProperties.watchedClassButtonOrange,
+        btnProperties.watchedBtnDisabled,
+        btnProperties.watchedBtnText,
+        btnProperties.queueClassButtonOrange,
+        btnProperties.queueBtnDisabled,
+        btnProperties.queueBtnText,
+    );
   }
 
   // CLOSE MODAL

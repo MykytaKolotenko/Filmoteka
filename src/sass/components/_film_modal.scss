@@ -241,10 +241,14 @@
 .overview {
   &__title {
     text-transform: uppercase;
-  }
+    }
 
-  &__text {
-    margin-top: 8px;
-    line-height: 1.67;
-  }
-}
+    &__text {
+        margin-top: 8px;
+        line-height: 1.67;
+
+        @media screen and (min-width: 1024px) {
+            height: 317px;
+        }
+    }
+}    
