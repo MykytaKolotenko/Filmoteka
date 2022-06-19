@@ -1,16 +1,18 @@
-import mainPage from './js/mainPageClass.js';
-import filmModal from './js/components/filmModal/filmModal';
 import ModalAPI from './js/components/filmModal/filmModal';
-import ModalFooter from './js/components/main/footerModal/footerModal'; 
+import ModalFooter from './js/components/main/footerModal/footerModal';
 
+import Loader from './js/components/loader/loader-square';
+import libraryPage from './js/libraryPageClass.js';
+import mainPage from './js/mainPageClass';
 
+// new libraryPage();
 
-new mainPage();
+let renderPage = new mainPage();
+
+renderPage.renderFooter();
 
 new ModalAPI();
 
-
-
 new ModalFooter();
 
-
+new Loader();

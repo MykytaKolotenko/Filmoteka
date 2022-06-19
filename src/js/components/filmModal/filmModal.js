@@ -17,6 +17,14 @@ export default class ModalAPI {
       'click',
       this.openFilmCard.bind(this)
     );
+    // CLOSE MODAL
+    this.refs.backdrop.addEventListener(
+      'click',
+      this.onBackdropClick.bind(this)
+    );
+    window.addEventListener('keydown', this.onEscKeyPress.bind(this));
+    // this.refs.backdrop.addEventListener('keydown', this.onEscKeyPress.bind(this));
+    // END CLOSE MODAL
     this.refs.modalBody.addEventListener(
       'click',
       this.setLocalStorageData.bind(this)
@@ -44,7 +52,7 @@ export default class ModalAPI {
     this.refs.closeBtn.addEventListener('click', this.closeModal.bind(this));
 
     this.setLocStorWatchedDataOnLoad();
-    this.setLocStorQueueDataOnLoad()
+    this.setLocStorQueueDataOnLoad();
 
     const btnProperties = {
       watchedBtnText: 'add to Watched',
@@ -57,7 +65,6 @@ export default class ModalAPI {
 
     this.addToViewedBtn(evt, btnProperties);
     this.addToQueueBtn(evt, btnProperties);
-
       
     return this.refs.modalBody.innerHTML = modalCardTemplate(
         movieImage,
@@ -76,6 +83,22 @@ export default class ModalAPI {
         btnProperties.queueBtnText,
     );
   }
+
+  // CLOSE MODAL
+  onBackdropClick(event) {
+    if (event.currentTarget === event.target) {
+      console.log(this);
+      this.closeModal();
+    }
+  }
+
+  onEscKeyPress(event) {
+    const ESC_KEY_CODE = 'Escape';
+    if (event.code === ESC_KEY_CODE) {
+      this.closeModal();
+    }
+  }
+  // END CLOSE MODAL
 
   closeModal() {
     this.refs.backdrop.classList.add('is-hidden');
@@ -118,8 +141,12 @@ export default class ModalAPI {
   }
 
   setFilmCardLocalStorageData(item) {
+    const genresId = item.genres.map(value => value.id);
+
     const filmCard = {
-      title: item.original_title,
+      original_title: item.original_title,
+      poster_path: item.poster_path,
+      genre_ids: genresId,
       image: getImage(item.poster_path),
       id: item.id,
       overview: item.overview,
@@ -127,7 +154,7 @@ export default class ModalAPI {
       vote_average: item.vote_average,
       vote_count: item.vote_count,
       genre: item.genres[0].name,
-      date: item.release_date.slice(0, 4),
+      release_date: item.release_date.slice(0, 4),
     };
 
     this.refs.filmCardLocalStorage = filmCard;
@@ -220,23 +247,23 @@ export default class ModalAPI {
     }
   }
 
-  setLocStorWatchedDataOnLoad(){
-        const locStorWatchedKey = localStorage.getItem("watched");
+  setLocStorWatchedDataOnLoad() {
+    const locStorWatchedKey = localStorage.getItem('watched');
 
-        if(locStorWatchedKey){
-            const TestlocStorWatched = JSON.parse(locStorWatchedKey);
-        
-            this.refs.localStorageWatchedData = TestlocStorWatched;
-        }
+    if (locStorWatchedKey) {
+      const TestlocStorWatched = JSON.parse(locStorWatchedKey);
+
+      this.refs.localStorageWatchedData = TestlocStorWatched;
     }
+  }
 
-    setLocStorQueueDataOnLoad(){
-        const locStorQueueKey = localStorage.getItem("queue");
+  setLocStorQueueDataOnLoad() {
+    const locStorQueueKey = localStorage.getItem('queue');
 
-        if(locStorQueueKey){
-            const TestlocStorQueue = JSON.parse(locStorQueueKey);
+    if (locStorQueueKey) {
+      const TestlocStorQueue = JSON.parse(locStorQueueKey);
 
-            this.refs.localStorageQueueData = TestlocStorQueue;
-        }
+      this.refs.localStorageQueueData = TestlocStorQueue;
     }
+  }
 }

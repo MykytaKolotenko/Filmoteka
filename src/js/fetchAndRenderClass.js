@@ -4,7 +4,7 @@ import mainHeaderTemplate from './components/main/header/main_header_template';
 import jsonGenres from './API/jsonGenres';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
-import genresData from './components/main/pagination/genresFromId.js';
+import genresDataFromId from './components/main/pagination/genresDataFromId';
 
 export default class fetchAndRender {
   constructor() {
@@ -17,32 +17,33 @@ export default class fetchAndRender {
     this.page = 2;
   }
 
-
   renderHeader() {
-    this.refs.header.classList.add('main__header');
-    this.refs.header.insertAdjacentHTML('afterbegin', mainHeaderTemplate());
+    // this.refs.header.classList.add('main__header');
+    this.refs.header.innerHTML = mainHeaderTemplate();
   }
 
-// ===================== Loader ======================
+  // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
     const { data } = await getTrendingMovies(pageNumber);
+    const { results } = data;
 
-    return data;
+    return results;
   }
 
-// ===================== fetchSearchedMovie ======================
+  // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text) {
     const { data } = await getSearchingMovie(text);
-    return data;
+    const { results } = data;
+
+    return results;
   }
 
-
-  templateMain(data) {
-
+  templateMain(data, fetchPagination = true) {
     const dataArr = data;
-    const { results } = dataArr;
-    const template = results
+    console.log(dataArr);
+    const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
+        console.log(genre_ids);
         const wordGenres = this.genresFromId(genre_ids);
         const date = release_date.slice(0, 4);
         const image = getImage(poster_path);
@@ -51,15 +52,17 @@ export default class fetchAndRender {
       })
       .join('');
 
+    if (fetchPagination) {
+      this.observerPagination();
+    }
 
-    this.observerPagination();
     return template;
   }
 
-
-  renderMain(data, fresh = false) {
+  renderMain(data, fresh = false, fetchPagination = true) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
-      data
+      data,
+      fetchPagination
     )}</div></section> `;
 
     if (fresh) {
@@ -69,7 +72,6 @@ export default class fetchAndRender {
     }
   }
 
-
   // ===================== Footer ============================================
 
   async renderFooter() {
@@ -77,14 +79,13 @@ export default class fetchAndRender {
     this.refs.footer.insertAdjacentHTML('beforeend', mainFooterTemplate());
   }
 
-// ===================== renderLibraryheader ======================
+  // ===================== renderLibraryheader ======================
   renderLibraryheader() {
-    this.refs.header.insertAdjacentHTML('afterbegin', libraryHeaderTemplate());
+    this.refs.header.innerHTML = libraryHeaderTemplate();
   }
 
-
   genresFromId(arrId) {
-    return genresData(arrId);
+    return genresDataFromId(arrId);
   }
 
   async observerPagination() {
@@ -103,7 +104,7 @@ export default class fetchAndRender {
         observer.unobserve(entries[0].target);
 
         const template = this.templateMain(data);
-        console.log(template);
+
         document
           .querySelector('.card-container')
           .insertAdjacentHTML('beforeend', template);
@@ -113,6 +114,18 @@ export default class fetchAndRender {
     const observer = new IntersectionObserver(callback, options);
     observer.observe(gallery.lastElementChild);
     this.page = this.page + 1;
+  }
 
+  // =================== Loader ============================
+  renderLoader() {
+    const loader = document.querySelector('.loader-box');
+
+    window.onload = function () {
+      setTimeout(function () {
+        if (!loader.classList.contains('hiden')) {
+          loader.classList.add('hiden');
+        }
+      }, 600);
+    };
   }
 }
