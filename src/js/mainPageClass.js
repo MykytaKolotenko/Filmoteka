@@ -3,6 +3,7 @@ import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import fetchAndRender from './fetchAndRenderClass';
 import libraryPage from './libraryPageClass';
+import Notiflix from 'notiflix';
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
@@ -65,20 +66,26 @@ export default class mainPage extends fetchAndRender {
     const searchInput = document.querySelector('#searchField');
     let searchTimeout;
     searchInput.addEventListener('input', (evt) => {
-      if(evt.target.nodeName !== "INPUT"){
+      if (evt.target.nodeName !== "INPUT") {
         return;
       }
-
       const searchValue = evt.target.value.trim();
       clearTimeout(searchTimeout);
-    
+      
       searchTimeout = setTimeout(() => {
-        const data = this.fetchSearchedMovie(searchValue).then(data => {
-          console.log(data);
+        const data = this.fetchSearchedMovie(searchValue)
+        .then(data => {
+          if (data.length === 0) {
+          
+           return Notiflix.Notify.failure(
+              'Search result not successful. Enter the correct movie name and try again!'
+            );
+          }
           this.renderMain(data, true);
           this.rendenBtnTop();
-        });
+        }).catch
         
+       
       }, 650);
     });
   }
