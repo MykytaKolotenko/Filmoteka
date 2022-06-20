@@ -15,6 +15,7 @@ export default class fetchAndRender {
     };
 
     this.page = 2;
+    this.input = '';
   }
 
   renderHeader() {
@@ -31,14 +32,14 @@ export default class fetchAndRender {
   }
 
   // ===================== fetchSearchedMovie ======================
-  async fetchSearchedMovie(text) {
-    const { data } = await getSearchingMovie(text);
+  async fetchSearchedMovie(text, page) {
+    const { data } = await getSearchingMovie(text, page);
     const { results } = data;
 
     return results;
   }
 
-  templateMain(data, fetchPagination = true) {
+  templateMain(data, fetchPagination = true, serched) {
     const dataArr = data;
 
     const template = dataArr
@@ -52,16 +53,17 @@ export default class fetchAndRender {
       .join('');
 
     if (fetchPagination) {
-      this.observerPagination();
+      this.observerPagination(serched);
     }
 
     return template;
   }
 
-  renderMain(data, fresh = false, fetchPagination = true) {
+  renderMain(data, fresh = false, fetchPagination = true, serched) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
       data,
-      fetchPagination
+      fetchPagination,
+      serched
     )}</div></section> `;
 
     if (fresh) {
@@ -87,32 +89,55 @@ export default class fetchAndRender {
     return genresDataFromId(arrId);
   }
 
-  async observerPagination() {
+  async observerPagination(search = false) {
     const options = {
       root: null,
       rootMargin: '150px',
       threshold: 1.0,
     };
 
-    const data = await this.fetchTrendFilms(this.page);
+    if (search) {
+      console.log(this.page);
+      const data = await this.fetchSearchedMovie(this.input, this.page);
 
-    const gallery = document.querySelector('.container');
+      const gallery = document.querySelector('.container');
 
-    const callback = (entries, observer) => {
-      if (entries[0].isIntersecting) {
-        observer.unobserve(entries[0].target);
+      const callback = (entries, observer) => {
+        if (entries[0].isIntersecting) {
+          observer.unobserve(entries[0].target);
 
-        const template = this.templateMain(data);
+          const template = this.templateMain(data, true, true);
 
-        document
-          .querySelector('.card-container')
-          .insertAdjacentHTML('beforeend', template);
-      }
-    };
+          document
+            .querySelector('.card-container')
+            .insertAdjacentHTML('beforeend', template);
+        }
+      };
 
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(gallery.lastElementChild);
-    this.page = this.page + 1;
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(gallery.lastElementChild);
+      this.page = this.page + 1;
+    } else {
+      const data = await this.fetchTrendFilms(this.page);
+
+      const gallery = document.querySelector('.container');
+
+      const callback = (entries, observer) => {
+        if (entries[0].isIntersecting) {
+          observer.unobserve(entries[0].target);
+
+          const template = this.templateMain(data);
+
+          document
+            .querySelector('.card-container')
+            .insertAdjacentHTML('beforeend', template);
+        }
+      };
+
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(gallery.lastElementChild);
+      this.page = this.page + 1;
+    }
   }
 
   // =================== Loader ============================
@@ -126,5 +151,29 @@ export default class fetchAndRender {
         }
       }, 600);
     };
+  }
+
+  hideFirstEndPaginationBtn() {
+    if (!document.querySelector('.custom-class-first')) {
+      return;
+    }
+
+    if (document.documentElement.scrollWidth <= 768) {
+      document
+        .querySelector('.custom-class-first')
+        .classList.add('visually-hidden');
+
+      document
+        .querySelector('.custom-class-last')
+        .classList.add('visually-hidden');
+    } else {
+      document
+        .querySelector('.custom-class-first')
+        .classList.remove('visually-hidden');
+
+      document
+        .querySelector('.custom-class-last')
+        .classList.remove('visually-hidden');
+    }
   }
 }

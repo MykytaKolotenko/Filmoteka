@@ -13,6 +13,7 @@ export default class mainPage extends fetchAndRender {
     this.renderLoader();
 
     this.fetchAndRenderTrendingFilms();
+    this.fakeFooterOnce();
   }
   // =================== fetchAndRenderTrendingFilms ============================
   async fetchAndRenderTrendingFilms() {
@@ -46,13 +47,15 @@ export default class mainPage extends fetchAndRender {
 
   onChangePage() {
     this.refs.header.addEventListener('click', e => {
-      console.log(1);
       if (
         e.target.dataset.main === 'home' ||
         e.target.dataset.main === 'homeLogo'
       ) {
         new mainPage();
-        document.querySelector('.pagination').remove();
+
+        if (document.querySelector('.pagination')) {
+          document.querySelector('.pagination').remove();
+        }
       }
 
       if (e.target.dataset.main === 'library') {
@@ -61,25 +64,46 @@ export default class mainPage extends fetchAndRender {
     });
   }
 
-  onSearchMovie(){
+  onSearchMovie() {
     const searchInput = document.querySelector('#searchField');
     let searchTimeout;
-    searchInput.addEventListener('input', (evt) => {
-      if(evt.target.nodeName !== "INPUT"){
+    searchInput.addEventListener('input', evt => {
+      if (evt.target.nodeName !== 'INPUT') {
         return;
       }
 
-      const searchValue = evt.target.value.trim();
+      if (evt.target.value.trim().length == 0) {
+        this.fetchAndRenderTrendingFilms();
+        return;
+      }
+
+      this.page = 2;
+      this.input = evt.target.value.trim();
       clearTimeout(searchTimeout);
-    
+
       searchTimeout = setTimeout(() => {
-        const data = this.fetchSearchedMovie(searchValue).then(data => {
+        const data = this.fetchSearchedMovie(this.input).then(data => {
+          if (data.length === 0) {
+            console.log('No films');
+            this.fetchAndRenderTrendingFilms();
+            return;
+          }
           console.log(data);
-          this.renderMain(data, true);
+          this.renderMain(data, true, true, true);
+
           this.rendenBtnTop();
         });
-        
-      }, 650);
+      }, 450);
     });
+  }
+
+  fakeFooterOnce() {
+    if (document.querySelector('.fake__footer')) {
+      return;
+    }
+    this.refs.footer.insertAdjacentHTML(
+      'afterend',
+      `<div class="fake__footer"></div>`
+    );
   }
 }

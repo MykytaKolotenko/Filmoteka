@@ -35,6 +35,20 @@ p {
   margin: 0;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 :root {
   --font: 'Roboto', sans-serif;
   --main_color: #ffffff;
@@ -1207,11 +1221,13 @@ img {
 }
 
 .footer {
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.footer-box {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: #f7f7f7;
@@ -1518,6 +1534,11 @@ img {
           animation: team__link-icon__animate 1s infinite linear;
 }
 
+.fake__footer {
+  height: 79px;
+  margin-top: 60px;
+}
+
 @-webkit-keyframes team__link-icon__animate {
   0%,
   100% {
@@ -1579,11 +1600,11 @@ img {
 }
 
 .custom-class-first {
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 
 .custom-class-last {
-  background-color: #EFEFEF;
+  background-color: #efefef;
 }
 
 .tui-page-btn {
@@ -1605,7 +1626,6 @@ img {
 .tui-page-btn .tui-ico-prev::before {
   content: '';
   display: inline-block;
-  /* set size for custom icons */
   width: 16px;
   height: 8px;
   -webkit-transform: rotate(180deg);
@@ -1625,7 +1645,7 @@ img {
 }
 
 .tui-is-selected {
-  background-color: #FF7619;
+  background-color: #ff7619;
 }
 
 button {
@@ -1635,18 +1655,26 @@ button {
 .tui-page-btn:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 .tui-is-disabled {
-  background-color: #E2E2E2;
+  background-color: #e2e2e2;
   color: #666666;
   opacity: 0.3;
   pointer-events: none;
 }
 
 .tui-is-selected:hover {
-  background-color: #FF7619;
+  background-color: #ff7619;
+}
+
+.custom-class-prev {
+  margin-right: 10px;
+}
+
+.custom-class-next {
+  margin-left: 10px;
 }
 
 .to-top {

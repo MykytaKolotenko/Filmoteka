@@ -13,6 +13,7 @@ export default class libraryPage extends fetchAndRender {
     this.getAndRenderLocalStorage('watched');
 
     this.renderFromBtn();
+    this.hideFirstEndPaginationBtn();
   }
 
   renderFromBtn() {
@@ -22,16 +23,19 @@ export default class libraryPage extends fetchAndRender {
         e.target.dataset.main === 'queue'
       ) {
         this.getAndRenderLocalStorage(e.target.dataset.main);
+        this.hideFirstEndPaginationBtn();
       }
 
       if (e.target.dataset.main === 'watched') {
         this.refs.queue.classList.remove('active');
         this.refs.watched.classList.add('active');
+        this.hideFirstEndPaginationBtn();
       }
 
       if (e.target.dataset.main === 'queue') {
         this.refs.watched.classList.remove('active');
         this.refs.queue.classList.add('active');
+        this.hideFirstEndPaginationBtn();
       }
     });
   }
@@ -56,7 +60,8 @@ export default class libraryPage extends fetchAndRender {
 
     this.renderMain(data.slice(0, 9), true, false);
 
-    this.renderContainer();
+    this.renderContainer(data);
+
     this.pagination(data);
   }
 
@@ -79,12 +84,14 @@ export default class libraryPage extends fetchAndRender {
           '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
           '<span class="tui-ico-{{type}}">{{type}}</span>' +
           '</span>',
-        moreButton:
-          '<button type="button" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
-          '<span class="tui-ico-ellip">...</span>' +
-          '</button>',
       },
     };
+
+    if (data.length <= 9) {
+      document.querySelector('.pagination').remove();
+
+      return;
+    }
 
     const container = document.querySelector('.pagination');
 
@@ -96,7 +103,7 @@ export default class libraryPage extends fetchAndRender {
       const startSlice = (currentPage - 1) * 9;
       const endSlice = currentPage * 9;
       this.renderMain(data.slice(startSlice, endSlice), true, false);
-      console.log(startSlice, endSlice);
+      this.hideFirstEndPaginationBtn();
     });
   }
 
@@ -104,8 +111,9 @@ export default class libraryPage extends fetchAndRender {
     if (document.querySelector('.pagination')) {
       return;
     }
+
     this.refs.footer.insertAdjacentHTML(
-      'afterbegin',
+      'beforebegin',
       `<div class="pagination"></div>`
     );
   }

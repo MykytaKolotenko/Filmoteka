@@ -97,11 +97,10 @@ img {
   left: 0;
   right: 0;
 }
-.footer-box{
+.footer-box {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: #f7f7f7;
-
 }
 .footer__container {
   @media screen and(max-width:768px) {
@@ -340,6 +339,11 @@ img {
     transform: scale(1.3);
     animation: team__link-icon__animate 1s infinite linear;
   }
+}
+
+.fake__footer {
+  height: 79px;
+  margin-top: 60px;
 }
 
 @keyframes team__link-icon__animate {

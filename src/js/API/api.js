@@ -16,21 +16,22 @@ const movie = `/movie/`;
 // query and pagination
 
 const pagination = pageNumber => `&&page=${pageNumber}`;
-const query = inputText => `&&query=${inputText}`;
+const query = (inputText, pageNumber) =>
+  `&&query=${inputText}` + `&&page=${pageNumber}`;
 
 // Links
 
-export const urlTrendingMovies = (pageNumber = 10) =>
+export const urlTrendingMovies = (pageNumber = 1) =>
   URL + trendingMovies + KEYv3 + pagination(pageNumber);
-const urlSearchingMovie = inputText =>
-  URL + searchingMovie + KEYv3 + query(inputText);
+const urlSearchingMovie = (inputText, pageNumber = 1) =>
+  URL + searchingMovie + KEYv3 + query(inputText, pageNumber);
 const urlMovie = id => URL + movie + id + KEYv3;
 
 // Fetching functions
 
 export const getTrendingMovies = async (pageNumber = 1) =>
   await axios.get(urlTrendingMovies(pageNumber));
-export const getSearchingMovie = async inputText =>
-  await axios.get(urlSearchingMovie(inputText));
+export const getSearchingMovie = async (inputText, pageNumber = 1) =>
+  await axios.get(urlSearchingMovie(inputText, pageNumber));
 export const getMovie = async id => await axios.get(urlMovie(id));
 export const getImage = imagePath => URLImage + imagePath + KEYv3;
