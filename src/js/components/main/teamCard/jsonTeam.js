@@ -58,7 +58,7 @@ const developers = [
     name: 'Dmytro Panin',
     title: 'Front-end developer',
     description: '',
-    image: 'dima.da1003bf.jpg?1655654210677',
+    image: dim,
     links: [
       'https://github.com',
       'https://web.telegram.org/',
