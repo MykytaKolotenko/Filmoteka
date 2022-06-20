@@ -28,7 +28,7 @@ const developers = [
   },
   {
     "id": 3,
-    "name": "Dmytro Harnazhenko",
+    "name": "Dmytro Panin",
     "title": "Front-end developer",
     "description": "",
     "image": "dima.da1003bf.jpg?1655654210677",
