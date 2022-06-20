@@ -105,7 +105,7 @@ export default class libraryPage extends fetchAndRender {
       return;
     }
     this.refs.footer.insertAdjacentHTML(
-      'beforebegin',
+      'afterbegin',
       `<div class="pagination"></div>`
     );
   }
