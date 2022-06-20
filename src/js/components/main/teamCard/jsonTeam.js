@@ -55,16 +55,20 @@ const developers = [
   },
   {
     id: 3,
-    name: 'Dmytro Harnazhenko',
+    name: 'Dmytro Panin',
     title: 'Front-end developer',
     description: '',
-    image: dim,
+    image: 'dima.da1003bf.jpg?1655654210677',
     links: [
       'https://github.com',
       'https://web.telegram.org/',
       'https://www.linkedin.com/',
     ],
-    icons: [git, tel, lin],
+    icons: [
+      'github.2c89f2ec.svg?1655660259957',
+      'telegram.152ac010.svg?1655660568824',
+      'linkedin.75f25008.svg?1655660652771',
+    ],
   },
   {
     id: 4,

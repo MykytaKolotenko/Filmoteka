@@ -2,6 +2,7 @@ import pictureHeart from '../../../../images/heart.svg';
 
 export default function mainFooterTemplate() {
   return `
+      <div class="footer-box"> 
       <div class="container footer__container">
         <p class="footer__text">
           &copy; 2022 &#124; All Rights Reserved &#124; Developed with
@@ -9,5 +10,6 @@ export default function mainFooterTemplate() {
           by
           <button class="footer__modal-open-btn" type="button">GoIT Students</button>
         </p>
-      </div>`;
+      </div>
+    </div>`;
 }

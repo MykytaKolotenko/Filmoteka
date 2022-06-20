@@ -92,15 +92,17 @@ img {
 // ===============================================
 // Footer
 .footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+}
+.footer-box{
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: #f7f7f7;
-}
 
+}
 .footer__container {
   @media screen and(max-width:768px) {
     display: flex;

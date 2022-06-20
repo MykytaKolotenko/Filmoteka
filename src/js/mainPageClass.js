@@ -9,6 +9,7 @@ export default class mainPage extends fetchAndRender {
     super(refs);
 
     this.renderHeader();
+    this.onSearchMovie();
     this.renderLoader();
 
     this.fetchAndRenderTrendingFilms();
@@ -57,6 +58,28 @@ export default class mainPage extends fetchAndRender {
       if (e.target.dataset.main === 'library') {
         new libraryPage();
       }
+    });
+  }
+
+  onSearchMovie(){
+    const searchInput = document.querySelector('#searchField');
+    let searchTimeout;
+    searchInput.addEventListener('input', (evt) => {
+      if(evt.target.nodeName !== "INPUT"){
+        return;
+      }
+
+      const searchValue = evt.target.value.trim();
+      clearTimeout(searchTimeout);
+    
+      searchTimeout = setTimeout(() => {
+        const data = this.fetchSearchedMovie(searchValue).then(data => {
+          console.log(data);
+          this.renderMain(data, true);
+          this.rendenBtnTop();
+        });
+        
+      }, 650);
     });
   }
 }
