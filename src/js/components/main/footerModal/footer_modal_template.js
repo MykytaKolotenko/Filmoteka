@@ -1,12 +1,10 @@
-import pictureClose from '../../../../images/close.svg';
-
 export default function footerModalTemplate() {
   return `<div class="footer__modal js-footer__modal">
   <div class="footer__modal-window js-footer__modal-window">
     <button class="footer__modal-close-btn">
       <img
         class="footer__modal-close-btn-icon"
-        src="${pictureClose}"
+        src="http:close.b195aaf1.svg?1655648453393"
         alt=""
         width="26px"
         height="26px"
