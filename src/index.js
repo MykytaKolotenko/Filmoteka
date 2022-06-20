@@ -9,6 +9,7 @@ import mainPage from './js/mainPageClass';
 
 let renderPage = new mainPage();
 
+renderPage.onChangePage();
 renderPage.renderFooter();
 
 new ModalAPI();

@@ -40,10 +40,9 @@ export default class fetchAndRender {
 
   templateMain(data, fetchPagination = true) {
     const dataArr = data;
-    console.log(dataArr);
+
     const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
-        console.log(genre_ids);
         const wordGenres = this.genresFromId(genre_ids);
         const date = release_date.slice(0, 4);
         const image = getImage(poster_path);

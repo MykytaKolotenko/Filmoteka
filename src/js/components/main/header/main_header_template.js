@@ -2,7 +2,7 @@ import picture from '../../../../images/search.svg';
 
 export default function mainHeaderTemplate() {
   return `<div class="main__header"><div class="main__header-buttons">
-          <button type="button" class="main__header-logo" data-main="home">
+          <button type="button" class="main__header-logo" data-main="homeLogo">
             Filmoteka
           </button>
           <div class="main__header-nav">

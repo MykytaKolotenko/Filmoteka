@@ -10,14 +10,7 @@ export default class libraryPage extends fetchAndRender {
     this.refs.watched = document.querySelector('[data-main="watched"]');
     this.refs.queue = document.querySelector('[data-main="queue"]');
 
-    this.refs.footer.insertAdjacentHTML(
-      'beforebegin',
-      `<div class="pagination"></div>`
-    );
-
     this.getAndRenderLocalStorage('watched');
-
-    // this.renderFooter();
 
     this.renderFromBtn();
   }
@@ -63,6 +56,7 @@ export default class libraryPage extends fetchAndRender {
 
     this.renderMain(data.slice(0, 9), true, false);
 
+    this.renderContainer();
     this.pagination(data);
   }
 
@@ -104,5 +98,15 @@ export default class libraryPage extends fetchAndRender {
       this.renderMain(data.slice(startSlice, endSlice), true, false);
       console.log(startSlice, endSlice);
     });
+  }
+
+  renderContainer() {
+    if (document.querySelector('.pagination')) {
+      return;
+    }
+    this.refs.footer.insertAdjacentHTML(
+      'beforebegin',
+      `<div class="pagination"></div>`
+    );
   }
 }

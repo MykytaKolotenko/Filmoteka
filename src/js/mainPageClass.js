@@ -7,21 +7,17 @@ import libraryPage from './libraryPageClass';
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
-    this.renderLoader();
 
     this.renderHeader();
-    this.onChangePage();
+    this.renderLoader();
 
     this.fetchAndRenderTrendingFilms();
-
-    this.rendenBtnTop();
   }
   // =================== fetchAndRenderTrendingFilms ============================
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
-    this.renderMain(data);
-
-    // this.observerPagination();
+    this.renderMain(data, true);
+    this.rendenBtnTop();
   }
 
   // =================== Btn_To_Top ============================
@@ -29,6 +25,7 @@ export default class mainPage extends fetchAndRender {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
     this.refs.main.insertAdjacentHTML('afterbegin', elmToTop);
     const btnToTop = document.querySelector('.to-top');
+    btnToTop.style.display = 'none';
     btnToTop.addEventListener('click', function (e) {
       e.preventDefault();
       window.scrollTo({
@@ -48,8 +45,13 @@ export default class mainPage extends fetchAndRender {
 
   onChangePage() {
     this.refs.header.addEventListener('click', e => {
-      if (e.target.dataset.main === 'home') {
+      console.log(1);
+      if (
+        e.target.dataset.main === 'home' ||
+        e.target.dataset.main === 'homeLogo'
+      ) {
         new mainPage();
+        document.querySelector('.pagination').remove();
       }
 
       if (e.target.dataset.main === 'library') {
