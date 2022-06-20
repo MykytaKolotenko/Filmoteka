@@ -273,6 +273,16 @@ img {
   }
 }
 
+.img-team {
+  overflow: hidden;
+  max-width: 190px;
+}
+.img_team {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+}
+
 .team__list-content {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -313,6 +323,6 @@ img {
   }
 }
 
-.team__icon {
+.team__link-icon {
   fill: currentColor;
 }
