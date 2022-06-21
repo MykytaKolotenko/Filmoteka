@@ -11,4 +11,8 @@
   --failed_color: #ff001b;
 
   --footer_bg_color: #f7f7f7;
+
+  // Animation:
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animationTiming: cubic-bezier(0.4, 0, 0.2, 1);
 }
