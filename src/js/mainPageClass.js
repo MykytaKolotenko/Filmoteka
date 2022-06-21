@@ -73,8 +73,9 @@ export default class mainPage extends fetchAndRender {
         return;
       }
 
-      if (evt.target.value.trim().length == 0) {
+      if (evt.target.value.trim().length === 0) {
         this.fetchAndRenderTrendingFilms();
+        this.page = 2;
         return;
       }
 

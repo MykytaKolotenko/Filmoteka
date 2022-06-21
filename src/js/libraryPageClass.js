@@ -18,25 +18,18 @@ export default class libraryPage extends fetchAndRender {
 
   renderFromBtn() {
     this.refs.header.addEventListener('click', e => {
-      if (
-        e.target.dataset.main === 'watched' ||
-        e.target.dataset.main === 'queue'
-      ) {
-        this.getAndRenderLocalStorage(e.target.dataset.main);
-        this.hideFirstEndPaginationBtn();
-      }
-
       if (e.target.dataset.main === 'watched') {
         this.refs.queue.classList.remove('active');
         this.refs.watched.classList.add('active');
-        this.hideFirstEndPaginationBtn();
+        this.getAndRenderLocalStorage(e.target.dataset.main);
       }
 
       if (e.target.dataset.main === 'queue') {
         this.refs.watched.classList.remove('active');
         this.refs.queue.classList.add('active');
-        this.hideFirstEndPaginationBtn();
+        this.getAndRenderLocalStorage(e.target.dataset.main);
       }
+      this.hideFirstEndPaginationBtn();
     });
   }
 
@@ -51,20 +44,33 @@ export default class libraryPage extends fetchAndRender {
     const data = this.getItemsFromLocalStorage(dataBtn);
 
     if (data === null) {
-      const failTenplate = `<div> No films</div>`;
+      const failTenplate = `<div class="container nofilms"><h2> There are no films!</h2></div>`;
 
       this.refs.main.innerHTML = failTenplate;
-      document.querySelector('.pagination').innerHTML = '';
+      this.pagination(data);
+
       return;
     }
 
     this.renderMain(data.slice(0, 9), true, false);
     this.renderContainer(data);
+
     this.pagination(data);
+
     this.offLoaderSquare();
   }
 
   pagination(data) {
+    if (data === null ?? document.querySelector('.pagination')) {
+      document.querySelector('.pagination').remove();
+      return;
+    }
+
+    if (data.length <= 9 ?? document.querySelector('.pagination')) {
+      document.querySelector('.pagination').remove();
+      return;
+    }
+
     const options = {
       totalItems: data.length,
       itemsPerPage: 9,
@@ -89,12 +95,6 @@ export default class libraryPage extends fetchAndRender {
           '</button>',
       },
     };
-
-    if (data.length <= 9) {
-      document.querySelector('.pagination').remove();
-
-      return;
-    }
 
     const container = document.querySelector('.pagination');
 
