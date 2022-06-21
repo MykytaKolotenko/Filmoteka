@@ -1,6 +1,6 @@
 import picture from '../../../../images/search.svg';
 
-export default function mainHeaderTemplate() {
+export default function mainHeaderTemplate(genres) {
   return `<div class="main__header"><div class="main__header-buttons">
           <button type="button" class="main__header-logo" data-main="homeLogo">
             Filmoteka
@@ -21,5 +21,17 @@ export default function mainHeaderTemplate() {
         <div class="main__header-input">
           <input id="searchField" type="text" placeholder="Search..." data-main="input"/>
           <img id="searchIcon" src="${picture}" alt="" />
-        </div></div>`;
+        </div>
+        <div class="main__header-select">
+          <button id="ganres_select-close" class="close-btn"></button>
+          <select id="ganres_select">
+            <option value="0">Search by genres</option>
+            ${
+              genres.length &&
+              genres.map(
+                ({ id, name }) => `<option value="${id}">${name}</option>`
+              )
+            }
+          </select>
+        </div>`;
 }
