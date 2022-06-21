@@ -112,7 +112,7 @@ export default class fetchAndRender {
       rootMargin: '150px',
       threshold: 1.0,
     };
-
+    
     if (search === 'search') {
       const data = await this.fetchSearchedMovie(this.input, this.page);
 
@@ -129,7 +129,7 @@ export default class fetchAndRender {
             .insertAdjacentHTML('beforeend', template);
         }
       };
-
+     
       const observer = new IntersectionObserver(callback, options);
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
@@ -173,7 +173,7 @@ export default class fetchAndRender {
             .insertAdjacentHTML('beforeend', template);
         }
       };
-
+      
       const observer = new IntersectionObserver(callback, options);
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
