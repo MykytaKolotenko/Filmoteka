@@ -35,8 +35,8 @@ const teamCardsTemplate = () => `
           .map(
             ({ image, name, title, links, icons }) => `
         <li class="team__list-item">
-          <div class="img-team">
-            <img class="img_team"
+          <div class="team__images">
+            <img class="team__img"
               src="${image}" 
               alt="${name}"
             />
