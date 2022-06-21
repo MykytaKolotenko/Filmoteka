@@ -22,6 +22,20 @@ export default function mainHeaderTemplate(genres) {
           <input id="searchField" type="text" placeholder="Search..." data-main="input"/>
           <img id="searchIcon" src="${picture}" alt="" />
         </div>
+        <div class="toolbar">
+      <!-- Свитчер темы -->
+      <div class="theme-switch">
+        <div class="theme-switch__control">
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Переключить с тёмной темы на светлую"/>
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle"></label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+           </div>
+          </div>
         <div class="main__header-select">
           <button id="ganres_select-close" class="close-btn"></button>
           <select id="ganres_select">
