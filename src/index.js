@@ -14,5 +14,4 @@ renderPage.onChangePage();
 renderPage.renderFooter();
 
 new ModalAPI();
-
 new ModalFooter();
