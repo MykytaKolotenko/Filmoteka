@@ -1,9 +1,5 @@
 export default class Loader {
-  constructor() {
-    this.renderLoaderSquare();
-
-    // this.renderLoader();
-  }
+  constructor() {}
   renderLoaderSquare() {
     const loaderTemplateSquare = `<div class="loader__square-box">
       <div class="loader__square" style="--f: 60px">
@@ -24,23 +20,5 @@ export default class Loader {
         }
       }, 600);
     };
-
-    // =================== Loader ============================
-    //
-    // renderLoader() {
-    //   const loaderTemplate = `<div class="loader-box"><span class="loader"></span></div>`;
-    //   const bodyBox = document.querySelector('body');
-    //   bodyBox.insertAdjacentHTML('afterbegin', loaderTemplate);
-
-    //   const loader = document.querySelector('.loader-box');
-    //   console.log(loader);
-    //   window.onload = function () {
-    //     setTimeout(function () {
-    //       if (!loader.classList.contains('hiden')) {
-    //         loader.classList.add('hiden');
-    //       }
-    //     }, 600);
-    //   };
-    // }
   }
 }

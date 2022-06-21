@@ -903,6 +903,7 @@ p {
 .button {
   width: 110px;
   height: 44px;
+  margin-right: 20px;
   border: 1px solid var(--text_color);
   border-radius: 5px;
   background-color: transparent;
@@ -924,7 +925,6 @@ p {
 }
 
 .button__orange {
-  margin-right: 20px;
   border: none;
   background: var(--bgcolor_main);
   color: var(--main_color);
@@ -1152,12 +1152,6 @@ p {
 .overview__text {
   margin-top: 8px;
   line-height: 1.67;
-}
-
-@media screen and (min-width: 1024px) {
-  .overview__text {
-    height: 317px;
-  }
 }
 
 .footer {

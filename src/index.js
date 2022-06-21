@@ -6,6 +6,7 @@ import libraryPage from './js/libraryPageClass.js';
 import mainPage from './js/mainPageClass';
 
 // new libraryPage();
+mainPage.prototype.renderLoaderSquare(true);
 
 let renderPage = new mainPage();
 
@@ -15,5 +16,3 @@ renderPage.renderFooter();
 new ModalAPI();
 
 new ModalFooter();
-
-new Loader();

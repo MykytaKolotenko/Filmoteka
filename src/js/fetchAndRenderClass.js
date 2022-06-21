@@ -30,29 +30,34 @@ export default class fetchAndRender {
 
   // ===================== Loader ======================
   async fetchTrendFilms(pageNumber) {
+    this.renderLoaderSquare();
     const { data } = await getTrendingMovies(pageNumber);
     const { results } = data;
 
+    this.offLoaderSquare();
     return results;
   }
 
   // ===================== fetchSearchedMovie ======================
   async fetchSearchedMovie(text, page) {
+    this.renderLoaderSquare();
     const { data } = await getSearchingMovie(text, page);
     const { results } = data;
-
+    this.offLoaderSquare();
     return results;
   }
 
   async fetchFilteringMovieByGenre(genreId, page) {
+    this.renderLoaderSquare();
     const { data } = await getFilteringMovieByGenre(genreId, page);
     const { results } = data;
+    this.offLoaderSquare();
     return results;
   }
 
-  templateMain(data, fetchPagination = true, searched = false) {
+  async templateMain(data, fetchPagination = true, searched = false) {
     const dataArr = data;
-
+    this.renderLoaderSquare();
     const template = dataArr
       .map(({ poster_path, original_title, id, genre_ids, release_date }) => {
         const wordGenres = this.genresFromId(genre_ids);
@@ -62,6 +67,7 @@ export default class fetchAndRender {
         return filmCardTemplate(image, original_title, wordGenres, date, id);
       })
       .join('');
+    this.offLoaderSquare();
 
     if (fetchPagination) {
       this.observerPagination(searched);
@@ -70,8 +76,8 @@ export default class fetchAndRender {
     return template;
   }
 
-  renderMain(data, fresh = false, fetchPagination = true, searched) {
-    const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
+  async renderMain(data, fresh = false, fetchPagination = true, searched) {
+    const templateWithContainer = `<section class=film><div class="card-container container">${await this.templateMain(
       data,
       fetchPagination,
       searched
@@ -112,11 +118,11 @@ export default class fetchAndRender {
 
       const gallery = document.querySelector('.container');
 
-      const callback = (entries, observer) => {
+      const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
 
-          const template = this.templateMain(data, true, 'search');
+          const template = await this.templateMain(data, true, 'search');
 
           document
             .querySelector('.card-container')
@@ -136,11 +142,11 @@ export default class fetchAndRender {
 
       const gallery = document.querySelector('.container');
 
-      const callback = (entries, observer) => {
+      const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
 
-          const template = this.templateMain(data, true, 'genres');
+          const template = await this.templateMain(data, true, 'genres');
 
           document
             .querySelector('.card-container')
@@ -156,11 +162,11 @@ export default class fetchAndRender {
 
       const gallery = document.querySelector('.container');
 
-      const callback = (entries, observer) => {
+      const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
 
-          const template = this.templateMain(data);
+          const template = await this.templateMain(data);
 
           document
             .querySelector('.card-container')
@@ -175,16 +181,29 @@ export default class fetchAndRender {
   }
 
   // =================== Loader ============================
-  renderLoader() {
-    const loader = document.querySelector('.loader-box');
 
-    window.onload = function () {
-      setTimeout(function () {
-        if (!loader.classList.contains('hiden')) {
-          loader.classList.add('hiden');
-        }
-      }, 600);
-    };
+  renderLoaderSquare(fullScreen) {
+    if (!document.querySelector('.loader__square-box')) {
+      const loaderTemplateSquare = `<div class="loader__square-box">
+        <div class="loader__square" style="--f: 60px">
+      <div class="loader__square-item"></div>
+      <div class="loader__square-item"></div>
+      <div class="loader__square-item"></div>
+      </div>
+      </div>`;
+      if (fullScreen) {
+        const bodyBox = document.querySelector('body');
+        bodyBox.insertAdjacentHTML('afterbegin', loaderTemplateSquare);
+      } else {
+        this.refs.main.insertAdjacentHTML('beforeend', loaderTemplateSquare);
+      }
+    }
+  }
+
+  offLoaderSquare() {
+    if (document.querySelector('.loader__square-box')) {
+      document.querySelector('.loader__square-box').remove();
+    }
   }
 
   hideFirstEndPaginationBtn() {

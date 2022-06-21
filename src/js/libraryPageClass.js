@@ -4,7 +4,7 @@ import fetchAndRender from './fetchAndRenderClass';
 export default class libraryPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
-    this.renderLoader();
+
     this.renderLibraryheader();
 
     this.refs.watched = document.querySelector('[data-main="watched"]');
@@ -59,10 +59,9 @@ export default class libraryPage extends fetchAndRender {
     }
 
     this.renderMain(data.slice(0, 9), true, false);
-
     this.renderContainer(data);
-
     this.pagination(data);
+    this.offLoaderSquare();
   }
 
   pagination(data) {

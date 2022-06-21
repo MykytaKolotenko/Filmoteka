@@ -10,16 +10,15 @@ export default class mainPage extends fetchAndRender {
 
     this.renderHeader();
     this.onSearchMovie();
-    this.renderLoader();
     this.movieByGenres();
 
-    this.fetchAndRenderTrendingFilms();
-
     this.fakeFooterOnce();
+    this.fetchAndRenderTrendingFilms();
   }
   // =================== fetchAndRenderTrendingFilms ============================
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
+
     this.renderMain(data, true);
     this.rendenBtnTop();
   }
@@ -67,9 +66,9 @@ export default class mainPage extends fetchAndRender {
   }
 
   onSearchMovie() {
-    const searchInput = document.querySelector('#searchField');
+    this.refs.searchInput = document.querySelector('#searchField');
     let searchTimeout;
-    searchInput.addEventListener('input', evt => {
+    this.refs.searchInput.addEventListener('input', evt => {
       if (evt.target.nodeName !== 'INPUT') {
         return;
       }
@@ -97,7 +96,7 @@ export default class mainPage extends fetchAndRender {
               console.log('work');
               document.querySelector('.notification').remove();
             }
-            setTimeout(notificationRemove, 5000);
+            setTimeout(notificationRemove, 3000);
 
             this.fetchAndRenderTrendingFilms();
           }
@@ -105,6 +104,9 @@ export default class mainPage extends fetchAndRender {
           this.renderMain(data, true, true, 'search');
 
           this.rendenBtnTop();
+
+          this.genresSelect.selectedIndex = 0;
+          this.genresSelectCloseBtn.classList.remove('active');
         });
       }, 450);
     });
@@ -126,6 +128,7 @@ export default class mainPage extends fetchAndRender {
 
       this.page = 2;
       this.selectedGenreIdGlobal = selectedGenreId;
+      this.refs.searchInput.value = '';
     };
 
     this.genresSelectCloseBtn.onclick = () => {

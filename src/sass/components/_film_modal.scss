@@ -26,7 +26,7 @@
   width: 110px;
   height: 44px;
   margin-right: 20px;
-  
+
   border: 1px solid var(--text_color);
   border-radius: 5px;
 
@@ -241,14 +241,10 @@
 .overview {
   &__title {
     text-transform: uppercase;
-    }
+  }
 
-    &__text {
-        margin-top: 8px;
-        line-height: 1.67;
-
-        @media screen and (min-width: 1024px) {
-            height: 317px;
-        }
-    }
-}    
+  &__text {
+    margin-top: 8px;
+    line-height: 1.67;
+  }
+}
