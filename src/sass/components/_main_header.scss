@@ -1,4 +1,5 @@
 .main__header {
+  position: relative;
   max-width: 1024px;
   height: 216px;
   padding: 45px 32px;
@@ -207,4 +208,24 @@
   width: inherit;
   height: 3px;
   background-color: var(--bgcolor_main);
+}
+
+.notification{
+  position: absolute;
+  top: 25%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  z-index: 1;
+
+  font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  
+    color: #FF001B;
 }

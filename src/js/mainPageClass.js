@@ -84,11 +84,22 @@ export default class mainPage extends fetchAndRender {
       searchTimeout = setTimeout(() => {
         const data = this.fetchSearchedMovie(this.input).then(data => {
           if (data.length === 0) {
+            const notification = `<p class="notification">Search result not successful.
+            Enter the correct movie name and try again!</p>`;
+            this.refs.header.insertAdjacentHTML('beforeend', notification)
+            
             console.log('No films');
+            
+            console.log( document.querySelector('.notification'));
+            function notificationRemove() {
+              document.querySelector('.notification').remove();
+              
+            }
+            setTimeout(notificationRemove, 5000);
+            
             this.fetchAndRenderTrendingFilms();
-            return;
           }
-          console.log(data);
+          
           this.renderMain(data, true, true, true);
 
           this.rendenBtnTop();
