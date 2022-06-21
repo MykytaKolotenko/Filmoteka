@@ -1,4 +1,4 @@
-export default function footerModalTemplate() {
+const footerModalTemplate = () => {
   return `<div class="footer__modal js-footer__modal">
   <div class="footer__modal-window js-footer__modal-window">
     <button class="footer__modal-close-btn">
@@ -15,3 +15,5 @@ export default function footerModalTemplate() {
   </div>
 </div>`;
 }
+
+export default footerModalTemplate
