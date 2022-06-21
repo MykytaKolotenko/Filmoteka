@@ -586,26 +586,21 @@ p {
 }
 
 .notification {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  margin-right: -50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
   z-index: 1;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  color: #FF001B;
+  color: #ff001b;
 }
 
 .library__header {

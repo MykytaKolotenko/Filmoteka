@@ -88,12 +88,13 @@ export default class mainPage extends fetchAndRender {
           if (data.length === 0) {
             const notification = `<p class="notification">Search result not successful.
             Enter the correct movie name and try again!</p>`;
-            this.refs.header.insertAdjacentHTML('beforeend', notification);
 
-            console.log('No films');
+            document
+              .querySelector('.main__header')
+              .insertAdjacentHTML('beforeend', notification);
 
-            console.log(document.querySelector('.notification'));
             function notificationRemove() {
+              console.log('work');
               document.querySelector('.notification').remove();
             }
             setTimeout(notificationRemove, 5000);
