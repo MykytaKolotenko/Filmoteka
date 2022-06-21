@@ -210,22 +210,21 @@
   background-color: var(--bgcolor_main);
 }
 
-.notification{
-  position: absolute;
-  top: 25%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+.notification {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
   z-index: 1;
 
   font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #FF001B;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  align-items: center;
+  text-align: center;
+
+  color: #ff001b;
 }

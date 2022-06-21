@@ -11,8 +11,10 @@ export default class mainPage extends fetchAndRender {
     this.renderHeader();
     this.onSearchMovie();
     this.renderLoader();
+    this.movieByGenres();
 
     this.fetchAndRenderTrendingFilms();
+
     this.fakeFooterOnce();
   }
   // =================== fetchAndRenderTrendingFilms ============================
@@ -86,26 +88,61 @@ export default class mainPage extends fetchAndRender {
           if (data.length === 0) {
             const notification = `<p class="notification">Search result not successful.
             Enter the correct movie name and try again!</p>`;
-            this.refs.header.insertAdjacentHTML('beforeend', notification)
-            
-            console.log('No films');
-            
-            console.log( document.querySelector('.notification'));
+
+            document
+              .querySelector('.main__header')
+              .insertAdjacentHTML('beforeend', notification);
+
             function notificationRemove() {
+              console.log('work');
               document.querySelector('.notification').remove();
-              
             }
             setTimeout(notificationRemove, 5000);
-            
+
             this.fetchAndRenderTrendingFilms();
           }
-          
-          this.renderMain(data, true, true, true);
+
+          this.renderMain(data, true, true, 'search');
 
           this.rendenBtnTop();
         });
       }, 450);
     });
+  }
+
+  movieByGenres() {
+    this.genresSelect = document.getElementById('ganres_select');
+    this.genresSelectCloseBtn = document.getElementById('ganres_select-close');
+
+    this.genresSelect.onchange = event => {
+      const selectedGenreId = +event.target.value;
+
+      this.fetchAndRenderGenresMovie(selectedGenreId);
+      if (selectedGenreId > 0) {
+        this.genresSelectCloseBtn.classList.add('active');
+      } else {
+        this.genresSelectCloseBtn.classList.remove('active');
+      }
+
+      this.page = 2;
+      this.selectedGenreIdGlobal = selectedGenreId;
+    };
+
+    this.genresSelectCloseBtn.onclick = () => {
+      this.genresSelect.selectedIndex = 0;
+      this.fetchAndRenderTrendingFilms();
+      this.genresSelectCloseBtn.classList.remove('active');
+    };
+  }
+
+  async fetchAndRenderGenresMovie(genreId) {
+    if (genreId === 0) {
+      const data = await this.fetchTrendFilms();
+      this.renderMain(data, true, true);
+    } else {
+      const data = await this.fetchFilteringMovieByGenre(genreId);
+      this.renderMain(data, true, true, 'genres');
+    }
   }
 
   fakeFooterOnce() {

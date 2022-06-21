@@ -1,4 +1,9 @@
-import { getImage, getSearchingMovie, getTrendingMovies } from './API/api';
+import {
+  getFilteringMovieByGenre,
+  getImage,
+  getSearchingMovie,
+  getTrendingMovies,
+} from './API/api';
 import mainFooterTemplate from './components/main/footer/main_footer_template';
 import mainHeaderTemplate from './components/main/header/main_header_template';
 import jsonGenres from './API/jsonGenres';
@@ -16,11 +21,11 @@ export default class fetchAndRender {
 
     this.page = 2;
     this.input = '';
+    this.selectedGenreIdGlobal = '';
   }
 
   renderHeader() {
-    // this.refs.header.classList.add('main__header');
-    this.refs.header.innerHTML = mainHeaderTemplate();
+    this.refs.header.innerHTML = mainHeaderTemplate(jsonGenres);
   }
 
   // ===================== Loader ======================
@@ -39,7 +44,13 @@ export default class fetchAndRender {
     return results;
   }
 
-  templateMain(data, fetchPagination = true, serched) {
+  async fetchFilteringMovieByGenre(genreId, page) {
+    const { data } = await getFilteringMovieByGenre(genreId, page);
+    const { results } = data;
+    return results;
+  }
+
+  templateMain(data, fetchPagination = true, searched = false) {
     const dataArr = data;
 
     const template = dataArr
@@ -53,17 +64,17 @@ export default class fetchAndRender {
       .join('');
 
     if (fetchPagination) {
-      this.observerPagination(serched);
+      this.observerPagination(searched);
     }
 
     return template;
   }
 
-  renderMain(data, fresh = false, fetchPagination = true, serched) {
+  renderMain(data, fresh = false, fetchPagination = true, searched) {
     const templateWithContainer = `<section class=film><div class="card-container container">${this.templateMain(
       data,
       fetchPagination,
-      serched
+      searched
     )}</div></section> `;
 
     if (fresh) {
@@ -96,8 +107,7 @@ export default class fetchAndRender {
       threshold: 1.0,
     };
 
-    if (search) {
-      console.log(this.page);
+    if (search === 'search') {
       const data = await this.fetchSearchedMovie(this.input, this.page);
 
       const gallery = document.querySelector('.container');
@@ -106,7 +116,31 @@ export default class fetchAndRender {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
 
-          const template = this.templateMain(data, true, true);
+          const template = this.templateMain(data, true, 'search');
+
+          document
+            .querySelector('.card-container')
+            .insertAdjacentHTML('beforeend', template);
+        }
+      };
+
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(gallery.lastElementChild);
+      this.page = this.page + 1;
+    } else if (search === 'genres') {
+      this.input = '';
+      const data = await this.fetchFilteringMovieByGenre(
+        this.selectedGenreIdGlobal,
+        this.page
+      );
+
+      const gallery = document.querySelector('.container');
+
+      const callback = (entries, observer) => {
+        if (entries[0].isIntersecting) {
+          observer.unobserve(entries[0].target);
+
+          const template = this.templateMain(data, true, 'genres');
 
           document
             .querySelector('.card-container')

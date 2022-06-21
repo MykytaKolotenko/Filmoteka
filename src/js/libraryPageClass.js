@@ -84,6 +84,10 @@ export default class libraryPage extends fetchAndRender {
           '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
           '<span class="tui-ico-{{type}}">{{type}}</span>' +
           '</span>',
+        moreButton:
+          '<button href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+          '<span class="tui-ico-ellip">...</span>' +
+          '</button>',
       },
     };
 

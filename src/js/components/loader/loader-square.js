@@ -16,7 +16,6 @@ export default class Loader {
     bodyBox.insertAdjacentHTML('afterbegin', loaderTemplateSquare);
 
     const loaderSquare = document.querySelector('.loader__square-box');
-    console.log(loaderSquare);
 
     window.onload = function () {
       setTimeout(function () {
