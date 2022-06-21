@@ -61,12 +61,12 @@ export default class libraryPage extends fetchAndRender {
   }
 
   pagination(data) {
-    if (data === null ?? document.querySelector('.pagination')) {
+    if (data === null && document.querySelector('.pagination')) {
       document.querySelector('.pagination').remove();
       return;
     }
 
-    if (data.length <= 9 ?? document.querySelector('.pagination')) {
+    if (data.length <= 9 && document.querySelector('.pagination')) {
       document.querySelector('.pagination').remove();
       return;
     }
