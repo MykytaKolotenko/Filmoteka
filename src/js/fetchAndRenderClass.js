@@ -177,6 +177,7 @@ export default class fetchAndRender {
       const observer = new IntersectionObserver(callback, options);
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
+      
     }
   }
 
