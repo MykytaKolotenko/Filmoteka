@@ -7,6 +7,7 @@ import mainPage from './js/mainPageClass';
 import Switcher from './js/components/main/header/switcher';
 
 // new libraryPage();
+mainPage.prototype.renderLoaderSquare(true);
 
 let renderPage = new mainPage();
 
@@ -14,10 +15,7 @@ renderPage.onChangePage();
 renderPage.renderFooter();
 
 new ModalAPI();
-
 new ModalFooter();
-
-new Loader();
 
 const switcher = new Switcher()
 switcher.changeTheme();

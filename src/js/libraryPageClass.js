@@ -43,7 +43,7 @@ export default class libraryPage extends fetchAndRender {
   getAndRenderLocalStorage(dataBtn) {
     const data = this.getItemsFromLocalStorage(dataBtn);
     console.log(data);
-    if(data === null){
+    if (data === null) {
       const failTenplate = `<div class="container nofilms"><h2> There are no films!</h2></div>`;
 
       this.refs.main.innerHTML = failTenplate;
@@ -60,7 +60,7 @@ export default class libraryPage extends fetchAndRender {
       return;
     }
 
-    this.renderMain(data.slice(0, 9), true, false);
+    this.renderMain(data.slice(0, 9), true, false, false);
     this.renderContainer(data);
 
     this.pagination(data);
@@ -70,12 +70,17 @@ export default class libraryPage extends fetchAndRender {
 
   pagination(data) {
     console.log(data);
-    if (data === null || data.length === 0 ) {
+    if (data === null || data.length === 0) {
+      if (document.querySelector('.pagination')) {
+        document.querySelector('.pagination').remove();
+      }
       return;
     }
-    
-    if (data.length <= 9 && document.querySelector('.pagination')) {
-      document.querySelector('.pagination').remove();
+
+    if (data.length <= 9) {
+      if (document.querySelector('.pagination')) {
+        document.querySelector('.pagination').remove();
+      }
       return;
     }
 

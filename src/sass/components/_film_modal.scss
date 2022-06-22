@@ -169,11 +169,14 @@
 
   &__close-btn {
     position: absolute;
+    padding: 0;
     top: 8px;
     right: 8px;
     border: none;
     background-color: transparent;
     transition: all 500ms ease;
+    font-size: 1px;
+    color: transparent;
 
     &:focus,
     &:hover {

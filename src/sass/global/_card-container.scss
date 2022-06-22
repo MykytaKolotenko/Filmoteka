@@ -1,6 +1,12 @@
-.card-container {
-  margin-top: 32px;
+.film {
+  padding: 20px;
 
+  @media screen and (max-width: 767px) {
+    padding: 32px;
+  }
+}
+
+.card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 32px 16px;

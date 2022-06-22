@@ -22,7 +22,7 @@ export default function mainHeaderTemplate(genres) {
           <input id="searchField" type="text" placeholder="Search..." data-main="input"/>
           <img id="searchIcon" src="${picture}" alt="" />
         </div>
-      <!-- Свитчер темы -->
+        <!-- Свитчер темы -->
       <div class="theme-switch">
         <div class="theme-switch__control">
           <input

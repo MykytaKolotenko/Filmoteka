@@ -66,23 +66,23 @@ export default class ModalAPI {
 
     this.addToViewedBtn(evt, btnProperties);
     this.addToQueueBtn(evt, btnProperties);
-      
-    return this.refs.modalBody.innerHTML = modalCardTemplate(
-        movieImage,
-        data.title,
-        data.vote_average,
-        data.vote_count,
-        data.popularity,
-        data.original_title,
-        movieGenres,
-        data.overview,
-        btnProperties.watchedClassButtonOrange,
-        btnProperties.watchedBtnDisabled,
-        btnProperties.watchedBtnText,
-        btnProperties.queueClassButtonOrange,
-        btnProperties.queueBtnDisabled,
-        btnProperties.queueBtnText,
-    );
+
+    return (this.refs.modalBody.innerHTML = modalCardTemplate(
+      movieImage,
+      data.title,
+      data.vote_average,
+      data.vote_count,
+      data.popularity,
+      data.original_title,
+      movieGenres,
+      data.overview,
+      btnProperties.watchedClassButtonOrange,
+      btnProperties.watchedBtnDisabled,
+      btnProperties.watchedBtnText,
+      btnProperties.queueClassButtonOrange,
+      btnProperties.queueBtnDisabled,
+      btnProperties.queueBtnText
+    ));
   }
 
   // CLOSE MODAL
@@ -108,7 +108,7 @@ export default class ModalAPI {
   renderBackdropMarkup() {
     const backdropMarkup = `<div class="backdrop is-hidden">
         <div class="modal">
-        <button class="modal__close-btn">
+        <button class="modal__close-btn">Exit
           <svg class="modal__close-btn-icon" alt="close"  width="30px" height="30px">
             <use href="${svg + '#icon-close'}"></use>
           </svg>
