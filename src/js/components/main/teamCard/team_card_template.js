@@ -17,7 +17,9 @@ const renderLinks = (links, icons) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg class="team__link-icon" width="32px" height="32px"><use href="${socials[i]}" ></use></svg>
+          <svg class="team__link-icon" width="32px" height="32px">
+            <use href="${socials[i]}" ></use>
+          </svg>
         </a>
       </li>  `;
     template.push(link);

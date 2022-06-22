@@ -1,4 +1,4 @@
-import pictureHeart from '../../../../images/heart.svg';
+import svg from '../../../../images/symbol-defs.svg';
 
 const mainFooterTemplate = () => {
   return `
@@ -6,7 +6,9 @@ const mainFooterTemplate = () => {
       <div class="container footer__container">
         <p class="footer__text">
           &copy; 2022 &#124; All Rights Reserved &#124; Developed with
-           <img class="footer__heart-img" src="${pictureHeart}" width="14" height="13" />
+          <svg class="footer__heart-img" alt="close"  width="14px" height="13px">
+            <use href="${svg + '#icon-heart'}"></use>
+          </svg>
           by
           <button class="footer__modal-open-btn" type="button">GoIT Students</button>
         </p>

@@ -1,5 +1,6 @@
 import { getMovie, getImage } from '../../API/api';
 import modalCardTemplate from './modalCardTemplate';
+import svg from '../../../images/symbol-defs.svg';
 
 export default class ModalAPI {
   constructor() {
@@ -107,7 +108,11 @@ export default class ModalAPI {
   renderBackdropMarkup() {
     const backdropMarkup = `<div class="backdrop is-hidden">
         <div class="modal">
-        <button class="modal__close-btn"></button>
+        <button class="modal__close-btn">
+          <svg class="modal__close-btn-icon" alt="close"  width="30px" height="30px">
+            <use href="${svg + '#icon-close'}"></use>
+          </svg>
+        </button>
         <div class="modal__content-wrapp"></div>
         </div></div>`;
 
