@@ -64,7 +64,7 @@ export default class mainPage extends fetchAndRender {
       }
     });
   }
-
+// ============================ Search =======================================
   onSearchMovie() {
     this.refs.searchInput = document.querySelector('#searchField');
     let searchTimeout;
@@ -91,7 +91,7 @@ export default class mainPage extends fetchAndRender {
 
             document
               .querySelector('.main__header')
-              .insertAdjacentHTML('beforeend', notification);
+              .insertAdjacentHTML('afterbegin', notification);
 
             function notificationRemove() {
               console.log('work');
