@@ -1,6 +1,8 @@
-.card-container {
-  margin-top: 32px;
+.film {
+  padding: 32px;
+}
 
+.card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 32px 16px;

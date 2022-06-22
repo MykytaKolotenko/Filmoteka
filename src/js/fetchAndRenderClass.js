@@ -68,8 +68,9 @@ export default class fetchAndRender {
       })
       .join('');
     this.offLoaderSquare();
-
-    setTimeout(() => this.observerPagination(searched), 1000);
+    if (fetchPagination) {
+      setTimeout(() => this.observerPagination(searched), 1000);
+    }
 
     return template;
   }
