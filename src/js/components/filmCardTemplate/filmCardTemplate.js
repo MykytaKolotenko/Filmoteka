@@ -9,6 +9,8 @@ const filmCardTemplate = (
         src="${image}"
         alt="${filmName}"
         class="film__card-poster"
+        width="336"
+        height ="504"
       />
 
       <p class="film__card-name">${filmName}</p>
