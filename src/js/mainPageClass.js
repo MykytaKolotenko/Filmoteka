@@ -90,8 +90,8 @@ export default class mainPage extends fetchAndRender {
             Enter the correct movie name and try again!</p>`;
 
             document
-              .querySelector('.main__header')
-              .insertAdjacentHTML('beforeend', notification);
+              .querySelector('.main__header-input')
+              .insertAdjacentHTML('afterend', notification);
 
             function notificationRemove() {
               console.log('work');
