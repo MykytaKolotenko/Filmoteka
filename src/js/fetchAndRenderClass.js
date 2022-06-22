@@ -111,7 +111,7 @@ export default class fetchAndRender {
   async observerPagination(search = false) {
     const options = {
       root: null,
-      rootMargin: '150px',
+      rootMargin: '350px',
       threshold: 1.0,
     };
 
