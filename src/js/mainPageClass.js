@@ -14,19 +14,21 @@ export default class mainPage extends fetchAndRender {
 
     this.fakeFooterOnce();
     this.fetchAndRenderTrendingFilms();
-    this.renderBtnTop();
   }
   // =================== fetchAndRenderTrendingFilms ============================
   async fetchAndRenderTrendingFilms() {
     const data = await this.fetchTrendFilms();
 
     this.renderMain(data, true);
+    this.rendenBtnTop();
+
+
   }
 
   // =================== Btn_To_Top ============================
-  renderBtnTop() {
+  rendenBtnTop() {
     const elmToTop = ` <div class="to-top"><button class="btn-to-top" data-main="up"></button></div>`;
-    this.refs.header.insertAdjacentHTML('beforeend', elmToTop);
+    this.refs.main.insertAdjacentHTML('afterbegin', elmToTop);
     const btnToTop = document.querySelector('.to-top');
     btnToTop.style.display = 'none';
     btnToTop.addEventListener('click', function (e) {
@@ -73,9 +75,8 @@ export default class mainPage extends fetchAndRender {
         return;
       }
 
-      if (evt.target.value.trim().length === 0) {
+      if (evt.target.value.trim().length == 0) {
         this.fetchAndRenderTrendingFilms();
-        this.page = 2;
         return;
       }
 
@@ -103,6 +104,8 @@ export default class mainPage extends fetchAndRender {
           }
 
           this.renderMain(data, true, true, 'search');
+
+          this.rendenBtnTop();
 
           this.genresSelect.selectedIndex = 0;
           this.genresSelectCloseBtn.classList.remove('active');
