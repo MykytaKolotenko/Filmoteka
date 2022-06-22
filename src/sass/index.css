@@ -906,7 +906,7 @@ body.light-theme {
 
 body.dark-theme {
   background-color: rgba(0, 0, 0, 0.938);
-  color: #ababab;
+  color: #fff;
 }
 
 footer.light-theme {
@@ -1437,7 +1437,6 @@ footer.dark-theme {
 
 .footer__text {
   width: 236px;
-  color: #fff;
   font-size: 14px;
   line-height: 1.19;
   text-align: center;
