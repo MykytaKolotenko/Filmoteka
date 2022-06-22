@@ -19,7 +19,7 @@ export default class fetchAndRender {
       footer: document.querySelector('footer'),
     };
 
-    this.page = 2;
+    this.page = 1;
     this.input = '';
     this.selectedGenreIdGlobal = '';
   }
@@ -69,9 +69,11 @@ export default class fetchAndRender {
       .join('');
     this.offLoaderSquare();
 
-    if (fetchPagination) {
-      this.observerPagination(searched);
-    }
+    // if (fetchPagination) {
+    //   setTimeout(() => this.observerPagination(searched), 1000);
+    // }
+
+    setTimeout(() => this.observerPagination(searched), 1000);
 
     return template;
   }
@@ -112,15 +114,14 @@ export default class fetchAndRender {
       rootMargin: '150px',
       threshold: 1.0,
     };
-    
-    if (search === 'search') {
-      const data = await this.fetchSearchedMovie(this.input, this.page);
 
+    if (search === 'search') {
       const gallery = document.querySelector('.container');
 
       const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
+          const data = await this.fetchSearchedMovie(this.input, this.page);
 
           const template = await this.templateMain(data, true, 'search');
 
@@ -129,22 +130,22 @@ export default class fetchAndRender {
             .insertAdjacentHTML('beforeend', template);
         }
       };
-     
+
       const observer = new IntersectionObserver(callback, options);
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
     } else if (search === 'genres') {
       this.input = '';
-      const data = await this.fetchFilteringMovieByGenre(
-        this.selectedGenreIdGlobal,
-        this.page
-      );
 
       const gallery = document.querySelector('.container');
 
       const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
+          const data = await this.fetchFilteringMovieByGenre(
+            this.selectedGenreIdGlobal,
+            this.page
+          );
 
           const template = await this.templateMain(data, true, 'genres');
 
@@ -158,14 +159,13 @@ export default class fetchAndRender {
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
     } else {
-      const data = await this.fetchTrendFilms(this.page);
-
       const gallery = document.querySelector('.container');
 
       const callback = async (entries, observer) => {
         if (entries[0].isIntersecting) {
           observer.unobserve(entries[0].target);
 
+          const data = await this.fetchTrendFilms(this.page);
           const template = await this.templateMain(data);
 
           document
@@ -173,11 +173,10 @@ export default class fetchAndRender {
             .insertAdjacentHTML('beforeend', template);
         }
       };
-      
+
       const observer = new IntersectionObserver(callback, options);
       observer.observe(gallery.lastElementChild);
       this.page = this.page + 1;
-      
     }
   }
 
