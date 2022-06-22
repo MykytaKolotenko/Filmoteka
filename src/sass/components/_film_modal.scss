@@ -171,14 +171,9 @@
     position: absolute;
     top: 8px;
     right: 8px;
-
-    width: 30px;
-    height: 30px;
-
     border: none;
-
-    background-image: url('../images/close.svg');
     background-color: transparent;
+    transition: all 500ms ease;
 
     &:focus,
     &:hover {
