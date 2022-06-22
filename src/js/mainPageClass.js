@@ -3,6 +3,7 @@ import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import fetchAndRender from './fetchAndRenderClass';
 import libraryPage from './libraryPageClass';
+import { Notify } from 'notiflix';
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
@@ -88,20 +89,21 @@ export default class mainPage extends fetchAndRender {
           if (data.length === 0) {
             const notification = `<p class="notification">Search result not successful.
             Enter the correct movie name and try again!</p>`;
-
+            
             document
-
+            
               .querySelector('.main__header')
               .insertAdjacentHTML('afterbegin', notification);
-
-
+            
+            
             function notificationRemove() {
-              console.log('work');
-              document.querySelector('.notification').remove();
-            }
-            setTimeout(notificationRemove, 3000);
-
-            this.fetchAndRenderTrendingFilms();
+                console.log('work');
+                document.querySelector('.notification').remove();
+              }
+              setTimeout(notificationRemove, 3000);
+              
+              this.fetchAndRenderTrendingFilms();
+              return  Notify.failure('Все Буде Україна!!!Але фільму з такою назвою не знайденно!');
           }
 
           this.renderMain(data, true, true, 'search');
