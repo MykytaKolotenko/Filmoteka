@@ -61,9 +61,10 @@
   background-color: transparent;
   outline: none;
 
-  fill: black;
+  fill: var(--text_color);
   transition: all 500ms ease;
 
+  &:focus,
   &:hover {
     fill: var(--bgcolor_main);
     transform: scale(0.8);
