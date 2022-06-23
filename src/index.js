@@ -1,5 +1,6 @@
 import ModalAPI from './js/components/filmModal/ModalApi';
-import ModalFooter from './js/components/main/footerModal/FooterModal';
+import FooterModal from './js/components/main/footerModal/footerModal';
+
 import mainPage from './js/mainPageClass';
 
 mainPage.prototype.renderLoaderSquare(true);
@@ -10,4 +11,5 @@ renderPage.onChangePage();
 renderPage.renderFooter();
 
 new ModalAPI();
-new ModalFooter();
+
+new FooterModal();
