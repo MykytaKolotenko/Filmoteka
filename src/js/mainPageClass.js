@@ -3,11 +3,17 @@ import { getImage, urlTrendingMovies } from './API/api';
 import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import fetchAndRender from './fetchAndRenderClass';
 import libraryPage from './libraryPageClass';
-import { Notify } from 'notiflix';
+import Notiflix, { Notify } from 'notiflix';
+
+Notiflix;
 
 export default class mainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
+    Notiflix.Notify.init({
+      width: '280px',
+      position: 'center-top',
+    });
 
     this.renderHeader();
     this.onSearchMovie();
@@ -65,7 +71,7 @@ export default class mainPage extends fetchAndRender {
       }
     });
   }
-// ============================ Search =======================================
+  // ============================ Search =======================================
   onSearchMovie() {
     this.refs.searchInput = document.querySelector('#searchField');
     let searchTimeout;
@@ -87,25 +93,9 @@ export default class mainPage extends fetchAndRender {
       searchTimeout = setTimeout(() => {
         const data = this.fetchSearchedMovie(this.input).then(data => {
           if (data.length === 0) {
-            const notification = `<p class="notification">Search result not successful.
-            Enter the correct movie name and try again!</p>`;
-            
-            document
-
-            
-              .querySelector('.main__header')
-              .insertAdjacentHTML('afterbegin', notification);
-            
-            
-
-            function notificationRemove() {
-                console.log('work');
-                document.querySelector('.notification').remove();
-              }
-              setTimeout(notificationRemove, 3000);
-              
-              this.fetchAndRenderTrendingFilms();
-              return  Notify.failure('Все Буде Україна!!!Але фільму з такою назвою не знайденно!');
+            return Notify.failure(
+              'Search result not successful. Enter the correct movie name and try again'
+            );
           }
 
           this.renderMain(data, true, true, 'search');

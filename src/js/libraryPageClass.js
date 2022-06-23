@@ -42,7 +42,7 @@ export default class libraryPage extends fetchAndRender {
 
   getAndRenderLocalStorage(dataBtn) {
     const data = this.getItemsFromLocalStorage(dataBtn);
-    console.log(data);
+    
     if (data === null) {
       const failTenplate = `<div class="container nofilms"><h2> There are no films!</h2></div>`;
 
