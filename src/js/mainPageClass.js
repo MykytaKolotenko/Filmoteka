@@ -64,7 +64,7 @@ export default class mainPage extends fetchAndRender {
       }
     });
   }
-
+// ============================ Search =======================================
   onSearchMovie() {
     this.refs.searchInput = document.querySelector('#searchField');
     let searchTimeout;
@@ -90,8 +90,12 @@ export default class mainPage extends fetchAndRender {
             Enter the correct movie name and try again!</p>`;
 
             document
-              .querySelector('.main__header-input')
-              .insertAdjacentHTML('afterend', notification);
+
+
+              .querySelector('.main__header')
+              .insertAdjacentHTML('afterbegin', notification);
+
+
 
             function notificationRemove() {
               console.log('work');
