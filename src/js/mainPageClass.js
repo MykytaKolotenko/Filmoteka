@@ -1,12 +1,10 @@
-import fetchAndRender from './FetchAndRenderClass';
+import FetchAndRender from './FetchAndRenderClass';
 
 import Notiflix, { Notify } from 'notiflix';
 import Switcher from './components/main/header/switcher';
 import LibraryPage from './LibraryPageClass.js';
 
-Notiflix;
-
-export default class MainPage extends fetchAndRender {
+export default class MainPage extends FetchAndRender {
   constructor(refs) {
     super(refs);
     Notiflix.Notify.init({
