@@ -1,5 +1,5 @@
-import ModalAPI from './js/components/filmModal/filmModal';
-import ModalFooter from './js/components/main/footerModal/footerModal';
+import ModalAPI from './js/components/filmModal/ModalApi';
+import ModalFooter from './js/components/main/footerModal/FooterModal';
 import mainPage from './js/mainPageClass';
 
 mainPage.prototype.renderLoaderSquare(true);

@@ -1,11 +1,12 @@
-import fetchAndRender from './fetchAndRenderClass';
-import LibraryPage from './LibraryPageClass';
+import fetchAndRender from './FetchAndRenderClass';
+
 import Notiflix, { Notify } from 'notiflix';
 import Switcher from './components/main/header/switcher';
+import LibraryPage from './LibraryPageClass.js';
 
 Notiflix;
 
-export default class mainPage extends fetchAndRender {
+export default class MainPage extends fetchAndRender {
   constructor(refs) {
     super(refs);
     Notiflix.Notify.init({
@@ -58,7 +59,7 @@ export default class mainPage extends fetchAndRender {
         e.target.dataset.main === 'home' ||
         e.target.dataset.main === 'homeLogo'
       ) {
-        new mainPage();
+        new MainPage();
 
         if (document.querySelector('.pagination')) {
           document.querySelector('.pagination').remove();
@@ -66,7 +67,7 @@ export default class mainPage extends fetchAndRender {
       }
 
       if (e.target.dataset.main === 'library') {
-        new libraryPage();
+        new LibraryPage();
       }
     });
   }
