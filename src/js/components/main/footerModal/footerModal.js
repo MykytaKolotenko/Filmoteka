@@ -1,4 +1,4 @@
-import footerModalTemplate from './footer_modal_template.js'
+import footerModalTemplate from './footer_modal_template.js';
 import developers from '../teamCard/jsonTeam.js';
 import team_template from '../teamCard/team_card_template.js';
 
@@ -12,22 +12,46 @@ export default class FooterModal {
       footerModalCloseBtn: document.querySelector('.footer__modal-close-btn'),
       teamList: document.querySelector('.js-team-list'),
     };
-    this.refs.footerModalOpenBtn.addEventListener('click', this.onOpenModal.bind(this)); 
+    this.refs.footerModalOpenBtn.addEventListener(
+      'click',
+      this.onOpenModal.bind(this)
+    );
   }
-  
+
   onOpenModal(e) {
     // e.preventDefault();
-    window.addEventListener('keydown', this.onEscBtnPress.bind(this));
-    this.refs.footerModalCloseBtn.addEventListener('click', this.onCloseModal.bind(this));
-    this.refs.footerModal.addEventListener('click', this.onModalOverlayClick.bind(this));
+    window.addEventListener('keydown', this.onEscBtnPress.bind(this), {
+      once: true,
+    });
+    this.refs.footerModalCloseBtn.addEventListener(
+      'click',
+      this.onCloseModal.bind(this),
+      {
+        once: true,
+      }
+    );
+    this.refs.footerModal.addEventListener(
+      'click',
+      this.onModalOverlayClick.bind(this),
+      {
+        once: true,
+      }
+    );
     this.refs.footerModal.classList.add('is-open');
     this.refs.body.classList.add('is-open');
-    return this.refs.teamList.innerHTML = team_template(developers);
+    return (this.refs.teamList.innerHTML = team_template(developers));
   }
 
   onCloseModal() {
-    this.refs.footerModalCloseBtn.removeEventListener('click', this.onCloseModal.bind(this));
-    this.refs.footerModal.removeEventListener('click', this.onModalOverlayClick.bind(this));
+    console.log('close');
+    this.refs.footerModalCloseBtn.removeEventListener(
+      'click',
+      this.onCloseModal.bind(this)
+    );
+    this.refs.footerModal.removeEventListener(
+      'click',
+      this.onModalOverlayClick.bind(this)
+    );
     window.removeEventListener('keydown', this.onEscBtnPress.bind(this));
     this.refs.footerModal.classList.remove('is-open');
     this.refs.body.classList.remove('is-open');
@@ -46,8 +70,7 @@ export default class FooterModal {
   }
 
   renderFooterModalTemplate() {
-    const modalTemplate = footerModalTemplate()
+    const modalTemplate = footerModalTemplate();
     document.body.insertAdjacentHTML('beforeend', modalTemplate);
   }
-
 }

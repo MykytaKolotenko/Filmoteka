@@ -16,5 +16,3 @@ renderPage.renderFooter();
 
 new ModalAPI();
 new ModalFooter();
-
-// new Switcher();
