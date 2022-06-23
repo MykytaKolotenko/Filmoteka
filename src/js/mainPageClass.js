@@ -1,4 +1,4 @@
-import FetchAndRender from './FetchAndRenderClass';
+import FetchAndRender from './FetchAndRenderClass.js';
 
 import Notiflix, { Notify } from 'notiflix';
 import Switcher from './components/main/header/switcher';
