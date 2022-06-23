@@ -124,6 +124,11 @@ export default class LibraryPage extends FetchAndRender {
       const endSlice = currentPage * 9;
       this.renderMain(data.slice(startSlice, endSlice), true, false);
       this.hideFirstEndPaginationBtn();
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     });
   }
 
