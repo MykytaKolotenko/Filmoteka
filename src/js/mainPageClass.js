@@ -1,5 +1,5 @@
 import fetchAndRender from './fetchAndRenderClass';
-import libraryPage from './LibraryPageClass';
+import LibraryPage from './LibraryPageClass';
 import Notiflix, { Notify } from 'notiflix';
 import Switcher from './components/main/header/switcher';
 
