@@ -91,8 +91,10 @@ export default class mainPage extends fetchAndRender {
 
             document
 
+
               .querySelector('.main__header')
               .insertAdjacentHTML('afterbegin', notification);
+
 
 
             function notificationRemove() {
