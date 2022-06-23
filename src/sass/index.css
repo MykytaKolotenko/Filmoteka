@@ -741,7 +741,6 @@ p {
 @media screen and (max-width: 767px) {
   .library__header {
     padding: 40px 20px;
-    height: 230px;
   }
 }
 
@@ -988,10 +987,9 @@ footer.dark-theme {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
-  display: flex;
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 15px;
+  left: 15px;
 }
 
 .theme-switch__toggle {
@@ -1822,6 +1820,7 @@ footer.dark-theme {
   padding: 10 0px;
   text-transform: capitalize;
   border: none;
+  color: inherit;
 }
 
 .tui-page-btn {
@@ -1852,6 +1851,7 @@ footer.dark-theme {
 
 .tui-is-selected {
   background-color: #ff7619;
+  color: black;
 }
 
 button {
