@@ -9,7 +9,6 @@ body.dark-theme {
   background-color: rgba(0, 0, 0, 0.938);
 
   color: #ababab;
-
 }
 
 footer.light-theme {
@@ -68,10 +67,10 @@ footer.dark-theme {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  display: flex;
+
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 15px;
+  left: 15px;
 }
 
 .theme-switch__toggle {
