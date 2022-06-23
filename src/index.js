@@ -1,11 +1,10 @@
 import ModalAPI from './js/components/filmModal/ModalApi';
 import FooterModal from './js/components/main/footerModal/footerModal';
+import MainPage from './js/PageMainClass';
 
-import mainPage from './js/mainPageClass';
+MainPage.prototype.renderLoaderSquare(true);
 
-mainPage.prototype.renderLoaderSquare(true);
-
-let renderPage = new mainPage();
+let renderPage = new MainPage();
 
 renderPage.onChangePage();
 renderPage.renderFooter();
