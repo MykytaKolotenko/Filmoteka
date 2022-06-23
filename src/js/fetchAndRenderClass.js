@@ -11,7 +11,7 @@ import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import libraryHeaderTemplate from './components/main/library_header/library_header_template';
 import genresDataFromId from './components/main/pagination/genresDataFromId';
 
-export default class fetchAndRender {
+export default class FetchAndRender {
   constructor() {
     this.refs = {
       header: document.querySelector('header'),
