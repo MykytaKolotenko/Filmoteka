@@ -5,7 +5,7 @@ import axios from 'axios';
 const KEYv3 = '?api_key=0f5c4a68ea4f6f8af4c4fd53fcc81027';
 const URL = `
 https://api.themoviedb.org/3`;
-const URLImage = 'https://image.tmdb.org/t/p/w500';
+const URLImage = 'https://image.tmdb.org/t/p/w300';
 
 // options
 
