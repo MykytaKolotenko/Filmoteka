@@ -1,6 +1,7 @@
 import { getMovie, getImage } from '../../API/api';
 import modalCardTemplate from './modalCardTemplate';
 import svg from '../../../images/symbol-defs.svg';
+import reRender from '../rerender';
 
 export default class ModalAPI {
   constructor() {
@@ -103,6 +104,14 @@ export default class ModalAPI {
 
   closeModal() {
     this.refs.backdrop.classList.add('is-hidden');
+
+    if (document.querySelector('[data-main="watched"].active')) {
+      reRender('watched');
+    }
+
+    if (document.querySelector('[data-main="queue"].active')) {
+      reRender('queue');
+    }
   }
 
   renderBackdropMarkup() {
