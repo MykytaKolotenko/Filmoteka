@@ -72,6 +72,12 @@ p {
   }
 }
 
+@media screen and (max-width: 320px) {
+  .film {
+    padding: 20px;
+  }
+}
+
 .film .card-container {
   display: -ms-grid;
   display: grid;

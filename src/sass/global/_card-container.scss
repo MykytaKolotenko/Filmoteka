@@ -5,6 +5,10 @@
     padding: 20px;
   }
 
+  @media screen and (max-width: 320px) {
+    padding: 20px;
+  }
+
   .card-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
