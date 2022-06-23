@@ -94,6 +94,8 @@ export default class MainPage extends FetchAndRender {
             this.fetchTrendFilms().then(data => this.renderMain(data, true));
             this.input = '';
             evt.target.value = this.input;
+            this.genresSelect.selectedIndex = 0;
+            this.genresSelectCloseBtn.classList.remove('active');
             return Notify.failure(
               'Search result not successful. Enter the correct movie name and try again'
             );
