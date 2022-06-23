@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import Switcher from './components/main/header/switcher';
-import FetchAndRender from './FetchAndRenderClass';
+import FetchAndRender from './RenderAndFetchClass';
 
 export default class LibraryPage extends FetchAndRender {
   constructor(refs) {
