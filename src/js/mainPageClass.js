@@ -91,11 +91,13 @@ export default class mainPage extends fetchAndRender {
             Enter the correct movie name and try again!</p>`;
             
             document
+
             
               .querySelector('.main__header')
               .insertAdjacentHTML('afterbegin', notification);
             
             
+
             function notificationRemove() {
                 console.log('work');
                 document.querySelector('.notification').remove();
