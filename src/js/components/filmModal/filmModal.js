@@ -1,7 +1,7 @@
 import { getMovie, getImage } from '../../API/api';
 import modalCardTemplate from './modalCardTemplate';
 import svg from '../../../images/symbol-defs.svg';
-import reRender from '../rerender';
+import reRender from '../reRender.js';
 
 export default class ModalAPI {
   constructor() {
