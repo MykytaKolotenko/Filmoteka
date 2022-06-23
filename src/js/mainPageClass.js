@@ -1,9 +1,7 @@
-import InfiniteScroll from 'infinite-scroll';
-import { getImage, urlTrendingMovies } from './API/api';
-import filmCardTemplate from './components/filmCardTemplate/filmCardTemplate';
 import fetchAndRender from './fetchAndRenderClass';
 import libraryPage from './libraryPageClass';
 import Notiflix, { Notify } from 'notiflix';
+import Switcher from './components/main/header/switcher';
 
 Notiflix;
 
@@ -28,6 +26,7 @@ export default class mainPage extends fetchAndRender {
     const data = await this.fetchTrendFilms();
 
     this.renderMain(data, true);
+    new Switcher();
   }
 
   // =================== Btn_To_Top ============================

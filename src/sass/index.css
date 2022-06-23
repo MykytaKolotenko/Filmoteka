@@ -94,7 +94,7 @@ p {
   }
 }
 
-.film .nofilms {
+.no-films {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -110,7 +110,7 @@ p {
   height: 70vh;
 }
 
-.film .nofilms h2 {
+.no-films h2 {
   font-size: 48px;
   color: inherit;
   text-transform: uppercase;
@@ -685,6 +685,7 @@ p {
 }
 
 .library__header {
+  position: relative;
   max-width: 1023px;
   height: 216px;
   padding: 45px 32px;

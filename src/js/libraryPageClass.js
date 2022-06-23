@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+import Switcher from './components/main/header/switcher';
 import fetchAndRender from './fetchAndRenderClass';
 
 export default class libraryPage extends fetchAndRender {
@@ -14,6 +15,8 @@ export default class libraryPage extends fetchAndRender {
 
     this.renderFromBtn();
     this.hideFirstEndPaginationBtn();
+
+    new Switcher();
   }
 
   renderFromBtn() {
@@ -42,17 +45,18 @@ export default class libraryPage extends fetchAndRender {
 
   getAndRenderLocalStorage(dataBtn) {
     const data = this.getItemsFromLocalStorage(dataBtn);
-    
+
     if (data === null) {
-      const failTenplate = `<div class="container nofilms"><h2> There are no films!</h2></div>`;
+      const failTenplate = `<div class="container no-films"><h2 > There are no films!</h2></div>`;
 
       this.refs.main.innerHTML = failTenplate;
       this.pagination(data);
 
       return;
     }
+
     if (data.length <= 0) {
-      const failTenplate = `<div class="container nofilms"><h2> There are no films!</h2></div>`;
+      const failTenplate = `<div class="container no-films"><h2> There are no films!</h2></div>`;
 
       this.refs.main.innerHTML = failTenplate;
       this.pagination(data);

@@ -18,28 +18,28 @@
       grid-template-columns: 1fr;
     }
   }
+}
 
-  .nofilms {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1024px;
-    height: 70vh;
+.no-films {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  height: 70vh;
 
-    & h2 {
-      font-size: 48px;
-      color: inherit;
-      text-transform: uppercase;
+  & h2 {
+    font-size: 48px;
+    color: inherit;
+    text-transform: uppercase;
 
-      text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
-        var(--bgcolor_main) 0px 0px 20px, var(--bgcolor_main) 0px 0px 30px,
-        var(--bgcolor_main) 0px 0px 40px, var(--bgcolor_main) 0px 0px 50px,
-        var(--bgcolor_main) 0px 0px 75px;
+    text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+      var(--bgcolor_main) 0px 0px 20px, var(--bgcolor_main) 0px 0px 30px,
+      var(--bgcolor_main) 0px 0px 40px, var(--bgcolor_main) 0px 0px 50px,
+      var(--bgcolor_main) 0px 0px 75px;
 
-      animation: opacity 2s 3 linear;
-    }
+    animation: opacity 2s 3 linear;
   }
 }
 

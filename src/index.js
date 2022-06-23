@@ -17,6 +17,4 @@ renderPage.renderFooter();
 new ModalAPI();
 new ModalFooter();
 
-const switcher = new Switcher()
-switcher.changeTheme();
-
+// new Switcher();
